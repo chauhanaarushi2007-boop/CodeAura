@@ -8,17 +8,19 @@ import { languages } from "@/lib/placeholder-data";
 import { Play } from "lucide-react";
 import { useState, useTransition } from "react";
 import { runCode } from "@/app/actions";
+import { Label } from "@/components/ui/label";
 
 export default function CodeRunnerPage() {
     const [output, setOutput] = useState("Your code output will appear here.");
     const [code, setCode] = useState("<h1>Hello, Language-MIA!</h1>\n<style>\n  h1 { color: blue; }\n</style>");
     const [language, setLanguage] = useState("html");
+    const [input, setInput] = useState("");
     const [isPending, startTransition] = useTransition();
 
     const handleRunCode = () => {
         startTransition(async () => {
             setOutput("Running code...");
-            const result = await runCode(code, language);
+            const result = await runCode(code, language, input);
             setOutput(result.output);
         });
     }
@@ -60,16 +62,26 @@ export default function CodeRunnerPage() {
             </div>
         </CardHeader>
         <CardContent className="grid md:grid-cols-2 gap-6">
-            <div>
+            <div className="space-y-4">
                  <Textarea
                     value={code}
                     onChange={(e) => setCode(e.target.value)}
                     placeholder="console.log('Hello, Language-MIA!');"
                     className="h-80 font-code text-sm resize-none"
                     />
+                <div>
+                    <Label htmlFor="input" className="mb-2 block">Input (stdin)</Label>
+                    <Textarea
+                        id="input"
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        placeholder="Enter input for your code here..."
+                        className="h-32 font-code text-sm resize-none"
+                        />
+                </div>
             </div>
             <div>
-                <Card className="bg-muted h-80">
+                <Card className="bg-muted h-full">
                     <CardHeader>
                         <CardTitle className="text-lg font-medium">Output</CardTitle>
                     </CardHeader>

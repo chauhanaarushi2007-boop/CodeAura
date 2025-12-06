@@ -27,7 +27,7 @@ export async function askMIA(query: string) {
     }
 }
 
-export async function runCode(code: string, language: string) {
+export async function runCode(code: string, language: string, input: string) {
     if (!code || code.trim().length === 0) {
         return {
             output: "Please enter some code to run.",
@@ -36,7 +36,7 @@ export async function runCode(code: string, language: string) {
     }
 
     try {
-        const result = await runCodeFlow({ code, language });
+        const result = await runCodeFlow({ code, language, input });
         return {
             output: result.output,
             error: false
