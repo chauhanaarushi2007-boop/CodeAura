@@ -15,7 +15,7 @@ export default function Home() {
             <div className="flex flex-col justify-center space-y-4">
               <div className="space-y-2">
                 <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                  Master Any Programming Language with CodeLingua
+                  Master Any Programming Language with Language-MIA
                 </h1>
                 <p className="max-w-[600px] text-muted-foreground md:text-xl">
                   Your personal AI-powered guide to the world of code. Interactive tutorials, live code execution, and instant answers.
@@ -43,7 +43,7 @@ export default function Home() {
               <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Key Features</div>
               <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-5xl">Learn Smarter, Not Harder</h2>
               <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                CodeLingua provides you with all the tools you need to succeed in your programming journey, from beginner to pro.
+                Language-MIA provides you with all the tools you need to succeed in your programming journey, from beginner to pro.
               </p>
             </div>
           </div>

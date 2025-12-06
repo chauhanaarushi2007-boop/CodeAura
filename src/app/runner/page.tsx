@@ -11,7 +11,7 @@ import { runCode } from "@/app/actions";
 
 export default function CodeRunnerPage() {
     const [output, setOutput] = useState("Your code output will appear here.");
-    const [code, setCode] = useState("console.log('Hello, CodeLingua!');");
+    const [code, setCode] = useState("console.log('Hello, Language-MIA!');");
     const [language, setLanguage] = useState("javascript");
     const [isPending, startTransition] = useTransition();
 
@@ -62,7 +62,7 @@ export default function CodeRunnerPage() {
                  <Textarea
                     value={code}
                     onChange={(e) => setCode(e.target.value)}
-                    placeholder="console.log('Hello, CodeLingua!');"
+                    placeholder="console.log('Hello, Language-MIA!');"
                     className="h-80 font-code text-sm resize-none"
                     />
             </div>

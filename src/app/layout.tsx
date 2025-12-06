@@ -7,7 +7,7 @@ import { Toaster } from "@/components/ui/toaster";
 import Chatbot from '@/components/chatbot';
 
 export const metadata: Metadata = {
-  title: 'CodeLingua - Master Programming with AI',
+  title: 'Language-MIA - Master Programming with AI',
   description: 'Your personal AI-powered guide to the world of code. Interactive tutorials, live code execution, and instant answers.',
 };
 
