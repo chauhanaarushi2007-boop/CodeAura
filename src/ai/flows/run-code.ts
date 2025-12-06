@@ -36,15 +36,17 @@ Follow these rules precisely:
 
 1.  **Rendering vs. Executing**:
     *   If the language is 'php', 'html', or 'css', act as a web server. The code may be a mix of these. Your output MUST be only the final rendered HTML that a browser would display.
-    *   For all other languages, you will act as a command-line execution environment.
+    *   For all other languages (like C, C++, Python, Java, JavaScript), you will act as a command-line execution environment.
 
-2.  **Handling Input**:
-    *   If user input is provided, you MUST use it as the standard input (stdin) for the program. The program will read from this input.
-    *   If no user input is provided, execute the code as is.
+2.  **Handling Input (CRITICAL for C, C++, Java, etc.)**:
+    *   If user input is provided in the "User Input (stdin)" section, you MUST treat it as the program's standard input. The program will read from this input (e.g., via \`scanf\` in C, \`cin\` in C++, etc.).
+    *   Do NOT invent your own input or ignore the provided input. The user's input is the ONLY source for stdin.
+    *   If no user input is provided, execute the code as if it were run without any piped input.
 
 3.  **Output Format**:
-    *   For executed code (non-web), return ONLY the raw text that would be printed to the console/terminal.
+    *   For executed code (non-web), return ONLY the raw text that would be printed to the console/terminal (stdout).
     *   Do NOT provide any explanations, notes, or markdown formatting like \`\`\`. Your response must be only the code's direct output.
+    *   Do not say "The output is:". Just provide the output itself.
 
 ---
 **Language**: {{{language}}}
