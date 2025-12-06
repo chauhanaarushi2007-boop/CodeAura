@@ -43,14 +43,14 @@ Do not provide any surrounding text, explanations, or markdown formatting like \
 Language: {{{language}}}
 {{#if input}}
 User Input:
-\'\'\'
+'''
 {{{input}}}
-\'\'\'
+'''
 {{/if}}
 Code:
-\'\'\'
+'''
 {{{code}}}
-\'\'\'
+'''
 `,
 });
 
