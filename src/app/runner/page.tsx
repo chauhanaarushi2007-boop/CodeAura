@@ -6,19 +6,21 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { languages } from "@/lib/placeholder-data";
 import { Play } from "lucide-react";
-import { useState } from "react";
+import { useState, useTransition } from "react";
+import { runCode } from "@/app/actions";
 
 export default function CodeRunnerPage() {
     const [output, setOutput] = useState("Your code output will appear here.");
-    const [isLoading, setIsLoading] = useState(false);
+    const [code, setCode] = useState("console.log('Hello, CodeLingua!');");
+    const [language, setLanguage] = useState("javascript");
+    const [isPending, startTransition] = useTransition();
 
     const handleRunCode = () => {
-        setIsLoading(true);
-        setOutput("Running code...");
-        setTimeout(() => {
-            setOutput("Hello, CodeLingua! \nThis is a simulated output.");
-            setIsLoading(false);
-        }, 1500);
+        startTransition(async () => {
+            setOutput("Running code...");
+            const result = await runCode(code, language);
+            setOutput(result.output);
+        });
     }
 
   return (
@@ -39,7 +41,7 @@ export default function CodeRunnerPage() {
                 <CardDescription>Select a language and start coding.</CardDescription>
             </div>
             <div className="flex items-center gap-4">
-                <Select defaultValue="javascript">
+                <Select value={language} onValueChange={setLanguage}>
                     <SelectTrigger className="w-[180px]">
                         <SelectValue placeholder="Select Language" />
                     </SelectTrigger>
@@ -49,15 +51,17 @@ export default function CodeRunnerPage() {
                         ))}
                     </SelectContent>
                 </Select>
-                <Button onClick={handleRunCode} disabled={isLoading}>
+                <Button onClick={handleRunCode} disabled={isPending}>
                     <Play className="mr-2 h-4 w-4" />
-                    {isLoading ? "Running..." : "Run"}
+                    {isPending ? "Running..." : "Run"}
                 </Button>
             </div>
         </CardHeader>
         <CardContent className="grid md:grid-cols-2 gap-6">
             <div>
-                 <Textarea 
+                 <Textarea
+                    value={code}
+                    onChange={(e) => setCode(e.target.value)}
                     placeholder="console.log('Hello, CodeLingua!');"
                     className="h-80 font-code text-sm resize-none"
                     />

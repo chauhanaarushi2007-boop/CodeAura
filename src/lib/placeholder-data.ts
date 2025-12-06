@@ -6,6 +6,7 @@ export const languages: Language[] = [
   { id: 'javascript', name: 'JavaScript', description: 'A programming language that makes web pages interactive.' },
   { id: 'python', name: 'Python', description: 'A high-level, general-purpose programming language.' },
   { id: 'java', name: 'Java', description: 'A class-based, object-oriented programming language.' },
+  { id: 'go', name: 'Go', description: 'A statically typed, compiled programming language designed at Google.'},
   { id: 'c', name: 'C', description: 'A general-purpose, procedural computer programming language.' },
   { id: 'cpp', name: 'C++', description: 'A high-level, general-purpose programming language created as an extension of C.' },
   { id: 'php', name: 'PHP', description: 'A general-purpose scripting language especially suited to web development.' },

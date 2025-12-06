@@ -68,6 +68,14 @@ const icons: Record<Language["id"], React.ComponentType<{ className?: string }>>
       <path d="M17 9v6" />
     </svg>
   ),
+  go: (props) => (
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M9 12h6" />
+      <path d="M9 6h6" />
+      <path d="M12 6v12" />
+      <path d="M5 12a7 7 0 007 7 7 7 0 007-7" />
+    </svg>
+  ),
   xml: (props) => (
     <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M8 10l-6 6 6 6" />
