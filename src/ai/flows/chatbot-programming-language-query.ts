@@ -1,45 +1,45 @@
 'use server';
 /**
- * @fileOverview An AI agent to answer user queries related to programming languages.
+ * @fileOverview An AI agent to answer user queries.
  *
- * - programmingLanguageQuery - A function that handles the programming language query process.
- * - ProgrammingLanguageQueryInput - The input type for the programmingLanguageQuery function.
- * - ProgrammingLanguageQueryOutput - The return type for the programmingLanguageQuery function.
+ * - generalQuery - A function that handles a general user query.
+ * - GeneralQueryInput - The input type for the generalQuery function.
+ * - GeneralQueryOutput - The return type for the generalQuery function.
  */
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
-const ProgrammingLanguageQueryInputSchema = z.object({
-  query: z.string().describe('The query about a programming language.'),
+const GeneralQueryInputSchema = z.object({
+  query: z.string().describe('The query from the user.'),
 });
-export type ProgrammingLanguageQueryInput = z.infer<typeof ProgrammingLanguageQueryInputSchema>;
+export type GeneralQueryInput = z.infer<typeof GeneralQueryInputSchema>;
 
-const ProgrammingLanguageQueryOutputSchema = z.object({
-  answer: z.string().describe('The answer to the programming language query.'),
+const GeneralQueryOutputSchema = z.object({
+  answer: z.string().describe('The answer to the query.'),
 });
-export type ProgrammingLanguageQueryOutput = z.infer<typeof ProgrammingLanguageQueryOutputSchema>;
+export type GeneralQueryOutput = z.infer<typeof GeneralQueryOutputSchema>;
 
-export async function programmingLanguageQuery(input: ProgrammingLanguageQueryInput): Promise<ProgrammingLanguageQueryOutput> {
-  return programmingLanguageQueryFlow(input);
+export async function generalQuery(input: GeneralQueryInput): Promise<GeneralQueryOutput> {
+  return generalQueryFlow(input);
 }
 
 const prompt = ai.definePrompt({
-  name: 'programmingLanguageQueryPrompt',
-  input: {schema: ProgrammingLanguageQueryInputSchema},
-  output: {schema: ProgrammingLanguageQueryOutputSchema},
-  prompt: `You are a helpful chatbot named MIA that answers questions about programming languages.
+  name: 'generalQueryPrompt',
+  input: {schema: GeneralQueryInputSchema},
+  output: {schema: GeneralQueryOutputSchema},
+  prompt: `You are a helpful chatbot named MIA.
 
   Here is the user's query: {{{query}}}
 
   Please provide a concise and informative answer. `,
 });
 
-const programmingLanguageQueryFlow = ai.defineFlow(
+const generalQueryFlow = ai.defineFlow(
   {
-    name: 'programmingLanguageQueryFlow',
-    inputSchema: ProgrammingLanguageQueryInputSchema,
-    outputSchema: ProgrammingLanguageQueryOutputSchema,
+    name: 'generalQueryFlow',
+    inputSchema: GeneralQueryInputSchema,
+    outputSchema: GeneralQueryOutputSchema,
   },
   async input => {
     const {output} = await prompt(input);

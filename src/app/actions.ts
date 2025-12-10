@@ -1,6 +1,6 @@
 "use server";
 
-import { programmingLanguageQuery } from "@/ai/flows/chatbot-programming-language-query";
+import { generalQuery } from "@/ai/flows/chatbot-programming-language-query";
 import { runCode as runCodeFlow } from "@/ai/flows/run-code";
 import { headers } from "next/headers";
 
@@ -13,7 +13,7 @@ export async function askMIA(query: string) {
     }
 
     try {
-        const result = await programmingLanguageQuery({ query });
+        const result = await generalQuery({ query });
         return {
             answer: result.answer,
             error: false
