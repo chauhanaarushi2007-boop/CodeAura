@@ -1,5 +1,5 @@
 export type Language = {
-  id: 'html' | 'css' | 'javascript' | 'python' | 'java' | 'c' | 'cpp' | 'php' | 'xml' | 'go' | 'prompt-engineering' | 'ethical-hacking';
+  id: 'html' | 'css' | 'javascript' | 'python' | 'java' | 'c' | 'cpp' | 'php' | 'xml' | 'go';
   name: string;
   description: string;
 };

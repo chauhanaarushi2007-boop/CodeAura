@@ -1,11 +1,5 @@
 import { cn } from "@/lib/utils";
 import type { Language } from "@/lib/types";
-import { BrainCircuit, Shield } from "lucide-react";
-
-type LanguageIconProps = {
-  language: Language["id"];
-  className?: string;
-};
 
 // Simple SVG icons for languages
 const icons: Record<Language["id"], React.ComponentType<{ className?: string }>> = {
@@ -84,8 +78,11 @@ const icons: Record<Language["id"], React.ComponentType<{ className?: string }>>
       <path d="M14 2l-4 20" />
     </svg>
   ),
-  'prompt-engineering': BrainCircuit,
-  'ethical-hacking': Shield,
+};
+
+type LanguageIconProps = {
+  language: Language["id"];
+  className?: string;
 };
 
 export function LanguageIcon({ language, className }: LanguageIconProps) {
