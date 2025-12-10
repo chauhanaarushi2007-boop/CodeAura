@@ -7,8 +7,8 @@ body {
 }
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
+  :root, .theme-light {
+    --background: 0 0% 98%;
     --foreground: 220 10% 20%;
     --card: 0 0% 100%;
     --card-foreground: 220 10% 20%;
@@ -29,7 +29,7 @@ body {
     --ring: 210 90% 55%;
   }
 
-  .dark {
+  .theme-oceanic-deep {
     --background: 220 30% 15%;
     --foreground: 210 10% 80%;
     --card: 220 30% 18%;
@@ -49,6 +49,50 @@ body {
     --border: 210 10% 25%;
     --input: 210 10% 25%;
     --ring: 210 90% 55%;
+  }
+
+  .theme-aurora-borealis {
+    --background: 220 15% 12%;
+    --foreground: 210 10% 80%;
+    --card: 220 15% 15%;
+    --card-foreground: 210 10% 80%;
+    --popover: 220 15% 12%;
+    --popover-foreground: 210 10% 80%;
+    --primary: 170 80% 45%;
+    --primary-foreground: 170 20% 98%;
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 210 10% 90%;
+    --muted: 220 15% 18%;
+    --muted-foreground: 210 10% 60%;
+    --accent: 270 90% 65%;
+    --accent-foreground: 270 20% 10%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 85.7% 97.3%;
+    --border: 220 15% 22%;
+    --input: 220 15% 22%;
+    --ring: 170 80% 45%;
+  }
+
+  .theme-synthwave-neon {
+    --background: 225 20% 8%;
+    --foreground: 210 10% 80%;
+    --card: 225 20% 11%;
+    --card-foreground: 210 10% 80%;
+    --popover: 225 20% 8%;
+    --popover-foreground: 210 10% 80%;
+    --primary: 320 100% 55%;
+    --primary-foreground: 320 20% 98%;
+    --secondary: 225 20% 15%;
+    --secondary-foreground: 210 10% 90%;
+    --muted: 225 20% 15%;
+    --muted-foreground: 210 10% 60%;
+    --accent: 180 90% 45%;
+    --accent-foreground: 180 20% 10%;
+    --destructive: 0 70% 40%;
+    --destructive-foreground: 0 85.7% 97.3%;
+    --border: 225 20% 20%;
+    --input: 225 20% 20%;
+    --ring: 320 100% 55%;
   }
 }
 
