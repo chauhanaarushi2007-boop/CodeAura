@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BookOpen, Bot, ListChecks, Terminal } from "lucide-react";
@@ -5,15 +7,18 @@ import Link from "next/link";
 import { LanguageIcon } from "@/components/icons/language-icons";
 import { languages } from "@/lib/placeholder-data";
 import { FloatingIcons } from "@/components/floating-icons";
+import { cn } from "@/lib/utils";
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-[100dvh]">
-      <section className="w-full py-20 md:py-32 lg:py-40 xl:py-48 bg-card">
-        <div className="container px-4 md:px-6">
+      <section className="w-full py-20 md:py-32 lg:py-40 xl:py-48 bg-card/50 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background"></div>
+        <div className="container px-4 md:px-6 relative">
           <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
             <div className="flex flex-col justify-center space-y-4">
-              <div className="space-y-2">
+              <div className="space-y-4">
                 <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
                   Master Any Programming Language with Language-MIA
                 </h1>
@@ -22,7 +27,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_20px_hsl(var(--primary))] transition-shadow hover:shadow-[0_0_30px_hsl(var(--primary))]">
                   <Link href="/tutorials">
                     Start Learning Now
                   </Link>
@@ -48,10 +53,10 @@ export default function Home() {
             </div>
           </div>
           <div className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-2 md:gap-12 lg:max-w-none lg:grid-cols-4 mt-12">
-            <Card className="hover:shadow-lg transition-shadow duration-300">
+            <Card className="hover:shadow-lg transition-all duration-300 hover:border-primary/50 hover:-translate-y-1">
               <CardHeader>
-                <div className="bg-accent/20 text-accent-foreground p-3 rounded-full w-fit mb-4">
-                    <BookOpen className="w-8 h-8 text-primary" />
+                <div className="bg-primary/10 text-primary p-3 rounded-lg w-fit mb-4">
+                    <BookOpen className="w-8 h-8" />
                 </div>
                 <CardTitle className="font-headline">Comprehensive Tutorials</CardTitle>
               </CardHeader>
@@ -59,10 +64,10 @@ export default function Home() {
                 <p className="text-muted-foreground">Dive deep into any language with our curated and easy-to-understand tutorials.</p>
               </CardContent>
             </Card>
-            <Card className="hover:shadow-lg transition-shadow duration-300">
+            <Card className="hover:shadow-lg transition-all duration-300 hover:border-primary/50 hover:-translate-y-1">
               <CardHeader>
-                <div className="bg-accent/20 text-accent-foreground p-3 rounded-full w-fit mb-4">
-                    <ListChecks className="w-8 h-8 text-primary" />
+                <div className="bg-primary/10 text-primary p-3 rounded-lg w-fit mb-4">
+                    <ListChecks className="w-8 h-8" />
                 </div>
                 <CardTitle className="font-headline">Interactive Quizzes</CardTitle>
               </CardHeader>
@@ -70,10 +75,10 @@ export default function Home() {
                 <p className="text-muted-foreground">Test your knowledge and solidify your understanding with our interactive quizzes.</p>
               </CardContent>
             </Card>
-            <Card className="hover:shadow-lg transition-shadow duration-300">
+            <Card className="hover:shadow-lg transition-all duration-300 hover:border-primary/50 hover:-translate-y-1">
               <CardHeader>
-                <div className="bg-accent/20 text-accent-foreground p-3 rounded-full w-fit mb-4">
-                    <Terminal className="w-8 h-8 text-primary" />
+                <div className="bg-primary/10 text-primary p-3 rounded-lg w-fit mb-4">
+                    <Terminal className="w-8 h-8" />
                 </div>
                 <CardTitle className="font-headline">Live Code Runner</CardTitle>
               </CardHeader>
@@ -81,10 +86,10 @@ export default function Home() {
                 <p className="text-muted-foreground">Execute code snippets directly in your browser. No setup required.</p>
               </CardContent>
             </Card>
-            <Card className="hover:shadow-lg transition-shadow duration-300">
+            <Card className="hover:shadow-lg transition-all duration-300 hover:border-primary/50 hover:-translate-y-1">
               <CardHeader>
-                <div className="bg-accent/20 text-accent-foreground p-3 rounded-full w-fit mb-4">
-                    <Bot className="w-8 h-8 text-primary" />
+                <div className="bg-primary/10 text-primary p-3 rounded-lg w-fit mb-4">
+                    <Bot className="w-8 h-8" />
                 </div>
                 <CardTitle className="font-headline">AI Assistant 'MIA'</CardTitle>
               </CardHeader>
@@ -96,7 +101,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="languages" className="w-full py-12 md:py-24 lg:py-32 bg-card">
+      <section id="languages" className="w-full py-12 md:py-24 lg:py-32 bg-card/50">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
@@ -109,13 +114,21 @@ export default function Home() {
           <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:gap-10">
             {languages.map((lang) => (
               <Link key={lang.id} href="/tutorials" className="flex flex-col items-center justify-center space-y-2 group">
-                  <LanguageIcon language={lang.id} className="w-16 h-16 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <LanguageIcon language={lang.id} className="w-16 h-16 text-muted-foreground group-hover:text-primary transition-colors group-hover:scale-110" />
                   <span className="text-lg font-medium group-hover:text-primary transition-colors">{lang.name}</span>
               </Link>
             ))}
           </div>
         </div>
       </section>
+      <style jsx>{`
+        .bg-grid-pattern {
+          background-image:
+            linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
+            linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
+          background-size: 40px 40px;
+        }
+      `}</style>
     </div>
   );
 }
