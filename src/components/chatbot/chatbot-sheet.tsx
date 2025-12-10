@@ -5,7 +5,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ChatInput } from '@/components/chatbot/chat-input';
 import { ChatMessage } from '@/components/chatbot/chat-message';
-import { askMIA } from '@/app/actions';
+import { askAurix } from '@/app/actions';
 import type { ChatMessage as ChatMessageType } from '@/lib/types';
 
 interface ChatbotSheetProps {
@@ -32,7 +32,7 @@ export function ChatbotSheet({ isOpen, onOpenChange }: ChatbotSheetProps) {
         setMessages(prev => [...prev, userMessage]);
 
         startTransition(async () => {
-            const result = await askMIA(query);
+            const result = await askAurix(query);
             const assistantMessage: ChatMessageType = {
                 id: (Date.now() + 1).toString(),
                 role: 'assistant',
@@ -46,7 +46,7 @@ export function ChatbotSheet({ isOpen, onOpenChange }: ChatbotSheetProps) {
         <Sheet open={isOpen} onOpenChange={onOpenChange}>
             <SheetContent className="w-full sm:max-w-lg flex flex-col p-0">
                 <SheetHeader className="p-6">
-                    <SheetTitle className="font-headline">Chat with MIA</SheetTitle>
+                    <SheetTitle className="font-headline">Chat with Aurix</SheetTitle>
                     <SheetDescription>
                         Your personal AI programming assistant. Ask me anything about code!
                     </SheetDescription>
@@ -55,7 +55,7 @@ export function ChatbotSheet({ isOpen, onOpenChange }: ChatbotSheetProps) {
                     <div className="p-6 space-y-4">
                         <ChatMessage
                             role="assistant"
-                            message="Hello! I'm MIA. How can I help you with your coding questions today?"
+                            message="Hello! I'm Aurix. How can I help you with your coding questions today?"
                         />
                         {messages.map((msg) => (
                             <ChatMessage key={msg.id} role={msg.role} message={msg.message} />

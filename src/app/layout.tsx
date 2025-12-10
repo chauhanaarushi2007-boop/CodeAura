@@ -8,8 +8,8 @@ import Chatbot from '@/components/chatbot';
 import { Providers } from './providers';
 
 export const metadata: Metadata = {
-  title: 'Language-MIA - Master Programming with AI',
-  description: 'Your personal AI-powered guide to the world of code. Interactive tutorials, live code execution, and instant answers.',
+  title: 'CodeAura - The Aura of Programmers Begins Here.',
+  description: 'Your personal AI-powered guide to the world of code. A skill that sparks a career.',
 };
 
 export default function RootLayout({

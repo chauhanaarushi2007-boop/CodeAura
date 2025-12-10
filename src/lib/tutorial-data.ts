@@ -82,7 +82,7 @@ h1 {
       code: `document.addEventListener('DOMContentLoaded', () => {
   const button = document.createElement('button');
   button.textContent = 'Click me';
-  button.onclick = () => alert('Hello, Language-MIA!');
+  button.onclick = () => alert('Hello, CodeAura!');
   document.body.appendChild(button);
 });`,
       explanation: "This script waits for the page to load, then creates a button. When clicked, the button shows an alert message.",
@@ -108,7 +108,7 @@ h1 {
       code: `def greet(name):
   return f"Hello, {name}!"
 
-print(greet("Language-MIA"))`,
+print(greet("CodeAura"))`,
       explanation: 'This code defines a function `greet` that takes a name and returns a greeting string. It then calls the function and prints the result.',
     },
     resources: {
@@ -131,7 +131,7 @@ print(greet("Language-MIA"))`,
     example: {
       code: `public class HelloWorld {
     public static void main(String[] args) {
-        System.out.println("Hello, Language-MIA!");
+        System.out.println("Hello, CodeAura!");
     }
 }`,
       explanation: 'This is the classic "Hello, World!" program in Java. The `main` method is the entry point of the program, and `System.out.println` prints text to the console.',
@@ -159,7 +159,7 @@ print(greet("Language-MIA"))`,
 import "fmt"
 
 func main() {
-    fmt.Println("Hello, Language-MIA!")
+    fmt.Println("Hello, CodeAura!")
 }`,
       explanation: 'A basic "Hello, World!" program in Go. The `main` function in the `main` package is the entry point.',
     },
@@ -184,7 +184,7 @@ func main() {
       code: `#include <stdio.h>
 
 int main() {
-    printf("Hello, Language-MIA!\\n");
+    printf("Hello, CodeAura!\\n");
     return 0;
 }`,
       explanation: 'The standard "Hello, World!" in C. The `#include <stdio.h>` line includes the standard input/output library.',
@@ -210,7 +210,7 @@ int main() {
       code: `#include <iostream>
 
 int main() {
-    std::cout << "Hello, Language-MIA!" << std::endl;
+    std::cout << "Hello, CodeAura!" << std::endl;
     return 0;
 }`,
       explanation: 'The "Hello, World!" program in C++, using the iostream library for console output.',
@@ -239,7 +239,7 @@ int main() {
   <title>PHP Test</title>
 </head>
 <body>
-  <?php echo "<h1>Hello, Language-MIA!</h1>"; ?>
+  <?php echo "<h1>Hello, CodeAura!</h1>"; ?>
 </body>
 </html>`,
       explanation: 'This shows PHP code embedded within an HTML document. The server will process the `<?php ... ?>` block and replace it with its output.',
@@ -264,9 +264,9 @@ int main() {
     example: {
       code: `<note>
   <to>Reader</to>
-  <from>Language-MIA</from>
+  <from>CodeAura</from>
   <heading>Reminder</heading>
-  <body>Hello, Language-MIA!</body>
+  <body>Hello, CodeAura!</body>
 </note>`,
       explanation: 'This is a simple XML document representing a note, with custom tags like `<to>`, `<from>`, and `<body>` to structure the data.',
     },

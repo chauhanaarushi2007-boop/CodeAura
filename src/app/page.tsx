@@ -20,10 +20,10 @@ export default function Home() {
             <div className="flex flex-col justify-center space-y-4">
               <div className="space-y-4">
                 <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                  Master Any Programming Language with Language-MIA
+                  CodeAura
                 </h1>
                 <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                  Your personal AI-powered guide to the world of code. Interactive tutorials, live code execution, and instant answers.
+                  The Aura of Programmers Begins Here. Skill that Sparks a Career.
                 </p>
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -46,7 +46,7 @@ export default function Home() {
               <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Key Features</div>
               <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-5xl">Learn Smarter, Not Harder</h2>
               <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Language-MIA provides you with all the tools you need to succeed in your programming journey, from beginner to pro.
+                CodeAura provides you with all the tools you need to succeed in your programming journey, from beginner to pro.
               </p>
             </div>
           </div>
@@ -89,10 +89,10 @@ export default function Home() {
                 <div className="bg-primary/10 text-primary p-3 rounded-lg w-fit mb-4">
                     <Bot className="w-8 h-8" />
                 </div>
-                <CardTitle className="font-headline">AI Assistant 'MIA'</CardTitle>
+                <CardTitle className="font-headline">AI Assistant 'Aurix'</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">Get instant help from MIA, your personal AI programming assistant.</p>
+                <p className="text-muted-foreground">Get instant help from Aurix, your personal AI programming assistant.</p>
               </CardContent>
             </Card>
           </div>

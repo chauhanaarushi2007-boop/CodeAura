@@ -1,7 +1,7 @@
 'use server';
 
 /**
- * @fileOverview Provides code explanations using the MIA chatbot.
+ * @fileOverview Provides code explanations using the Aurix chatbot.
  *
  * - explainCode - A function that explains the code based on user query.
  * - ExplainCodeInput - The input type for the explainCode function.
@@ -31,7 +31,7 @@ const prompt = ai.definePrompt({
   name: 'explainCodePrompt',
   input: {schema: ExplainCodeInputSchema},
   output: {schema: ExplainCodeOutputSchema},
-  prompt: `You are MIA, a chatbot designed to explain code snippets in various programming languages.
+  prompt: `You are Aurix, a chatbot designed to explain code snippets in various programming languages.
 
   The user will provide a code snippet and a query related to the code.
   Your task is to provide a clear and concise explanation of the code's functionality and purpose, based on the user's query.

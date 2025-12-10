@@ -28,7 +28,7 @@ const prompt = ai.definePrompt({
   name: 'generalQueryPrompt',
   input: {schema: GeneralQueryInputSchema},
   output: {schema: GeneralQueryOutputSchema},
-  prompt: `You are a helpful chatbot named MIA.
+  prompt: `You are a helpful chatbot named Aurix.
 
   Here is the user's query: {{{query}}}
 

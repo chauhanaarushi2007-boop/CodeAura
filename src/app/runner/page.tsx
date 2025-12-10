@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 
 export default function CodeRunnerPage() {
     const [output, setOutput] = useState("Your code output will appear here.");
-    const [code, setCode] = useState("<h1>Hello, Language-MIA!</h1>\n<style>\n  h1 { color: hsl(var(--primary)); }\n</style>");
+    const [code, setCode] = useState("<h1>Hello, CodeAura!</h1>\n<style>\n  h1 { color: hsl(var(--primary)); }\n</style>");
     const [language, setLanguage] = useState("html");
     const [input, setInput] = useState("");
     const [isPending, startTransition] = useTransition();
@@ -69,7 +69,7 @@ export default function CodeRunnerPage() {
                     <Textarea
                         value={code}
                         onChange={(e) => setCode(e.target.value)}
-                        placeholder="console.log('Hello, Language-MIA!');"
+                        placeholder="console.log('Hello, CodeAura!');"
                         className="h-80 font-code text-sm resize-none"
                         />
                     <div>

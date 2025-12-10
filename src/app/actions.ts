@@ -5,7 +5,7 @@ import { generalQuery } from "@/ai/flows/chatbot-programming-language-query";
 import { runCode as runCodeFlow } from "@/ai/flows/run-code";
 import { headers } from "next/headers";
 
-export async function askMIA(query: string) {
+export async function askAurix(query: string) {
     if (!query || query.trim().length === 0) {
         return {
             answer: "Please enter a question.",
