@@ -3,7 +3,6 @@
 
 import { generalQuery } from "@/ai/flows/chatbot-programming-language-query";
 import { runCode as runCodeFlow } from "@/ai/flows/run-code";
-import { debugCode as debugCodeFlow } from "@/ai/flows/debug-code";
 import { headers } from "next/headers";
 
 export async function askMIA(query: string) {
@@ -29,32 +28,25 @@ export async function askMIA(query: string) {
     }
 }
 
-export async function runAndDebugCode(code: string, language: string, input: string) {
+export async function runCode(code: string, language: string, input: string) {
     if (!code || code.trim().length === 0) {
         return {
-            runOutput: { output: "Please enter some code to run.", error: true },
-            debugOutput: null
+            output: "Please enter some code to run.",
+            error: true
         };
     }
 
     try {
-        const [runResult, debugResult] = await Promise.all([
-            runCodeFlow({ code, language, input }),
-            debugCodeFlow({ code, language })
-        ]);
-
+        const result = await runCodeFlow({ code, language, input });
         return {
-            runOutput: { output: runResult.output, error: false },
-            debugOutput: debugResult,
+            output: result.output,
+            error: false
         };
     } catch (e) {
         console.error(e);
         return {
-            runOutput: {
-                output: "Sorry, I couldn't run your code right now. Please try again.",
-                error: true
-            },
-            debugOutput: null
+            output: "Sorry, I couldn't run your code right now. Please try again.",
+            error: true
         };
     }
 }
