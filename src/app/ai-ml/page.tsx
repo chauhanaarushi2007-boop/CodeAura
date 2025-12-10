@@ -1,4 +1,4 @@
-import { BrainCircuit, Cpu, Shield, Bot, GraduationCap, Link as LinkIcon, BookOpen } from "lucide-react";
+import { BrainCircuit, Cpu, Bot, BookOpen, GraduationCap, Link as LinkIcon, Languages } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -10,32 +10,32 @@ export default function AiMlPage() {
       title: "Core Machine Learning",
       description: "Understand the fundamentals, from linear regression to neural networks.",
       icon: Cpu,
-      href: "/tutorials/python", // Assuming python is the main language
+      href: "/tutorials/python",
       color: "text-blue-500",
       bgColor: "bg-blue-500/10",
     },
     {
-      title: "Generative AI & LLMs",
-      description: "Dive into the world of Large Language Models and prompt engineering.",
-      icon: Bot,
-      href: "/prompt-engineering",
+      title: "Deep Learning",
+      description: "Explore neural networks, computer vision, and how machines learn from data.",
+      icon: BrainCircuit,
+      href: "/references",
       color: "text-purple-500",
       bgColor: "bg-purple-500/10",
     },
     {
-      title: "AI Ethics & Security",
-      description: "Explore the crucial intersection of AI technology and ethical hacking.",
-      icon: Shield,
-      href: "/ethical-hacking",
-      color: "text-red-500",
-      bgColor: "bg-red-500/10",
+      title: "Natural Language Processing",
+      description: "Learn how AI understands and generates human language, from chatbots to translation.",
+      icon: Languages,
+      href: "/references",
+      color: "text-orange-500",
+      bgColor: "bg-orange-500/10",
     },
   ];
 
   return (
     <div className="container py-12">
       <header className="mb-12 text-center">
-        <BrainCircuit className="w-24 h-24 mx-auto mb-6 text-primary" />
+        <Bot className="w-24 h-24 mx-auto mb-6 text-primary" />
         <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl mb-4">
           Welcome to the AI & ML Universe
         </h1>
