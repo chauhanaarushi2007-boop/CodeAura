@@ -6,12 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, CodeXml } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "../theme-toggle";
 
 const navLinks = [
   { href: "/tutorials", label: "Tutorials" },
   { href: "/quizzes", label: "Quizzes" },
   { href: "/runner", label: "Code Runner" },
-  { href: "/references", label: "References" }
+  { href: "/references", label: "References" },
 ];
 
 export function Header() {
@@ -74,8 +75,8 @@ export function Header() {
           </Sheet>
         </div>
 
-        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-          {/* Future auth buttons can go here */}
+        <div className="flex flex-1 items-center justify-end space-x-2">
+          <ThemeToggle />
         </div>
       </div>
     </header>
