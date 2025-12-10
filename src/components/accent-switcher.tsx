@@ -17,6 +17,7 @@ const accents = [
     { name: 'Teal', theme: 'theme-teal', color: 'hsl(170 80% 45%)' },
     { name: 'Orange', theme: 'theme-orange', color: 'hsl(25 95% 55%)' },
     { name: 'Magenta', theme: 'theme-magenta', color: 'hsl(320 100% 55%)' },
+    { name: 'Purple', theme: 'theme-purple', color: 'hsl(270 90% 65%)' },
 ]
 
 export function AccentSwitcher() {

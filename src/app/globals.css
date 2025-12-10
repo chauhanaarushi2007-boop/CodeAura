@@ -70,6 +70,13 @@ body {
     --accent: 180 90% 45%;
     --accent-foreground: 180 20% 10%;
   }
+
+  .theme-purple {
+    --primary: 270 90% 65%;
+    --primary-foreground: 270 20% 98%;
+    --accent: 170 80% 45%;
+    --accent-foreground: 170 20% 10%;
+  }
 }
 
 @layer base {
