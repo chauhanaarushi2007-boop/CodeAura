@@ -45,7 +45,7 @@ export async function runAndDebugCode(code: string, language: string, input: str
 
         return {
             runOutput: { output: runResult.output, error: false },
-            debugOutput: debugResult.hasError ? debugResult : null,
+            debugOutput: debugResult,
         };
     } catch (e) {
         console.error(e);

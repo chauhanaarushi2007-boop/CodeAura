@@ -32,6 +32,8 @@ export default function CodeRunnerPage() {
     useEffect(() => {
         if (debugInfo && debugInfo.hasError) {
             setIsDialogOpen(true);
+        } else {
+            setIsDialogOpen(false);
         }
     }, [debugInfo]);
 
@@ -39,7 +41,6 @@ export default function CodeRunnerPage() {
         startTransition(async () => {
             setOutput("Running code...");
             setDebugInfo(null);
-            setIsDialogOpen(false);
             const result = await runAndDebugCode(code, language, input);
             setOutput(result.runOutput.output);
             if (result.debugOutput) {
