@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Button } from "@/components/ui/button";
@@ -7,6 +8,7 @@ import Link from "next/link";
 import { LanguageIcon } from "@/components/icons/language-icons";
 import { languages } from "@/lib/placeholder-data";
 import { AnimatedIconBackground } from "@/components/animated-icon-background";
+import { cn } from "@/lib/utils";
 
 export default function Home() {
   return (
@@ -49,7 +51,7 @@ export default function Home() {
             </div>
           </div>
           <div className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-2 md:gap-12 lg:max-w-none lg:grid-cols-4 mt-12">
-            <Card className="hover:shadow-lg transition-all duration-300 hover:border-primary/50 hover:-translate-y-1">
+            <Card className={cn("glow-card transition-all duration-300 hover:border-primary/50 hover:-translate-y-1")}>
               <CardHeader>
                 <div className="bg-primary/10 text-primary p-3 rounded-lg w-fit mb-4">
                     <BookOpen className="w-8 h-8" />
@@ -60,7 +62,7 @@ export default function Home() {
                 <p className="text-muted-foreground">Dive deep into any language with our curated and easy-to-understand tutorials.</p>
               </CardContent>
             </Card>
-            <Card className="hover:shadow-lg transition-all duration-300 hover:border-primary/50 hover:-translate-y-1">
+            <Card className={cn("glow-card transition-all duration-300 hover:border-primary/50 hover:-translate-y-1")}>
               <CardHeader>
                 <div className="bg-primary/10 text-primary p-3 rounded-lg w-fit mb-4">
                     <ListChecks className="w-8 h-8" />
@@ -71,7 +73,7 @@ export default function Home() {
                 <p className="text-muted-foreground">Test your knowledge and solidify your understanding with our interactive quizzes.</p>
               </CardContent>
             </Card>
-            <Card className="hover:shadow-lg transition-all duration-300 hover:border-primary/50 hover:-translate-y-1">
+            <Card className={cn("glow-card transition-all duration-300 hover:border-primary/50 hover:-translate-y-1")}>
               <CardHeader>
                 <div className="bg-primary/10 text-primary p-3 rounded-lg w-fit mb-4">
                     <Terminal className="w-8 h-8" />
@@ -82,7 +84,7 @@ export default function Home() {
                 <p className="text-muted-foreground">Execute code snippets directly in your browser. No setup required.</p>
               </CardContent>
             </Card>
-            <Card className="hover:shadow-lg transition-all duration-300 hover:border-primary/50 hover:-translate-y-1">
+            <Card className={cn("glow-card transition-all duration-300 hover:border-primary/50 hover:-translate-y-1")}>
               <CardHeader>
                 <div className="bg-primary/10 text-primary p-3 rounded-lg w-fit mb-4">
                     <Bot className="w-8 h-8" />
