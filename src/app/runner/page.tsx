@@ -19,7 +19,7 @@ type DebugOutput = {
 
 export default function CodeRunnerPage() {
     const [output, setOutput] = useState("Your code output will appear here.");
-    const [code, setCode] = useState("<h1>Hello, Language-MIA!</h1>\n<style>\n  h1 { color: blue; }\n</style>");
+    const [code, setCode] = useState("<h1>Hello, Language-MIA!</h1>\n<style>\n  h1 { color: hsl(var(--primary)); }\n</style>");
     const [language, setLanguage] = useState("html");
     const [input, setInput] = useState("");
     const [debugInfo, setDebugInfo] = useState<DebugOutput>(null);
@@ -102,7 +102,7 @@ export default function CodeRunnerPage() {
                     </div>
                 </div>
                 <div>
-                    <Card className="bg-muted h-full">
+                    <Card className="bg-muted/50 h-full">
                         <CardHeader>
                             <CardTitle className="text-lg font-medium">Output</CardTitle>
                         </CardHeader>

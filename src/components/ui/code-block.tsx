@@ -34,7 +34,7 @@ export function CodeBlock({ code, language, className }: CodeBlockProps) {
         className="absolute top-2 right-2 h-7 w-7 opacity-0 group-hover:opacity-100 transition-opacity"
         onClick={copyToClipboard}
       >
-        {hasCopied ? <Check className="h-4 w-4 text-accent" /> : <Copy className="h-4 w-4" />}
+        {hasCopied ? <Check className="h-4 w-4 text-primary" /> : <Copy className="h-4 w-4" />}
         <span className="sr-only">Copy code</span>
       </Button>
     </div>

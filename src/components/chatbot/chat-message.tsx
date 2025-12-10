@@ -37,7 +37,8 @@ export function ChatMessage({ role, message, isLoading }: ChatMessageProps) {
                         {parts.map((part, index) => {
                              if (isCodeBlock(part)) {
                                 const code = part.replace(/```(\w*\n)?/g, '').trim();
-                                const lang = (part.match(/```(\w+)/) || [])[1];
+                                const langMatch = part.match(/```(\w+)/);
+                                const lang = langMatch ? langMatch[1] : '';
                                 return <CodeBlock key={index} code={code} language={lang} className="my-2" />;
                             }
                             return part;
