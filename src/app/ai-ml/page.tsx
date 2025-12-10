@@ -1,10 +1,11 @@
 
-import { BrainCircuit, Cpu, Bot, BookOpen, GraduationCap, Link as LinkIcon, Languages, LineChart, Code, ArrowRight, Book, Globe, Layers, Database, Puzzle, TestTube, Rocket, Python } from "lucide-react";
+import { BrainCircuit, Cpu, Bot, BookOpen, GraduationCap, Link as LinkIcon, Languages, LineChart, Code, ArrowRight, Book, Globe, Layers, Database, Puzzle, TestTube, Rocket } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { CodeBlock } from "@/components/ui/code-block";
+import { LanguageIcon } from "@/components/icons/language-icons";
 
 const workflowSteps = [
     {
@@ -184,7 +185,7 @@ export default function AiMlPage() {
         <div className="max-w-4xl mx-auto">
             <Card className="overflow-hidden">
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-2 font-headline"><Python className="w-6 h-6 text-blue-500" /> Image Classification in Python</CardTitle>
+                    <CardTitle className="flex items-center gap-2 font-headline"><LanguageIcon language="python" className="w-6 h-6" /> Image Classification in Python</CardTitle>
                     <CardDescription>This code loads a pre-trained neural network (ResNet18) and prepares it to classify a new image. Don't worry if it looks complex; the key is understanding the steps.</CardDescription>
                 </CardHeader>
                 <CardContent>
