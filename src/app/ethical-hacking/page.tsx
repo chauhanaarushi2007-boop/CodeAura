@@ -2,6 +2,7 @@ import { Shield, Network, Lock, Code, ListChecks } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
 export default function EthicalHackingPage() {
   const phases = [
@@ -48,7 +49,7 @@ export default function EthicalHackingPage() {
         <h2 className="font-headline text-3xl font-bold tracking-tight mb-8 text-center">The Five Phases of Hacking</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {phases.map((phase, index) => (
-            <Card key={phase.title} className="h-full flex flex-col">
+            <Card key={phase.title} className={cn("h-full flex flex-col transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:-translate-y-1")}>
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-bold text-lg">{index + 1}</div>

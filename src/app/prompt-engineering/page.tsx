@@ -35,7 +35,7 @@ export default function PromptEngineeringPage() {
           {principles.map((item) => {
             const Icon = item.icon;
             return (
-              <Card key={item.title} className="h-full flex flex-col">
+              <Card key={item.title} className="h-full flex flex-col transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:-translate-y-1">
                 <CardHeader className="flex-row items-start gap-4">
                   <div className="bg-primary/10 text-primary p-3 rounded-lg">
                     <Icon className="w-6 h-6" />
@@ -57,11 +57,11 @@ export default function PromptEngineeringPage() {
         <h2 className="font-headline text-3xl font-bold tracking-tight mb-8 text-center">Advanced Techniques</h2>
         <div className="max-w-4xl mx-auto space-y-6">
           {techniques.map((item) => (
-            <Card key={item.title} className="overflow-hidden">
+            <Card key={item.title} className="overflow-hidden transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:-translate-y-1">
                 <CardHeader>
                     <div className="flex items-center justify-between">
                          <CardTitle className="font-headline text-xl">{item.title}</CardTitle>
-                         <Badge variant={item.badge === 'Advanced' ? 'destructive' : 'secondary'}>{item.badge}</Badge>
+                         <Badge variant={item.badge === 'Advanced' ? 'destructive' : (item.badge === 'Intermediate' ? 'secondary' : 'default')}>{item.badge}</Badge>
                     </div>
                 </CardHeader>
                 <CardContent>
