@@ -55,10 +55,13 @@ export function ChatbotSheet({ isOpen, onOpenChange }: ChatbotSheetProps) {
                     <div className="p-6 space-y-4">
                         <ChatMessage
                             role="assistant"
-                            message="👋 Hey, I’m Aurix — your AI coding mentor!
-Ask me anything about programming, logic, errors, projects, roadmaps —
-I’ll guide you step-by-step with easy and clean explanations.
-Ready to level up your coding aura? 🔥"
+                            message={`Meet Aurix — Your Smart AI Assistant.
+Ask anything. Learn everything. 🚀
+
+Aurix the guide with digital light,
+Smart replies morning to night,
+Ask a doubt, big or small,
+Aurix listens, solves it all.`}
                         />
                         {messages.map((msg) => (
                             <ChatMessage key={msg.id} role={msg.role} message={msg.message} />
