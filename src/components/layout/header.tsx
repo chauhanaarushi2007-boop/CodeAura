@@ -11,7 +11,7 @@ const navLinks = [
   { href: "/tutorials", label: "Tutorials" },
   { href: "/quizzes", label: "Quizzes" },
   { href: "/runner", label: "Code Runner" },
-  { href: "/references", label: "References" },
+  { href: "/references", label: "References" }
 ];
 
 export function Header() {
