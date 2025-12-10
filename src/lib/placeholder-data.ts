@@ -31,12 +31,28 @@ export const books: Book[] = [
         language: 'python',
     },
     {
+        id: 'deep-learning-python',
+        title: 'Deep Learning with Python',
+        author: 'François Chollet',
+        imageId: 'book-ai-1',
+        description: "A hands-on guide to deep learning with the Keras library, written by its creator.",
+        language: 'python',
+    },
+    {
         id: 'head-first-java',
         title: 'Head First Java',
         author: 'Kathy Sierra & Bert Bates',
         imageId: 'book-java',
         description: 'A brain-friendly guide to learning the Java language.',
         language: 'java',
+    },
+    {
+        id: 'hands-on-ml',
+        title: 'Hands-On Machine Learning',
+        author: 'Aurélien Géron',
+        imageId: 'book-ai-2',
+        description: 'A practical guide to machine learning using Scikit-Learn, Keras, and TensorFlow.',
+        language: 'python',
     },
     {
         id: 'cpp-primer',

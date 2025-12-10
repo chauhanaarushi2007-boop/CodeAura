@@ -13,6 +13,7 @@ const navLinks = [
   { href: "/tutorials", label: "Tutorials" },
   { href: "/quizzes", label: "Quizzes" },
   { href: "/runner", label: "Code Runner" },
+  { href: "/ai-ml", label: "AI / ML" },
   { href: "/references", label: "References" }
 ];
 

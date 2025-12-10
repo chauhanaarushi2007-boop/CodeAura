@@ -35,6 +35,18 @@
       "description": "A book cover for a PHP book",
       "imageUrl": "https://images.unsplash.com/photo-1715924478354-eeab44896fa8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxib29rJTIwc2VydmVyfGVufDB8fHx8MTc2NTAyNjAzMXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "book server"
+    },
+    {
+      "id": "book-ai-1",
+      "description": "A book cover for an AI book",
+      "imageUrl": "https://images.unsplash.com/photo-1526498460520-4c246339dccb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlJTIwYm9va3xlbnwwfHx8fDE3NjUwMjU4MDF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "artificial intelligence book"
+    },
+    {
+      "id": "book-ai-2",
+      "description": "A book cover for a machine learning book",
+      "imageUrl": "https://images.unsplash.com/photo-1509475826633-fed577a2c41b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtYWNoaW5lJTIwbGVhcm5pbmclMjBib29rfGVufDB8fHx8MTc2NTAyNTgxOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "machine learning book"
     }
   ]
 }
