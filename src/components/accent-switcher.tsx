@@ -21,7 +21,7 @@ const accents = [
 ]
 
 export function AccentSwitcher() {
-  const [currentAccent, setCurrentAccent] = React.useState('theme-blue')
+  const [currentAccent, setCurrentAccent] = React.useState('theme-teal')
 
   React.useEffect(() => {
     // Remove other theme classes
