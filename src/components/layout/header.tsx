@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, CodeXml } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ThemeSwitcher } from "../theme-switcher";
+import { ThemeToggle } from "../theme-toggle";
+import { AccentSwitcher } from "../accent-switcher";
 
 const navLinks = [
   { href: "/tutorials", label: "Tutorials" },
@@ -76,7 +77,8 @@ export function Header() {
         </div>
 
         <div className="flex flex-1 items-center justify-end space-x-2">
-          <ThemeSwitcher />
+          <AccentSwitcher />
+          <ThemeToggle />
         </div>
       </div>
     </header>
