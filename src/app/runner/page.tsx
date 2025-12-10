@@ -42,7 +42,7 @@ export default function CodeRunnerPage() {
             setIsDialogOpen(false);
             const result = await runAndDebugCode(code, language, input);
             setOutput(result.runOutput.output);
-            if (result.debugOutput && result.debugOutput.hasError) {
+            if (result.debugOutput) {
                 setDebugInfo(result.debugOutput);
             }
         });

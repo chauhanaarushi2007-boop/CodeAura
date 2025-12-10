@@ -36,9 +36,9 @@ const prompt = ai.definePrompt({
 
   Language: {{{language}}}
   Code:
-  '''
+  \'\'\'
   {{{code}}}
-  '''
+  \'\'\'
 
   1.  **Analyze the Code**: Carefully review the code for any errors.
   2.  **Identify Errors**:
