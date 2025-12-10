@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label";
 import { CodeBlock } from "@/components/ui/code-block";
 
 type DebugOutput = {
+    hasError: boolean;
     errorLine?: number;
     explanation?: string;
     correctedCode?: string;
@@ -29,7 +30,7 @@ export default function CodeRunnerPage() {
     const [isPending, startTransition] = useTransition();
 
     useEffect(() => {
-        if (debugInfo) {
+        if (debugInfo && debugInfo.hasError) {
             setIsDialogOpen(true);
         }
     }, [debugInfo]);
@@ -38,9 +39,10 @@ export default function CodeRunnerPage() {
         startTransition(async () => {
             setOutput("Running code...");
             setDebugInfo(null);
+            setIsDialogOpen(false);
             const result = await runAndDebugCode(code, language, input);
             setOutput(result.runOutput.output);
-            if (result.debugOutput) {
+            if (result.debugOutput && result.debugOutput.hasError) {
                 setDebugInfo(result.debugOutput);
             }
         });
@@ -54,9 +56,11 @@ export default function CodeRunnerPage() {
         setDebugInfo(null);
     }
     
-    const onDialogClose = () => {
-        setIsDialogOpen(false);
-        setDebugInfo(null);
+    const onDialogClose = (open: boolean) => {
+        if (!open) {
+            setIsDialogOpen(false);
+            setDebugInfo(null);
+        }
     }
 
     const shouldRenderHtml = ['html', 'css', 'php'].includes(language);
@@ -138,25 +142,25 @@ export default function CodeRunnerPage() {
             </CardContent>
         </Card>
 
-        {isPending && (
+        {isPending && !debugInfo && (
             <div className="flex items-center justify-center gap-2 text-muted-foreground">
                 <Lightbulb className="h-5 w-5 animate-pulse" />
                 <span>Analyzing code for errors...</span>
             </div>
         )}
 
-        {debugInfo && (
-            <Dialog open={isDialogOpen} onOpenChange={onDialogClose}>
-                <DialogContent className="sm:max-w-2xl">
-                    <DialogHeader>
-                        <DialogTitle className="font-headline flex items-center gap-2 text-2xl">
-                            <Lightbulb className="text-primary h-6 w-6" />
-                            Code Diagnosis
-                        </DialogTitle>
-                        <DialogDescription>
-                            The AI has detected an issue in your code. Here's a breakdown and a suggested fix.
-                        </DialogDescription>
-                    </DialogHeader>
+        <Dialog open={isDialogOpen} onOpenChange={onDialogClose}>
+            <DialogContent className="sm:max-w-2xl">
+                <DialogHeader>
+                    <DialogTitle className="font-headline flex items-center gap-2 text-2xl">
+                        <Lightbulb className="text-primary h-6 w-6" />
+                        Code Diagnosis
+                    </DialogTitle>
+                    <DialogDescription>
+                        The AI has detected an issue in your code. Here's a breakdown and a suggested fix.
+                    </DialogDescription>
+                </DialogHeader>
+                {debugInfo && debugInfo.hasError && (
                     <div className="space-y-4 py-4">
                         <div>
                             <h3 className="font-semibold mb-2">Explanation</h3>
@@ -170,13 +174,13 @@ export default function CodeRunnerPage() {
                             <CodeBlock code={debugInfo.correctedCode || ''} language={language} />
                         </div>
                     </div>
-                    <DialogFooter>
-                         <Button variant="outline" onClick={onDialogClose}>Close</Button>
-                         <Button onClick={applyFix}>Apply Fix</Button>
-                    </DialogFooter>
-                </DialogContent>
-            </Dialog>
-        )}
+                )}
+                <DialogFooter>
+                     <Button variant="outline" onClick={() => onDialogClose(false)}>Close</Button>
+                     <Button onClick={applyFix}>Apply Fix</Button>
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
