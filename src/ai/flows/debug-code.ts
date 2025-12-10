@@ -42,12 +42,12 @@ const prompt = ai.definePrompt({
 
   1.  **Analyze the Code**: Carefully review the code for any errors.
   2.  **Identify Errors**:
-      *   If you find an error, set \`hasError\` to \`true\`.
+      *   If you find an error, you MUST set \`hasError\` to \`true\`.
       *   Determine the line number of the primary error and set \`errorLine\`.
       *   Write a clear \`explanation\` of what the error is and why it occurs.
       *   Provide the fully \`correctedCode\`.
   3.  **No Errors**:
-      *   If the code is perfectly valid and has no errors, set \`hasError\` to \`false\` and leave the other fields empty.
+      *   If the code is perfectly valid and has no errors, you MUST set \`hasError\` to \`false\` and leave all other fields empty. Do not provide any explanation or corrected code if there are no errors.
   `,
 });
 
