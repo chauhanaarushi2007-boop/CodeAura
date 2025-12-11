@@ -165,7 +165,7 @@ export default function NexusAiPage() {
                             </CardHeader>
                             <CardContent>
                                 <p className="text-muted-foreground mb-4">Specialize open-source models for your own tasks with hands-on fine-tuning.</p>
-                                <Link href="https://huggingface.co/blog/g-ronimo/fine-tune-llama-3-on-a-single-gpu" target="_blank" rel="noopener noreferrer">
+                                <Link href="https://replicate.com/blog/fine-tune-llama-3" target="_blank" rel="noopener noreferrer">
                                     <Button variant="outline" className="border-border hover:bg-primary/20">Read Notes</Button>
                                 </Link>
                             </CardContent>
