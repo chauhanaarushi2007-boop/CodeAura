@@ -39,7 +39,7 @@ export const certificatePlatforms: CertificatePlatform[] = [
   },
   {
     id: 'linkedin-learning',
-    name: 'LinkedIn Learning (Free Courses)',
+    name: 'LinkedIn Learning (Free)',
     url: 'https://www.linkedin.com/learning/collections/6791696099368828928',
     description:
       'LinkedIn Learning offers a rotating selection of free courses each week, plus many free courses on specific topics like AI. Certificates can be added to your profile.',
