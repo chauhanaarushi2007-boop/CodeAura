@@ -131,7 +131,7 @@ export default function NexusAiPage() {
                         <Card className="glass-card text-foreground overflow-hidden group">
                             <CardHeader>
                                 <div className="flex justify-between items-center">
-                                    <CardTitle className="font-headline">Intro to LLMs & Transformers</CardTitle>
+                                    <CardTitle className="font-headline">Intro to LLMs &amp; Transformers</CardTitle>
                                     <span className="text-xs bg-green-500/20 text-green-300 px-2 py-1 rounded-full">Beginner</span>
                                 </div>
                             </CardHeader>
@@ -165,7 +165,7 @@ export default function NexusAiPage() {
                             </CardHeader>
                             <CardContent>
                                 <p className="text-muted-foreground mb-4">Specialize open-source models for your own tasks with hands-on fine-tuning.</p>
-                                <Link href="https://replicate.com/blog/fine-tune-llama-3" target="_blank" rel="noopener noreferrer">
+                                <Link href="https://wandb.ai/capecape/Llama_3_finetune/reports/Fine-tune-Llama-3-for-Text-to-SQL-A-Comprehensive-Guide---Vmlldzo4NTI1NTg5" target="_blank" rel="noopener noreferrer">
                                     <Button variant="outline" className="border-border hover:bg-primary/20">Read Notes</Button>
                                 </Link>
                             </CardContent>
@@ -285,5 +285,7 @@ export default function NexusAiPage() {
         </div>
     );
 }
+
+    
 
     
