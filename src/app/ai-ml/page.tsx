@@ -133,7 +133,7 @@ export default function NexusAiPage() {
                             </CardHeader>
                             <CardContent>
                                 <p className="text-gray-400 mb-4">Understand the core architecture that powers models like GPT and Claude.</p>
-                                <Link href="/tutorials">
+                                <Link href="https://developers.google.com/machine-learning/glossary/transformer" target="_blank" rel="noopener noreferrer">
                                     <Button variant="outline" className="text-white border-white/20 hover:bg-primary/20">Read Notes</Button>
                                 </Link>
                             </CardContent>
@@ -147,7 +147,7 @@ export default function NexusAiPage() {
                             </CardHeader>
                             <CardContent>
                                 <p className="text-gray-400 mb-4">Learn Retrieval-Augmented Generation to connect LLMs with external data.</p>
-                                <Link href="/tutorials">
+                                <Link href="https://www.pinecone.io/learn/series/rag/" target="_blank" rel="noopener noreferrer">
                                     <Button variant="outline" className="text-white border-white/20 hover:bg-primary/20">Read Notes</Button>
                                 </Link>
                             </CardContent>
@@ -161,7 +161,7 @@ export default function NexusAiPage() {
                             </CardHeader>
                             <CardContent>
                                 <p className="text-gray-400 mb-4">Specialize open-source models for your own tasks with hands-on fine-tuning.</p>
-                                <Link href="/tutorials">
+                                <Link href="https://huggingface.co/blog/unsloth-llama-3" target="_blank" rel="noopener noreferrer">
                                     <Button variant="outline" className="text-white border-white/20 hover:bg-primary/20">Read Notes</Button>
                                 </Link>
                             </CardContent>
