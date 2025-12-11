@@ -2,12 +2,13 @@
 'use client';
 
 import { useState } from 'react';
-import { BrainCircuit, Cpu, Zap, Droplets, Leaf, BookOpen, GraduationCap, ChevronDown, Check, X, Mail } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { BrainCircuit, Zap, Droplets, Leaf, Mail } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
 import { Input } from '@/components/ui/input';
+import Link from 'next/link';
 
 const quizQuestions = [
     {
@@ -44,7 +45,7 @@ export default function NexusAiPage() {
     const [quizState, setQuizState] = useState(quizQuestions.map(() => ({ selected: null, correct: null })));
     const [score, setScore] = useState(0);
 
-    const handleAnswer = (questionIndex, answerIndex) => {
+    const handleAnswer = (questionIndex: number, answerIndex: number) => {
         const isCorrect = quizQuestions[questionIndex].answers[answerIndex].correct;
         const newQuizState = [...quizState];
 
@@ -132,7 +133,9 @@ export default function NexusAiPage() {
                             </CardHeader>
                             <CardContent>
                                 <p className="text-gray-400 mb-4">Understand the core architecture that powers models like GPT and Claude.</p>
-                                <Button variant="outline" className="text-white border-white/20 hover:bg-primary/20">Read Notes</Button>
+                                <Link href="/tutorials">
+                                    <Button variant="outline" className="text-white border-white/20 hover:bg-primary/20">Read Notes</Button>
+                                </Link>
                             </CardContent>
                         </Card>
                         <Card className="glass-card text-white overflow-hidden group">
@@ -144,7 +147,9 @@ export default function NexusAiPage() {
                             </CardHeader>
                             <CardContent>
                                 <p className="text-gray-400 mb-4">Learn Retrieval-Augmented Generation to connect LLMs with external data.</p>
-                                <Button variant="outline" className="text-white border-white/20 hover:bg-primary/20">Read Notes</Button>
+                                <Link href="/tutorials">
+                                    <Button variant="outline" className="text-white border-white/20 hover:bg-primary/20">Read Notes</Button>
+                                </Link>
                             </CardContent>
                         </Card>
                         <Card className="glass-card text-white overflow-hidden group">
@@ -156,7 +161,9 @@ export default function NexusAiPage() {
                             </CardHeader>
                             <CardContent>
                                 <p className="text-gray-400 mb-4">Specialize open-source models for your own tasks with hands-on fine-tuning.</p>
-                                <Button variant="outline" className="text-white border-white/20 hover:bg-primary/20">Read Notes</Button>
+                                <Link href="/tutorials">
+                                    <Button variant="outline" className="text-white border-white/20 hover:bg-primary/20">Read Notes</Button>
+                                </Link>
                             </CardContent>
                         </Card>
                     </div>
@@ -274,5 +281,3 @@ export default function NexusAiPage() {
         </div>
     );
 }
-
-    
