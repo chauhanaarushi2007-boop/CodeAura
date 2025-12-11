@@ -46,7 +46,25 @@ export const certificatePlatforms: CertificatePlatform[] = [
     tags: ['data science', 'machine learning', 'python', 'sql', 'data visualization', 'deep learning'],
     logo: 'https://www.kaggle.com/static/images/site-logo.svg',
   },
-   {
+  {
+    id: 'analytics-vidhya',
+    name: 'Analytics Vidhya',
+    url: 'https://www.analyticsvidhya.com/courses/',
+    description:
+      'A community-based knowledge portal for Analytics and Data Science professionals, offering several free courses to get started in the field.',
+    tags: ['data science', 'analytics', 'machine learning', 'business intelligence'],
+    logo: 'https://d1jnx9ba8s6j9r.cloudfront.net/imgver.1695013711/img/av-logo-new.png',
+  },
+  {
+    id: 'nvidia-dli',
+    name: 'NVIDIA DLI',
+    url: 'https://www.nvidia.com/en-us/training/online/',
+    description:
+      'NVIDIA\'s Deep Learning Institute (DLI) offers self-paced, online courses on AI, data science, and accelerated computing. Many introductory courses are free.',
+    tags: ['deep learning', 'ai', 'cuda', 'data science', 'accelerated computing'],
+    logo: 'https://developer.nvidia.com/sites/all/themes/nvidia_developer/logo.png',
+  },
+  {
     id: 'cisco-networking-academy',
     name: 'Cisco Networking Academy',
     url: 'https://www.netacad.com/courses/all-courses',
