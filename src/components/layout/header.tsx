@@ -16,7 +16,6 @@ const navLinks = [
   { href: "/runner", label: "Code Runner" },
   { href: "/references", label: "References" },
   { href: "/certificates", label: "Certificates" },
-  { href: "/ai-ml", label: "AI / ML" }
 ];
 
 export function Header() {
