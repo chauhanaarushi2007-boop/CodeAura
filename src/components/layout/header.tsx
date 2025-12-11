@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -13,7 +14,8 @@ const navLinks = [
   { href: "/tutorials", label: "Tutorials" },
   { href: "/quizzes", label: "Quizzes" },
   { href: "/runner", label: "Code Runner" },
-  { href: "/references", label: "References" }
+  { href: "/references", label: "References" },
+  { href: "/ai-ml", label: "AI / ML" }
 ];
 
 export function Header() {
@@ -84,3 +86,5 @@ export function Header() {
     </header>
   );
 }
+
+    

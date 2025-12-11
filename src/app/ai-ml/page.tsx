@@ -1,237 +1,278 @@
 
-import { BrainCircuit, Cpu, Bot, BookOpen, GraduationCap, Link as LinkIcon, Languages, LineChart, Code, ArrowRight, Book, Globe, Layers, Database, Puzzle, TestTube, Rocket } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { CodeBlock } from "@/components/ui/code-block";
-import { LanguageIcon } from "@/components/icons/language-icons";
+'use client';
 
-const workflowSteps = [
+import { useState } from 'react';
+import { BrainCircuit, Cpu, Zap, Droplets, Leaf, BookOpen, GraduationCap, ChevronDown, Check, X, Mail } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { cn } from "@/lib/utils";
+import { Input } from '@/components/ui/input';
+
+const quizQuestions = [
     {
-        title: "1. Frame the Problem",
-        description: "What question are you trying to answer? Is it predicting a price (regression) or classifying an image (classification)?",
-        icon: Puzzle
+        question: "What does 'GPT' stand for?",
+        answers: [
+            { text: "General Processing Transformer", correct: false },
+            { text: "Generative Pre-trained Transformer", correct: true },
+            { text: "Global Parameter Tuning", correct: false },
+        ],
+        explanation: "'GPT' stands for Generative Pre-trained Transformer, which describes how the model is built: it's trained on vast data (Pre-trained) to generate new text (Generative) using a Transformer architecture."
     },
     {
-        title: "2. Get the Data",
-        description: "Collect or find a quality dataset. This is the fuel for your model.",
-        icon: Database
+        question: "What's a key difference between Supervised and Unsupervised learning?",
+        answers: [
+            { text: "Supervised uses labeled data; Unsupervised uses unlabeled data.", correct: true },
+            { text: "Supervised is for classification; Unsupervised is for regression.", correct: false },
+            { text: "Unsupervised learning is always faster than Supervised learning.", correct: false },
+        ],
+        explanation: "The core difference is the data. Supervised learning requires a 'teacher'—data that is already labeled with the correct answers. Unsupervised learning finds patterns on its own without labels."
     },
     {
-        title: "3. Explore & Prepare Data",
-        description: "Clean the data, handle missing values, and transform it into a usable format. This is often 80% of the work!",
-        icon: TestTube
-    },
-    {
-        title: "4. Train the Model",
-        description: "Feed the prepared data to a machine learning algorithm to 'learn' patterns.",
-        icon: BrainCircuit
-    },
-    {
-        title: "5. Evaluate the Model",
-        description: "Test the model's performance on data it has never seen before to see how well it performs.",
-        icon: GraduationCap
-    },
-    {
-        title: "6. Deploy & Monitor",
-        description: "Integrate your model into an application and monitor its performance in the real world.",
-        icon: Rocket
+        question: "What is the 'Attention Mechanism' in Transformers?",
+        answers: [
+            { text: "A technique to make the model focus on the user's cursor.", correct: false },
+            { text: "A way to reduce the model's memory usage.", correct: false },
+            { text: "It allows the model to weigh the importance of different words in the input when processing.", correct: true },
+        ],
+        explanation: "Attention allows the model to 'focus' on relevant parts of the input sequence for a given task, which is crucial for understanding context and relationships in long sentences."
     }
 ];
 
-const externalResources = [
-  {
-    name: "Google's ML Crash Course",
-    description: "A fast-paced, practical introduction to machine learning with video lectures and real-world case studies.",
-    href: "https://developers.google.com/machine-learning/crash-course",
-    icon: Code,
-  },
-  {
-    name: "fast.ai",
-    description: "A top-down, code-first approach to learning deep learning. Highly practical and respected in the industry.",
-    href: "https://www.fast.ai/",
-    icon: Rocket,
-  },
-  {
-    name: "Kaggle",
-    description: "Practice your skills with real-world datasets and competitions. The best way to learn is by doing.",
-    href: "https://www.kaggle.com/learn",
-    icon: Cpu,
-  },
-];
 
-const exampleCode = `
-# This is a simplified example using PyTorch
-import torch
-import torch.nn as nn
-from torchvision import models, transforms
-from PIL import Image
+export default function NexusAiPage() {
+    const [quizState, setQuizState] = useState(quizQuestions.map(() => ({ selected: null, correct: null })));
+    const [score, setScore] = useState(0);
 
-# 1. Load a pre-trained model (ResNet)
-model = models.resnet18(pretrained=True)
-model.eval()
+    const handleAnswer = (questionIndex, answerIndex) => {
+        const isCorrect = quizQuestions[questionIndex].answers[answerIndex].correct;
+        const newQuizState = [...quizState];
 
-# 2. Define image transformations
-preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
-    transforms.ToTensor(),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-])
+        if (newQuizState[questionIndex].selected === null) {
+            if (isCorrect) {
+                setScore(score + 1);
+            }
+            newQuizState[questionIndex] = { selected: answerIndex, correct: isCorrect };
+            setQuizState(newQuizState);
+        }
+    };
 
-# 3. Load and process an image (you'd need a 'cat.jpg' file)
-# img = Image.open("cat.jpg")
-# img_t = preprocess(img)
-# batch_t = torch.unsqueeze(img_t, 0)
+    return (
+        <div className="bg-gray-900 text-white min-h-screen font-body">
+             <style jsx>{`
+                .glass-card {
+                    background: rgba(255, 255, 255, 0.05);
+                    backdrop-filter: blur(10px);
+                    -webkit-backdrop-filter: blur(10px);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                }
+                .glow {
+                    box-shadow: 0 0 10px hsl(var(--primary)), 0 0 20px hsl(var(--primary)), 0 0 30px hsl(var(--primary));
+                }
+                .hero-bg {
+                    background: radial-gradient(ellipse at bottom, hsl(var(--primary) / 0.3), transparent 60%);
+                }
+                @keyframes float {
+                    0% { transform: translateY(0px); }
+                    50% { transform: translateY(-10px); }
+                    100% { transform: translateY(0px); }
+                }
+                .animate-float {
+                    animation: float 6s ease-in-out infinite;
+                }
+            `}</style>
 
-# 4. Make a prediction
-# with torch.no_grad():
-#     output = model(batch_t)
+            {/* Hero Section */}
+            <section className="relative text-center py-20 md:py-32 hero-bg">
+                <div className="container relative z-10">
+                    <BrainCircuit className="w-24 h-24 mx-auto mb-6 text-primary animate-float" />
+                    <h1 className="font-headline text-4xl md:text-6xl font-bold tracking-tighter mb-4">Master the Future of AI with NexusAI</h1>
+                    <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-300 mb-8">From Zero to Hero in Generative AI and Neural Networks.</p>
+                    <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground glow transition-shadow">
+                        <a href="#tutorials">Start Learning Now</a>
+                    </Button>
+                </div>
+            </section>
 
-# (Additional code would be needed to map output to a label like 'cat')
-print("Model loaded and ready to classify!")
-`;
-
-
-export default function AiMlPage() {
-
-  return (
-    <div className="container py-12">
-      <header className="mb-16 text-center">
-        <Bot className="w-24 h-24 mx-auto mb-6 text-primary" />
-        <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl mb-4">
-          Your Journey into Machine Learning
-        </h1>
-        <p className="max-w-[800px] mx-auto text-muted-foreground md:text-xl">
-          Machine learning is teaching computers to find patterns and make decisions from data. It's the science of getting computers to act without being explicitly programmed. Welcome to your starting point.
-        </p>
-      </header>
-      
-      <section className="mb-16">
-        <div className="text-center mb-12">
-            <h2 className="font-headline text-3xl font-bold tracking-tight mb-4">The Three Pillars of Machine Learning</h2>
-            <p className="max-w-[700px] mx-auto text-muted-foreground md:text-lg">
-                Most ML problems fall into one of three categories.
-            </p>
-         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <Card>
-                <CardHeader>
-                    <CardTitle className="font-headline">1. Supervised Learning</CardTitle>
-                    <CardDescription>Learning from Labeled Data</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <p className="text-muted-foreground">You give the model examples with the correct answers (e.g., pictures of cats labeled "cat"). The model learns the relationship between the examples and the answers. This is used for tasks like spam detection and image classification.</p>
-                </CardContent>
-            </Card>
-            <Card>
-                <CardHeader>
-                    <CardTitle className="font-headline">2. Unsupervised Learning</CardTitle>
-                    <CardDescription>Finding Hidden Patterns</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <p className="text-muted-foreground">You give the model data without any labels and ask it to find patterns on its own. This is useful for customer segmentation (grouping similar customers) or anomaly detection (finding unusual behavior).</p>
-                </CardContent>
-            </Card>
-             <Card>
-                <CardHeader>
-                    <CardTitle className="font-headline">3. Reinforcement Learning</CardTitle>
-                    <CardDescription>Learning through Trial & Error</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <p className="text-muted-foreground">The model (an "agent") learns by taking actions in an environment and receiving rewards or penalties. It's how AI is trained to play games like Chess or Go, or to control robotic arms.</p>
-                </CardContent>
-            </Card>
-        </div>
-      </section>
-
-      <section className="mb-16 bg-card/50 py-16 rounded-lg">
-         <div className="text-center mb-12">
-            <h2 className="font-headline text-3xl font-bold tracking-tight mb-4">The Machine Learning Workflow</h2>
-            <p className="max-w-[700px] mx-auto text-muted-foreground md:text-lg">
-                A typical ML project follows a standard set of steps, from idea to deployment.
-            </p>
-         </div>
-         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {workflowSteps.map((step) => {
-                const Icon = step.icon;
-                return (
-                    <Card key={step.title} className="bg-background/70">
-                        <CardHeader className="flex flex-row items-start gap-4">
-                            <div className="bg-primary/10 text-primary p-3 rounded-lg">
-                                <Icon className="w-6 h-6" />
-                            </div>
-                            <div>
-                                <CardTitle className="font-headline text-xl">{step.title}</CardTitle>
-                            </div>
-                        </CardHeader>
-                        <CardContent>
-                            <p className="text-muted-foreground">{step.description}</p>
-                        </CardContent>
-                    </Card>
-                );
-            })}
-         </div>
-      </section>
-      
-      <section className="mb-16">
-        <div className="text-center mb-12">
-            <h2 className="font-headline text-3xl font-bold tracking-tight mb-4">Your First Project: Image Classification</h2>
-            <p className="max-w-[700px] mx-auto text-muted-foreground md:text-lg">
-                Let's see what real code looks like. This example uses PyTorch, a popular Deep Learning library, to classify an image. This is a practical, hands-on approach inspired by fast.ai.
-            </p>
-        </div>
-        <div className="max-w-4xl mx-auto">
-            <Card className="overflow-hidden">
-                <CardHeader>
-                    <CardTitle className="flex items-center gap-2 font-headline"><LanguageIcon language="python" className="w-6 h-6" /> Image Classification in Python</CardTitle>
-                    <CardDescription>This code loads a pre-trained neural network (ResNet18) and prepares it to classify a new image. Don't worry if it looks complex; the key is understanding the steps.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <CodeBlock code={exampleCode} language="python" />
-                </CardContent>
-            </Card>
-        </div>
-      </section>
-
-      <section className="bg-card/50 py-16 rounded-lg">
-         <div className="text-center mb-12">
-            <h2 className="font-headline text-3xl font-bold tracking-tight mb-4">Where to Go Next?</h2>
-            <p className="max-w-[700px] mx-auto text-muted-foreground md:text-lg">
-                You've seen the map. Now it's time to start the journey. These resources are the best in the world for taking your next steps.
-            </p>
-         </div>
-         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {externalResources.map((platform) => {
-            const Icon = platform.icon;
-            return (
-              <Link href={platform.href} key={platform.name} className="group" target="_blank" rel="noopener noreferrer">
-                <Card className="h-full flex flex-col transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:-translate-y-1 bg-background">
-                  <CardHeader>
-                     <div className="flex items-center gap-4">
-                        <div className="bg-primary/10 text-primary p-3 rounded-lg w-fit">
-                          <Icon className="w-8 h-8" />
+            {/* Trends 2025 Section */}
+            <section className="py-20">
+                <div className="container">
+                    <h2 className="font-headline text-3xl md:text-4xl font-bold text-center mb-12">AI Trends: 2025 and Beyond</h2>
+                    <div className="grid md:grid-cols-3 gap-8 text-center">
+                        <div className="glass-card p-8 rounded-xl">
+                            <Zap className="w-12 h-12 mx-auto mb-4 text-primary" />
+                            <h3 className="font-headline text-xl font-semibold mb-2">Agentic AI</h3>
+                            <p className="text-gray-400">AI agents that can take actions, automate complex tasks, and interact with digital environments on your behalf.</p>
                         </div>
-                        <CardTitle className="font-headline text-2xl group-hover:text-primary transition-colors">{platform.name}</CardTitle>
+                        <div className="glass-card p-8 rounded-xl">
+                            <Droplets className="w-12 h-12 mx-auto mb-4 text-primary" />
+                            <h3 className="font-headline text-xl font-semibold mb-2">Multimodal Models</h3>
+                            <p className="text-gray-400">Single AI models that understand and process text, images, audio, and video simultaneously for richer context.</p>
+                        </div>
+                        <div className="glass-card p-8 rounded-xl">
+                            <Leaf className="w-12 h-12 mx-auto mb-4 text-primary" />
+                            <h3 className="font-headline text-xl font-semibold mb-2">Sustainable/Green AI</h3>
+                            <p className="text-gray-400">A focus on creating smaller, highly-efficient models that reduce the energy consumption of AI training and inference.</p>
+                        </div>
                     </div>
-                  </CardHeader>
-                  <CardContent className="flex-grow">
-                    <p className="text-muted-foreground">{platform.description}</p>
-                  </CardContent>
-                  <div className="p-6 pt-0">
-                      <div className="text-sm font-medium text-primary flex items-center gap-1">
-                          Start Learning
-                          <ArrowRight className="w-4 h-4 transform transition-transform duration-300 group-hover:translate-x-1" />
-                      </div>
-                  </div>
-                </Card>
-              </Link>
-            )
-          })}
-        </div>
-      </section>
+                </div>
+            </section>
 
-    </div>
-  );
+            {/* Tutorials Section */}
+            <section id="tutorials" className="py-20 bg-gray-900/50">
+                <div className="container">
+                    <h2 className="font-headline text-3xl md:text-4xl font-bold text-center mb-12">Curated Tutorials</h2>
+                    <div className="grid md:grid-cols-3 gap-8">
+                        <Card className="glass-card text-white overflow-hidden group">
+                            <CardHeader>
+                                <div className="flex justify-between items-center">
+                                    <CardTitle className="font-headline">Intro to LLMs & Transformers</CardTitle>
+                                    <span className="text-xs bg-green-500/20 text-green-300 px-2 py-1 rounded-full">Beginner</span>
+                                </div>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-gray-400 mb-4">Understand the core architecture that powers models like GPT and Claude.</p>
+                                <Button variant="outline" className="text-white border-white/20 hover:bg-primary/20">Read Notes</Button>
+                            </CardContent>
+                        </Card>
+                        <Card className="glass-card text-white overflow-hidden group">
+                            <CardHeader>
+                                <div className="flex justify-between items-center">
+                                    <CardTitle className="font-headline">Building RAG Pipelines</CardTitle>
+                                    <span className="text-xs bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded-full">Intermediate</span>
+                                </div>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-gray-400 mb-4">Learn Retrieval-Augmented Generation to connect LLMs with external data.</p>
+                                <Button variant="outline" className="text-white border-white/20 hover:bg-primary/20">Read Notes</Button>
+                            </CardContent>
+                        </Card>
+                        <Card className="glass-card text-white overflow-hidden group">
+                            <CardHeader>
+                                <div className="flex justify-between items-center">
+                                    <CardTitle className="font-headline">Fine-tuning Llama 3</CardTitle>
+                                    <span className="text-xs bg-red-500/20 text-red-300 px-2 py-1 rounded-full">Advanced</span>
+                                </div>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-gray-400 mb-4">Specialize open-source models for your own tasks with hands-on fine-tuning.</p>
+                                <Button variant="outline" className="text-white border-white/20 hover:bg-primary/20">Read Notes</Button>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </div>
+            </section>
+
+             {/* Interactive Quiz Section */}
+            <section className="py-20">
+                <div className="container max-w-3xl">
+                    <h2 className="font-headline text-3xl md:text-4xl font-bold text-center mb-12">Test Your Knowledge</h2>
+                    <div className="space-y-8">
+                        {quizQuestions.map((q, qIndex) => (
+                            <div key={qIndex} className="glass-card p-6 rounded-lg">
+                                <p className="font-semibold text-lg mb-4">{qIndex + 1}. {q.question}</p>
+                                <div className="space-y-3">
+                                    {q.answers.map((ans, aIndex) => {
+                                        const isSelected = quizState[qIndex].selected === aIndex;
+                                        const isCorrect = ans.correct;
+                                        const state = quizState[qIndex];
+
+                                        return (
+                                            <button
+                                                key={aIndex}
+                                                onClick={() => handleAnswer(qIndex, aIndex)}
+                                                disabled={state.selected !== null}
+                                                className={cn(
+                                                    "w-full text-left p-3 rounded-md transition-all duration-300 border",
+                                                    "disabled:cursor-not-allowed",
+                                                    state.selected === null 
+                                                        ? "border-gray-600 hover:bg-primary/10 hover:border-primary" 
+                                                        : isSelected && isCorrect ? "bg-green-500/20 border-green-500"
+                                                        : isSelected && !isCorrect ? "bg-red-500/20 border-red-500"
+                                                        : "border-gray-700 opacity-50"
+                                                )}
+                                            >
+                                                {ans.text}
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                                {quizState[qIndex].selected !== null && (
+                                    <div className={cn(
+                                        "mt-4 p-3 rounded-md text-sm",
+                                        quizState[qIndex].correct ? "bg-green-900/50" : "bg-red-900/50"
+                                    )}>
+                                        <p className="font-bold mb-1">{quizState[qIndex].correct ? "Correct!" : "Not quite."}</p>
+                                        <p>{q.explanation}</p>
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                    {quizState.every(s => s.selected !== null) && (
+                         <div className="text-center mt-12">
+                            <p className="text-2xl font-bold">Your Score: {score} / {quizQuestions.length}</p>
+                        </div>
+                    )}
+                </div>
+            </section>
+
+             {/* Cheat Sheet Section */}
+            <section className="py-20 bg-gray-900/50">
+                <div className="container max-w-4xl">
+                     <h2 className="font-headline text-3xl md:text-4xl font-bold text-center mb-12">Quick Recall Notes</h2>
+                     <Accordion type="single" collapsible className="w-full">
+                        <AccordionItem value="item-1" className="glass-card rounded-lg mb-4 px-6">
+                            <AccordionTrigger className="font-headline text-lg hover:no-underline">Python Libraries: PyTorch vs TensorFlow</AccordionTrigger>
+                            <AccordionContent className="text-gray-400">
+                                <p><strong>PyTorch:</strong> Known for its Python-first approach, flexibility, and ease of use in research. Uses dynamic computation graphs.</p>
+                                <p className="mt-2"><strong>TensorFlow:</strong> Known for its robust production deployment capabilities (TensorFlow Serving), scalability, and strong mobile support (TensorFlow Lite). Traditionally used static computation graphs, but TF 2.0 introduced eager execution.</p>
+                            </AccordionContent>
+                        </AccordionItem>
+                        <AccordionItem value="item-2" className="glass-card rounded-lg px-6">
+                            <AccordionTrigger className="font-headline text-lg hover:no-underline">Common Activation Functions</AccordionTrigger>
+                            <AccordionContent className="text-gray-400">
+                                <p><strong>ReLU (Rectified Linear Unit):</strong> `f(x) = max(0, x)`. The most common activation function. Computationally efficient but can suffer from "dying ReLU" problem.</p>
+                                <p className="mt-2"><strong>Sigmoid:</strong> `f(x) = 1 / (1 + e^-x)`. Squashes values between 0 and 1. Used in binary classification output layers.</p>
+                                <p className="mt-2"><strong>Softmax:</strong> Converts a vector of numbers into a probability distribution. Used in multi-class classification output layers.</p>
+                            </AccordionContent>
+                        </AccordionItem>
+                    </Accordion>
+                </div>
+            </section>
+
+
+            {/* Footer */}
+            <footer className="py-12 border-t border-white/10">
+                <div className="container">
+                    <div className="grid md:grid-cols-3 gap-8">
+                        <div>
+                             <h3 className="font-headline text-lg mb-2">NexusAI</h3>
+                             <p className="text-gray-400 text-sm">© {new Date().getFullYear()}. All Rights Reserved.</p>
+                        </div>
+                        <div>
+                            <h3 className="font-headline text-lg mb-2">Resources</h3>
+                            <ul className="space-y-2 text-sm">
+                                <li><a href="#tutorials" className="text-gray-400 hover:text-primary">Tutorials</a></li>
+                                <li><a href="#" className="text-gray-400 hover:text-primary">Kaggle</a></li>
+                                <li><a href="#" className="text-gray-400 hover:text-primary">Hugging Face</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 className="font-headline text-lg mb-2">Newsletter</h3>
+                            <p className="text-gray-400 text-sm mb-4">Stay updated with the latest in AI.</p>
+                            <form className="flex space-x-2">
+                                <Input type="email" placeholder="Enter your email" className="bg-gray-800 border-gray-700 text-white" />
+                                <Button type="submit" variant="default" className="bg-primary hover:bg-primary/90">
+                                    <Mail className="w-4 h-4" />
+                                </Button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    );
 }
+
+    
