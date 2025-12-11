@@ -15,6 +15,7 @@ const navLinks = [
   { href: "/quizzes", label: "Quizzes" },
   { href: "/runner", label: "Code Runner" },
   { href: "/references", label: "References" },
+  { href: "/certificates", label: "Certificates" },
   { href: "/ai-ml", label: "AI / ML" }
 ];
 

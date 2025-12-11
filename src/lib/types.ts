@@ -38,3 +38,12 @@ export type WebsiteReference = {
   description: string;
   icon: 'BrainCircuit' | 'Network' | 'Code' | 'BookOpen' | 'School';
 };
+
+export type CertificatePlatform = {
+  id: string;
+  name: string;
+  url: string;
+  description: string;
+  tags: string[];
+  logo: string; // URL to the logo
+};
