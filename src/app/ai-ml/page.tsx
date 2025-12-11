@@ -285,7 +285,3 @@ export default function NexusAiPage() {
         </div>
     );
 }
-
-    
-
-    
