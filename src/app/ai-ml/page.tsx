@@ -127,7 +127,7 @@ export default function NexusAiPage() {
             <section id="tutorials" className="py-20 bg-muted/30">
                 <div className="container">
                     <h2 className="font-headline text-3xl md:text-4xl font-bold text-center mb-12">Curated Tutorials</h2>
-                    <div className="grid md:grid-cols-3 gap-8">
+                    <div className="grid md:grid-cols-2 gap-8">
                         <Card className="glass-card text-foreground overflow-hidden group">
                             <CardHeader>
                                 <div className="flex justify-between items-center">
@@ -152,20 +152,6 @@ export default function NexusAiPage() {
                             <CardContent>
                                 <p className="text-muted-foreground mb-4">Learn Retrieval-Augmented Generation to connect LLMs with external data.</p>
                                 <Link href="https://www.pinecone.io/learn/series/rag/" target="_blank" rel="noopener noreferrer">
-                                    <Button variant="outline" className="border-border hover:bg-primary/20">Read Notes</Button>
-                                </Link>
-                            </CardContent>
-                        </Card>
-                        <Card className="glass-card text-foreground overflow-hidden group">
-                            <CardHeader>
-                                <div className="flex justify-between items-center">
-                                    <CardTitle className="font-headline">Fine-tuning Llama 3</CardTitle>
-                                    <span className="text-xs bg-red-500/20 text-red-300 px-2 py-1 rounded-full">Advanced</span>
-                                </div>
-                            </CardHeader>
-                            <CardContent>
-                                <p className="text-muted-foreground mb-4">Specialize open-source models for your own tasks with hands-on fine-tuning.</p>
-                                <Link href="https://wandb.ai/capecape/Llama_3_finetune/reports/Fine-tune-Llama-3-for-Text-to-SQL-A-Comprehensive-Guide---Vmlldzo4NTI1NTg5" target="_blank" rel="noopener noreferrer">
                                     <Button variant="outline" className="border-border hover:bg-primary/20">Read Notes</Button>
                                 </Link>
                             </CardContent>
