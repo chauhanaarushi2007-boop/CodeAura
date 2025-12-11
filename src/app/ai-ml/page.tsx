@@ -133,7 +133,7 @@ export default function NexusAiPage() {
                             </CardHeader>
                             <CardContent>
                                 <p className="text-gray-400 mb-4">Understand the core architecture that powers models like GPT and Claude.</p>
-                                <Link href="https://developers.google.com/machine-learning/glossary/transformer" target="_blank" rel="noopener noreferrer">
+                                <Link href="https://www.youtube.com/watch?v=wjZofJX0v4M" target="_blank" rel="noopener noreferrer">
                                     <Button variant="outline" className="text-white border-white/20 hover:bg-primary/20">Read Notes</Button>
                                 </Link>
                             </CardContent>
