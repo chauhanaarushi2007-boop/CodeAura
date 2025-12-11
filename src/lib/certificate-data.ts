@@ -28,6 +28,15 @@ export const certificatePlatforms: CertificatePlatform[] = [
     tags: ['computer science', 'business', 'ai', 'data science', 'language learning', 'health'],
     logo: 'https://upload.wikimedia.org/wikipedia/commons/e/e5/Coursera-logo-vector.svg',
   },
+   {
+    id: 'ibm-skillsbuild',
+    name: 'IBM SkillsBuild',
+    url: 'https://skillsbuild.org/courses',
+    description:
+      'IBM\'s free education program focuses on core technology and professional skills for students, educators, and job seekers. Earn free digital credentials from IBM.',
+    tags: ['ai', 'cybersecurity', 'data science', 'cloud computing', 'professional skills'],
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/f/f9/IBM_logo.svg',
+  },
   {
     id: 'linkedin-learning',
     name: 'LinkedIn Learning (Free Courses)',
