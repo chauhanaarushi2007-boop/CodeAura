@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 export default function Home() {
   return (
     <div className="flex flex-col min-h-[100dvh]">
-      <section className="w-full py-20 md:py-32 lg:py-40 xl:py-48 relative overflow-hidden flex-grow flex items-center justify-center">
+      <section className="w-full py-20 md:py-24 lg:py-32 relative overflow-hidden">
         <AnimatedIconBackground />
         <div className="container px-4 md:px-6 relative">
           <div className="flex flex-col items-center justify-center text-center space-y-4">
