@@ -1,4 +1,4 @@
-import type { Language, Book, Quiz, WebsiteReference, Testimonial } from './types';
+import type { Language, Book, Quiz, WebsiteReference } from './types';
 
 export const languages: Language[] = [
   { id: 'html', name: 'HTML', description: 'The standard markup language for creating web pages.' },
@@ -117,37 +117,5 @@ export const websites: WebsiteReference[] = [
     icon: 'School',
   },
 ];
-
-export const testimonials: Testimonial[] = [
-  {
-    id: 'user-1',
-    name: 'Alex Johnson',
-    role: 'Software Developer',
-    quote: 'CodeAura has been an incredible resource for me. The tutorials are clear, concise, and the live code runner is a game-changer for practicing on the fly. Highly recommended!',
-    avatarUrl: 'https://picsum.photos/seed/1/100/100',
-  },
-  {
-    id: 'user-2',
-    name: 'Samantha Lee',
-    role: 'UX/UI Designer',
-    quote: "As a designer who needs to understand code, CodeAura made learning HTML and CSS so approachable. The interactive quizzes really helped solidify my knowledge.",
-    avatarUrl: 'https://picsum.photos/seed/2/100/100',
-  },
-  {
-    id: 'user-3',
-    name: 'Mike Chen',
-    role: 'Data Science Student',
-    quote: "I was struggling with Python for my data science course, but CodeAura's tutorials broke down complex topics into easy-to-understand chunks. The AI assistant, Aurix, is a lifesaver for quick questions.",
-    avatarUrl: 'https://picsum.photos/seed/3/100/100',
-  },
-  {
-    id: 'user-4',
-    name: 'Jessica Williams',
-    role: 'Project Manager',
-    quote: "The platform is beautifully designed and incredibly user-friendly. I finally have a place to send my team to brush up on their skills. The free certificates are a great motivator too!",
-    avatarUrl: 'https://picsum.photos/seed/4/100/100',
-  },
-];
-
 
 export { quizData } from './quiz-data';

@@ -47,11 +47,3 @@ export type CertificatePlatform = {
   tags: string[];
   logo: string; // URL to the logo
 };
-
-export type Testimonial = {
-  id: string;
-  name: string;
-  role: string;
-  quote: string;
-  avatarUrl: string;
-};

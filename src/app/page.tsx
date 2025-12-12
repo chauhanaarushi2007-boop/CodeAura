@@ -2,21 +2,13 @@
 'use client';
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BookOpen, Bot, ListChecks, Terminal } from "lucide-react";
 import Link from "next/link";
 import { LanguageIcon } from "@/components/icons/language-icons";
-import { languages, testimonials } from "@/lib/placeholder-data";
+import { languages } from "@/lib/placeholder-data";
 import { AnimatedIconBackground } from "@/components/animated-icon-background";
 import { cn } from "@/lib/utils";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Home() {
   return (
@@ -100,55 +92,6 @@ export default function Home() {
                 <p className="text-muted-foreground">Get instant help from Aurix, your personal AI programming assistant.</p>
               </CardContent>
             </Card>
-          </div>
-        </div>
-      </section>
-
-       <section id="testimonials" className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="space-y-2">
-              <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Testimonials</div>
-              <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-5xl">What Our Users Say</h2>
-              <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Hear from developers and learners who have grown their skills with CodeAura.
-              </p>
-            </div>
-          </div>
-          <div className="mx-auto max-w-6xl px-0 py-12">
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              className="w-full"
-            >
-              <CarouselContent>
-                {testimonials.map((testimonial) => (
-                  <CarouselItem key={testimonial.id} className="md:basis-1/2 lg:basis-1/3">
-                    <div className="p-1 h-full">
-                      <Card className="h-full flex flex-col">
-                        <CardContent className="pt-6 flex-grow">
-                          <p className="text-muted-foreground">"{testimonial.quote}"</p>
-                        </CardContent>
-                        <CardFooter className="pt-6 flex items-center gap-4">
-                          <Avatar>
-                            <AvatarImage src={testimonial.avatarUrl} alt={testimonial.name} />
-                            <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
-                          </Avatar>
-                          <div>
-                            <p className="font-semibold">{testimonial.name}</p>
-                            <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                          </div>
-                        </CardFooter>
-                      </Card>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="hidden md:flex" />
-              <CarouselNext className="hidden md:flex" />
-            </Carousel>
           </div>
         </div>
       </section>
