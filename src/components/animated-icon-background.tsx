@@ -44,7 +44,7 @@ export function AnimatedIconBackground() {
             <div
               key={id}
               className={cn(
-                'absolute bottom-0 animate-drift text-primary/10'
+                'absolute bottom-0 animate-drift text-primary/20'
               )}
               style={style}
             >
