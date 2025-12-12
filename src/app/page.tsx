@@ -13,28 +13,25 @@ import { cn } from "@/lib/utils";
 export default function Home() {
   return (
     <div className="flex flex-col min-h-[100dvh]">
-      <section className="w-full py-20 md:py-32 lg:py-40 xl:py-48 relative overflow-hidden">
+      <section className="w-full py-20 md:py-32 lg:py-40 xl:py-48 relative overflow-hidden flex-grow flex items-center justify-center">
         <AnimatedIconBackground />
         <div className="container px-4 md:px-6 relative">
-          <div className="grid gap-6 lg:grid-cols-2">
-            <div className="flex flex-col justify-center space-y-4">
-              <div className="space-y-4">
-                <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                  CodeAura
-                </h1>
-                <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                  The Aura of Programmers Begins Here. Skill that Sparks a Career.
-                </p>
-              </div>
-              <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_20px_hsl(var(--primary))] transition-shadow hover:shadow-[0_0_30px_hsl(var(--primary))]">
-                  <Link href="/tutorials">
-                    Start Learning Now
-                  </Link>
-                </Button>
-              </div>
+          <div className="flex flex-col items-center justify-center text-center space-y-4">
+            <div className="space-y-4">
+              <h1 className="font-headline text-5xl font-bold tracking-tighter sm:text-6xl xl:text-7xl/none">
+                CodeAura
+              </h1>
+              <p className="max-w-[600px] text-muted-foreground md:text-xl">
+                The Aura of Programmers Begins Here. Skill that Sparks a Career.
+              </p>
             </div>
-            {/* The second column is removed to give the animation more space */}
+            <div className="flex flex-col gap-2 min-[400px]:flex-row">
+              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_20px_hsl(var(--primary))] transition-shadow hover:shadow-[0_0_30px_hsl(var(--primary))]">
+                <Link href="/tutorials">
+                  Start Learning Now
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
