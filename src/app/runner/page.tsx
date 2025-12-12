@@ -30,7 +30,7 @@ export default function CodeRunnerPage() {
     const availableLanguages = languages;
 
   return (
-    <div className="container py-12">
+    <div className="container py-8 md:py-12">
       <div className="text-center mb-12">
         <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl">
           Live Code Runner
@@ -42,26 +42,28 @@ export default function CodeRunnerPage() {
 
       <div className="space-y-6">
         <Card>
-            <CardHeader className="flex-row items-center justify-between">
-                <div>
-                    <CardTitle className="font-headline">Code Editor</CardTitle>
-                    <CardDescription>Select a language and start coding.</CardDescription>
-                </div>
-                <div className="flex items-center gap-4">
-                    <Select value={language} onValueChange={setLanguage}>
-                        <SelectTrigger className="w-[180px]">
-                            <SelectValue placeholder="Select Language" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            {availableLanguages.map(lang => (
-                                <SelectItem key={lang.id} value={lang.id}>{lang.name}</SelectItem>
-                            ))}
-                        </SelectContent>
-                    </Select>
-                    <Button onClick={handleRunCode} disabled={isPending}>
-                        <Play className="mr-2 h-4 w-4" />
-                        {isPending ? "Running..." : "Run"}
-                    </Button>
+            <CardHeader>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div className="flex-1">
+                        <CardTitle className="font-headline">Code Editor</CardTitle>
+                        <CardDescription>Select a language and start coding.</CardDescription>
+                    </div>
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                        <Select value={language} onValueChange={setLanguage}>
+                            <SelectTrigger className="w-full sm:w-[180px]">
+                                <SelectValue placeholder="Select Language" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {availableLanguages.map(lang => (
+                                    <SelectItem key={lang.id} value={lang.id}>{lang.name}</SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                        <Button onClick={handleRunCode} disabled={isPending}>
+                            <Play className="mr-2 h-4 w-4" />
+                            {isPending ? "Running..." : "Run"}
+                        </Button>
+                    </div>
                 </div>
             </CardHeader>
             <CardContent className="grid md:grid-cols-2 gap-6">
@@ -94,7 +96,7 @@ export default function CodeRunnerPage() {
                                     srcDoc={output}
                                     title="Code Output"
                                     sandbox="allow-scripts"
-                                    className="w-full h-full border-0"
+                                    className="w-full h-full border-0 min-h-[440px] md:min-h-0"
                                 />
                             ) : (
                                 <pre className="font-code text-sm text-muted-foreground whitespace-pre-wrap p-6 pt-0">{output}</pre>

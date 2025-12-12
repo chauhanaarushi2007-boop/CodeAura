@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 export default function Home() {
   return (
     <div className="flex flex-col min-h-[100dvh]">
-      <section className="w-full py-20 md:py-24 lg:py-32 relative overflow-hidden">
+      <section className="w-full py-12 md:py-20 lg:py-24 relative overflow-hidden">
         <AnimatedIconBackground />
         <div className="container px-4 md:px-6 relative">
           <div className="flex flex-col items-center justify-center text-center space-y-4">
@@ -106,7 +106,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:gap-10">
+          <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:gap-10">
             {languages.map((lang) => (
               <Link key={lang.id} href="/tutorials" className="flex flex-col items-center justify-center space-y-2 group">
                   <LanguageIcon language={lang.id} className="w-16 h-16 text-muted-foreground group-hover:text-primary transition-colors group-hover:scale-110" />
