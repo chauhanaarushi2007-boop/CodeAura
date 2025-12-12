@@ -18,7 +18,7 @@ export default function Home() {
         <div className="container px-4 md:px-6 relative">
           <div className="flex flex-col items-center justify-center text-center space-y-4">
             <div className="space-y-4">
-              <h1 className="font-headline text-5xl font-bold tracking-tighter sm:text-6xl xl:text-7xl/none">
+              <h1 className="font-headline text-5xl font-extrabold tracking-tighter sm:text-7xl xl:text-8xl/none animated-gradient-text bg-gradient-to-r from-primary via-accent to-primary">
                 CodeAura
               </h1>
               <p className="max-w-[600px] text-muted-foreground md:text-xl">
