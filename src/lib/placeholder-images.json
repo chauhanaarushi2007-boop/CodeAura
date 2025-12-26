@@ -9,7 +9,7 @@
     {
       "id": "book-python",
       "description": "A book cover for a Python book",
-      "imageUrl": "https://images.unsplash.com/photo-1629904853716-f0bc64219b14?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxNXx8cHl0aG9uJTIwY29kaW5nfGVufDB8fHx8MTcxOTU5ODUzN3ww&ixlib=rb-4.0.3&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxweXRob24lMjBjb2RlfGVufDB8fHx8MTcxOTYwMTMxNnww&ixlib=rb-4.0.3&q=80&w=1080",
       "imageHint": "python coding"
     },
     {
@@ -45,7 +45,7 @@
     {
       "id": "book-ai-2",
       "description": "A book cover for a machine learning book",
-      "imageUrl": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxweXRob24lMjBjb2Rpbmd8ZW58MHx8fHwxNzE5NTk4NTM3fDA&ixlib=rb-4.0.3&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1718042521235-a6399066f3b0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtYWNoaW5lJTIwbGVhcm5pbmclMjBhYnN0cmFjdHxlbnwwfHx8fDE3MTk2MDA3NTV8MA&ixlib=rb-4.0.3&q=80&w=1080",
       "imageHint": "machine learning"
     }
   ]
