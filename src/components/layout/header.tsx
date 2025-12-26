@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Menu, CodeXml } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "../theme-toggle";
@@ -55,19 +55,23 @@ export function Header() {
                 <span className="sr-only">Open Menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left">
-              <Link href="/" className="mr-6 flex items-center space-x-2 mb-6">
-                <CodeXml className="h-6 w-6 text-primary" />
-                <span className="font-bold font-headline">CodeAura</span>
-              </Link>
-              <nav className="flex flex-col space-y-4">
+            <SheetContent side="left" className="pr-0 shadow-2xl shadow-primary/20 border-r-primary/20">
+              <SheetHeader className="pr-6">
+                <SheetTitle asChild>
+                  <Link href="/" className="mr-6 flex items-center space-x-2 mb-6">
+                    <CodeXml className="h-6 w-6 text-primary" />
+                    <span className="font-bold font-headline text-2xl">CodeAura</span>
+                  </Link>
+                </SheetTitle>
+              </SheetHeader>
+              <nav className="flex flex-col space-y-2 mt-4">
                 {navLinks.map((link) => (
                   <SheetClose asChild key={link.href}>
                     <Link
                       href={link.href}
                       className={cn(
-                        "text-lg transition-colors hover:text-foreground",
-                        pathname.startsWith(link.href) ? "text-foreground font-semibold" : "text-foreground/60"
+                        "text-lg transition-colors hover:bg-muted py-3 px-6 rounded-l-full",
+                        pathname.startsWith(link.href) ? "text-primary font-semibold bg-primary/10" : "text-foreground/70"
                       )}
                     >
                       {link.label}
