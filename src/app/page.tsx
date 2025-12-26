@@ -108,7 +108,7 @@ export default function Home() {
           </div>
           <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:gap-10">
             {languages.map((lang) => (
-              <Link key={lang.id} href="/tutorials" className="flex flex-col items-center justify-center space-y-2 group">
+              <Link key={lang.id} href={`/tutorials/${lang.id}`} className="flex flex-col items-center justify-center space-y-2 group">
                   <LanguageIcon language={lang.id} className="w-16 h-16 text-muted-foreground group-hover:text-primary transition-colors group-hover:scale-110" />
                   <span className="text-lg font-medium group-hover:text-primary transition-colors">{lang.name}</span>
               </Link>
