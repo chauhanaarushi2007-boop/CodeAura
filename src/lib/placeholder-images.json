@@ -3,49 +3,49 @@
     {
       "id": "book-js",
       "description": "A book cover for a JavaScript book",
-      "imageUrl": "https://images.unsplash.com/photo-1599507593499-a3f7d7d97667?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhYnN0cmFjdCUyMGNvZGV8ZW58MHx8fHwxNzE3MDk0NzU5fDA&ixlib=rb-4.0.3&q=80&w=1080",
-      "imageHint": "abstract code"
+      "imageUrl": "https://images.unsplash.com/photo-1551033406-611cf9a28f67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxKYXZhU2NyaXB0JTIwYWJzdHJhY3R8ZW58MHx8fHwxNzE5MjU1MTQ1fDA&ixlib=rb-4.0.3&q=80&w=1080",
+      "imageHint": "JavaScript abstract"
     },
     {
       "id": "book-python",
       "description": "A book cover for a Python book",
-      "imageUrl": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyMHx8cHl0aG9uJTIwY29kZXxlbnwwfHx8fDE3MTcwOTQ4MTZ8MA&ixlib=rb-4.0.3&q=80&w=1080",
-      "imageHint": "python code"
+      "imageUrl": "https://images.unsplash.com/photo-1629904853716-f0bc64219b14?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxweXRob24lMjBhYnN0cmFjdHxlbnwwfHx8fDE3MTkyNTUxODZ8MA&ixlib=rb-4.0.3&q=80&w=1080",
+      "imageHint": "python abstract"
     },
     {
       "id": "book-java",
       "description": "A book cover for a Java book",
-      "imageUrl": "https://images.unsplash.com/photo-1518773553398-650c184e0bb3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzeXN0ZW0lMjBib2FyZHxlbnwwfHx8fDE3MTcwOTQ5MTZ8MA&ixlib=rb-4.0.3&q=80&w=1080",
-      "imageHint": "system board"
+      "imageUrl": "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGNvZmZlZXxlbnwwfHx8fDE3MTkyNTUyNDB8MA&ixlib=rb-4.0.3&q=80&w=1080",
+      "imageHint": "abstract coffee"
     },
     {
       "id": "book-cpp",
       "description": "A book cover for a C++ book",
-      "imageUrl": "https://images.unsplash.com/photo-1550751827-4138d04d42e3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMHRlY2hub2xvZ3l8ZW58MHx8fHwxNzE3MDk0OTYwfDA&ixlib=rb-4.0.3&q=80&w=1080",
-      "imageHint": "abstract technology"
+      "imageUrl": "https://images.unsplash.com/photo-1605379399642-870262d3d051?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjJTIwY29kaW5nfGVufDB8fHx8MTcxOTI1NTI3Nnww&ixlib=rb-4.0.3&q=80&w=1080",
+      "imageHint": "c coding"
     },
     {
       "id": "book-html-css",
       "description": "A book cover for an HTML and CSS book",
-      "imageUrl": "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXNpZ258ZW58MHx8fHwxNzE3MDk1MDMxfDA&ixlib=rb-4.0.3&q=80&w=1080",
-      "imageHint": "web design"
+      "imageUrl": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxIVE1MJTIwY29kaW5nfGVufDB8fHx8MTcxOTI1NTMxM3ww&ixlib=rb-4.0.3&q=80&w=1080",
+      "imageHint": "HTML coding"
     },
     {
       "id": "book-php",
       "description": "A book cover for a PHP book",
-      "imageUrl": "https://images.unsplash.com/photo-1587620962725-abab7fe55159?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjodingfGVufDB8fHx8MTcxNzA5NTA4MXww&ixlib=rb-4.0.3&q=80&w=1080",
-      "imageHint": "coding"
+      "imageUrl": "https://images.unsplash.com/photo-1599507593499-a3f7d7d97667?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhYnN0cmFjdCUyMGNvZGV8ZW58MHx8fHwxNzE3MDk0NzU5fDA&ixlib=rb-4.0.3&q=80&w=1080",
+      "imageHint": "abstract code"
     },
     {
       "id": "book-ai-1",
       "description": "A book cover for an AI book",
-      "imageUrl": "https://images.unsplash.com/photo-1535223289827-42f1e9919769?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlfGVufDB8fHx8MTcxNzA5NTExNHww&ixlib=rb-4.0.3&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1677756119517-756a188d2d94?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlJTIwYWJzdHJhY3R8ZW58MHx8fHwxNzE5MjU1MDMyfDA&ixlib=rb-4.0.3&q=80&w=1080",
       "imageHint": "artificial intelligence"
     },
     {
       "id": "book-ai-2",
       "description": "A book cover for a machine learning book",
-      "imageUrl": "https://images.unsplash.com/photo-1620712943543-bcc4658e7485?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtYWNoaW5lJTIwbGVhcm5pbmd8ZW58MHx8fHwxNzE3MDk1MTQzfDA&ixlib=rb-4.0.3&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1696253930154-e2c304359052?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtYWNoaW5lJTIwbGVhcm5pbmclMjBhYnN0cmFjdHxlbnwwfHx8fDE3MTkyNTUwNjh8MA&ixlib=rb-4.0.3&q=80&w=1080",
       "imageHint": "machine learning"
     }
   ]
