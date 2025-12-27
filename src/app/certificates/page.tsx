@@ -8,6 +8,7 @@ import { certificatePlatforms } from '@/lib/certificate-data';
 import type { CertificatePlatform } from '@/lib/types';
 import { ArrowRight, Award, Search } from 'lucide-react';
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
 
 export default function CertificatesPage() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -50,7 +51,7 @@ export default function CertificatesPage() {
               <CardHeader className="flex-row items-start gap-4">
                 <div className="w-16 h-16 flex-shrink-0 bg-card flex items-center justify-center rounded-lg p-2">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={platform.logo} alt={`${platform.name} logo`} className="object-contain w-full h-full" />
+                    <img src={platform.logo} alt={`${platform.name} logo`} className={cn("object-contain w-full h-full", platform.logo.endsWith('.svg') && 'dark:invert')} />
                 </div>
                 <div>
                   <CardTitle className="font-headline text-2xl group-hover:text-primary transition-colors">{platform.name}</CardTitle>
