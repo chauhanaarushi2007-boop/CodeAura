@@ -2,6 +2,7 @@
 "use server";
 
 import { generalQuery } from "@/ai/flows/chatbot-programming-language-query";
+import { findFreeCourses as findFreeCoursesFlow } from "@/ai/flows/find-free-courses";
 import { runCode as runCodeFlow } from "@/ai/flows/run-code";
 import { headers } from "next/headers";
 
@@ -47,6 +48,29 @@ export async function runCode(code: string, language: string, input: string) {
         return {
             output: "Sorry, I couldn't run your code right now. Please try again.",
             error: true
+        };
+    }
+}
+
+export async function findFreeCourses(query: string) {
+    if (!query || query.trim().length === 0) {
+        return {
+            courses: [],
+            error: "Please enter a topic to search for."
+        };
+    }
+
+    try {
+        const result = await findFreeCoursesFlow({ query });
+        return {
+            courses: result.courses,
+            error: null
+        };
+    } catch (e) {
+        console.error(e);
+        return {
+            courses: [],
+            error: "Sorry, I couldn't find any courses right now. Please try again."
         };
     }
 }
