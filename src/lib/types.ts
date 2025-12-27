@@ -11,6 +11,7 @@ export type Book = {
   imageId: string;
   description: string;
   language: Language['id'];
+  url: string;
 };
 
 export interface ChatMessage {

@@ -38,7 +38,8 @@ export default function ReferencesPage() {
         {books.map((book) => {
           const image = getImage(book.imageId);
           return (
-            <Card key={book.id} className="overflow-hidden group transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <Link href={book.url} target="_blank" rel="noopener noreferrer" key={book.id} className="group">
+            <Card className="h-full flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
               <div className="w-full h-64 bg-muted relative">
                 {image && (
                   <Image
@@ -50,15 +51,19 @@ export default function ReferencesPage() {
                   />
                 )}
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+                 <div className="absolute bottom-4 right-4 bg-primary text-primary-foreground p-2 rounded-full transform transition-transform group-hover:scale-110">
+                    <ArrowRight className="w-5 h-5" />
+                  </div>
               </div>
               <CardHeader>
                 <CardTitle className="font-headline">{book.title}</CardTitle>
                 <CardDescription>by {book.author}</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground text-sm">{book.description}</p>
+                <p className="text-muted-foreground text-sm flex-grow">{book.description}</p>
               </CardContent>
             </Card>
+            </Link>
           );
         })}
       </div>

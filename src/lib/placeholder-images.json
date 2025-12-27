@@ -2,51 +2,57 @@
   "placeholderImages": [
     {
       "id": "book-js",
-      "description": "A book cover for a JavaScript book",
-      "imageUrl": "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?q=80&w=600&h=400&auto=format&fit=crop",
-      "imageHint": "abstract code"
+      "description": "Eloquent JavaScript book cover",
+      "imageUrl": "https://images.unsplash.com/photo-1544256718-3b62ff584963?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageHint": "javascript code"
     },
     {
-      "id": "book-python",
-      "description": "A book cover for a Python book",
-      "imageUrl": "https://images.unsplash.com/photo-1526379095098-d656fd08b371?q=80&w=600&h=400&auto=format&fit=crop",
+      "id": "book-python-crash-course",
+      "description": "Python Crash Course book cover",
+      "imageUrl": "https://images.unsplash.com/photo-1618498082410-b4aa22193b38?q=80&w=600&h=400&auto=format&fit=crop",
       "imageHint": "python code"
     },
     {
       "id": "book-java",
-      "description": "A book cover for a Java book",
+      "description": "Effective Java book cover",
       "imageUrl": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=600&h=400&auto=format&fit=crop",
-      "imageHint": "tech abstract"
+      "imageHint": "java code"
     },
     {
       "id": "book-c",
-      "description": "A book cover for a C book",
-      "imageUrl": "https://images.unsplash.com/photo-1508344928928-7165b67de128?q=80&w=600&h=400&auto=format&fit=crop",
-      "imageHint": "retro computer"
+      "description": "The C Programming Language book cover",
+      "imageUrl": "https://images.unsplash.com/photo-1504639725590-771e694d735d?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageHint": "c code"
     },
     {
       "id": "book-gof",
-      "description": "A book cover for the Gang of Four Design Patterns book",
+      "description": "Design Patterns book cover",
       "imageUrl": "https://images.unsplash.com/photo-1555949963-ff980877a244?q=80&w=600&h=400&auto=format&fit=crop",
       "imageHint": "software architecture"
     },
     {
       "id": "book-clean-code",
-      "description": "A book cover for Clean Code",
+      "description": "Clean Code book cover",
       "imageUrl": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600&h=400&auto=format&fit=crop",
       "imageHint": "clean code"
     },
     {
       "id": "book-pragmatic",
-      "description": "A book cover for The Pragmatic Programmer",
+      "description": "The Pragmatic Programmer book cover",
       "imageUrl": "https://images.unsplash.com/photo-1516116216624-53e6973bea1c?q=80&w=600&h=400&auto=format&fit=crop",
       "imageHint": "coding keyboard"
     },
     {
       "id": "book-sicp",
-      "description": "A book cover for SICP",
+      "description": "SICP book cover",
       "imageUrl": "https://images.unsplash.com/photo-1632239522386-429944641c2c?q=80&w=600&h=400&auto=format&fit=crop",
       "imageHint": "wizard computer"
+    },
+    {
+      "id": "book-let-us-c",
+      "description": "Let Us C book cover",
+      "imageUrl": "https://images.unsplash.com/photo-1583947215259-38e31be8751f?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageHint": "programming book"
     }
   ]
 }
