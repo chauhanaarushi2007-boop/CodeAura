@@ -33,7 +33,7 @@ export default function CodeRunnerPage() {
   return (
     <div className="relative min-h-[calc(100vh-var(--header-height))] py-8 md:py-12 flex flex-col items-center justify-center isolate">
        <Image
-          src="https://images.unsplash.com/photo-1517694712202-1428bc64a27a?q=80&w=2070&auto=format&fit=crop"
+          src="https://images.unsplash.com/photo-1550439062-609e1531270e?q=80&w=2070&auto=format&fit=crop"
           alt="Realistic coding background"
           fill
           className="object-cover -z-10"
