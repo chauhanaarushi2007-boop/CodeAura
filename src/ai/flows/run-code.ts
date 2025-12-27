@@ -45,6 +45,7 @@ Follow these rules precisely:
 
 3.  **Output Format**:
     *   For executed code (non-web), return ONLY the raw text that would be printed to the console/terminal (stdout).
+    *   For web code, return ONLY the final rendered HTML.
     *   Do NOT provide any explanations, notes, or markdown formatting like \`\`\`. Your response must be only the code's direct output.
     *   Do not say "The output is:". Just provide the output itself.
 
