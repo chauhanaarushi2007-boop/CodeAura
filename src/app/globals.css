@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -26,20 +27,20 @@ body {
   }
 
   .dark {
-    --background: 220 30% 15%;
+    --background: 220 30% 12%;
     --foreground: 210 10% 80%;
-    --card: 220 30% 18%;
+    --card: 220 30% 16%;
     --card-foreground: 210 10% 80%;
     --popover: 220 30% 15%;
     --popover-foreground: 210 10% 80%;
-    --secondary: 210 10% 20%;
+    --secondary: 210 10% 22%;
     --secondary-foreground: 210 10% 90%;
-    --muted: 210 10% 20%;
+    --muted: 210 10% 22%;
     --muted-foreground: 210 10% 60%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 210 10% 25%;
-    --input: 210 10% 25%;
+    --border: 210 10% 28%;
+    --input: 210 10% 28%;
     --ring: 210 90% 55%;
   }
 
@@ -130,5 +131,29 @@ body {
     100% {
       background-position: 0% 50%;
     }
+  }
+
+  .perspective-card {
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+  }
+  .perspective-card:hover {
+    transform: perspective(1000px) rotateY(-5deg) rotateX(5deg) scale(1.02);
+  }
+
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(to right, hsl(var(--primary) / 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--primary) / 0.1) 1px, transparent 1px);
+    background-size: 4rem 4rem;
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-in-out;
   }
 }

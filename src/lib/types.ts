@@ -1,5 +1,6 @@
+
 export type Language = {
-  id: 'html' | 'css' | 'javascript' | 'python' | 'java' | 'c' | 'cpp' | 'php' | 'xml' | 'go';
+  id: 'html' | 'css' | 'javascript' | 'python' | 'java' | 'c' | 'cpp' | 'php' | 'xml' | 'go' | 'csharp' | 'rust' | 'ruby' | 'swift';
   name: string;
   description: string;
 };
@@ -8,11 +9,17 @@ export type Book = {
   id: string;
   title: string;
   author: string;
-  imageId: string;
   description: string;
-  language: Language['id'];
   url: string;
 };
+
+export type BookCategory = {
+  id: string;
+  title: string;
+  imageHint: string;
+  books: Book[];
+};
+
 
 export interface ChatMessage {
   id: string;
