@@ -35,7 +35,7 @@ export default function CodeRunnerPage() {
     <div className="relative min-h-[calc(100vh-var(--header-height))] py-8 md:py-12 flex flex-col items-center justify-center isolate overflow-hidden">
        <div className="absolute inset-0 w-full h-full -z-10">
           <Image
-            src="https://images.unsplash.com/photo-1621839673705-6617adf9e890?q=80&w=2532&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1550439062-609e1531270e?q=80&w=2574&auto=format&fit=crop"
             alt="Abstract coding background"
             fill
             className="object-cover animate-ken-burns"
@@ -53,7 +53,7 @@ export default function CodeRunnerPage() {
             className="text-center mb-12"
         >
           <Terminal className="w-16 h-16 mx-auto mb-4 text-primary" />
-          <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl">
+          <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl animated-gradient-text bg-gradient-to-r from-primary via-accent to-primary">
             Live Code Runner
           </h1>
           <p className="max-w-[600px] mx-auto mt-4 text-muted-foreground md:text-xl">
