@@ -24,7 +24,7 @@ export default function ReferencesPage() {
   };
 
   return (
-    <div className="bg-background text-foreground animate-fade-in">
+    <div className="bg-background text-foreground">
       <header className="relative py-24 text-center overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-10 dark:opacity-20"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background"></div>
@@ -47,7 +47,7 @@ export default function ReferencesPage() {
 
       <main className="container pb-24 space-y-20">
         <div>
-            <h2 className="font-headline text-4xl sm:text-5xl font-bold tracking-tight mb-12 text-center animate-fade-in-up">Recommended Books</h2>
+            <h2 className="font-headline text-4xl sm:text-5xl font-bold tracking-tight mb-12 text-center">Recommended Books</h2>
             <div className="space-y-20">
             {bookCategories.map((category, groupIndex) => {
               const image = getImage(category.id);
@@ -66,7 +66,7 @@ export default function ReferencesPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-card via-card/80 to-transparent"></div>
                 </div>
 
-                <div className="relative z-10 animate-fade-in-up">
+                <div className="relative z-10">
                   <h3 className="font-headline text-3xl sm:text-4xl font-bold tracking-tight mb-8 border-b-2 border-primary pb-2 text-shadow-lg shadow-black/50">{category.title}</h3>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     {category.books.map((book, index) => {
@@ -97,7 +97,7 @@ export default function ReferencesPage() {
           </div>
         </div>
 
-        <div className="animate-fade-in-up">
+        <div>
             <h2 className="font-headline text-4xl sm:text-5xl font-bold tracking-tight mb-12 text-center">Helpful Websites</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {websites.map((site, index) => {
