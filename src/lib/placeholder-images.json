@@ -3,50 +3,50 @@
     {
       "id": "book-js",
       "description": "A book cover for a JavaScript book",
-      "imageUrl": "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?q=80&w=600&h=400&auto=format&fit=crop",
-      "imageHint": "abstract code"
+      "imageUrl": "https://images.unsplash.com/photo-1627398242454-45a1465c2479?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageHint": "javascript code"
     },
     {
       "id": "book-python",
       "description": "A book cover for a Python book",
-      "imageUrl": "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=600&h=400&auto=format&fit=crop",
       "imageHint": "python code"
     },
     {
       "id": "book-java",
       "description": "A book cover for a Java book",
-      "imageUrl": "https://images.unsplash.com/photo-1592424002061-39e9de1864ac?q=80&w=600&h=400&auto=format&fit=crop",
-      "imageHint": "java code"
+      "imageUrl": "https://images.unsplash.com/photo-1544256718-3b62ff04b3c6?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageHint": "server code"
     },
     {
       "id": "book-cpp",
       "description": "A book cover for a C++ book",
-      "imageUrl": "https://images.unsplash.com/photo-1598595635792-19503837a7d0?q=80&w=600&h=400&auto=format&fit=crop",
-      "imageHint": "c++ code"
+      "imageUrl": "https://images.unsplash.com/photo-1504639725590-78a463b5fe4d?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageHint": "matrix code"
     },
     {
       "id": "book-html-css",
       "description": "A book cover for an HTML and CSS book",
-      "imageUrl": "https://images.unsplash.com/photo-1604964432806-254d07c11f32?q=80&w=600&h=400&auto=format&fit=crop",
-      "imageHint": "web design"
+      "imageUrl": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageHint": "html code"
     },
     {
       "id": "book-php",
       "description": "A book cover for a PHP book",
-      "imageUrl": "https://images.unsplash.com/photo-1617042375876-a13e36732a04?q=80&w=600&h=400&auto=format&fit=crop",
-      "imageHint": "server code"
+      "imageUrl": "https://images.unsplash.com/photo-1599507593499-a3f7d7d97667?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageHint": "php code"
     },
     {
       "id": "book-ai-1",
       "description": "A book cover for an AI book",
-      "imageUrl": "https://images.unsplash.com/photo-1677756119517-756a188d2d94?q=80&w=600&h=400&auto=format&fit=crop",
-      "imageHint": "ai brain"
+      "imageUrl": "https://images.unsplash.com/photo-1535223289827-42f1e9919769?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageHint": "ai abstract"
     },
     {
       "id": "book-ai-2",
       "description": "A book cover for a machine learning book",
-      "imageUrl": "https://images.unsplash.com/photo-1555255707-c07969071045?q=80&w=600&h=400&auto=format&fit=crop",
-      "imageHint": "machine learning"
+      "imageUrl": "https://images.unsplash.com/photo-1597733336794-12d05021d510?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageHint": "abstract tech"
     }
   ]
 }
