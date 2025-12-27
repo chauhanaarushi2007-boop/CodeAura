@@ -48,14 +48,8 @@ export default function CertificatesPage() {
         {filteredPlatforms.map((platform) => (
           <Link href={platform.url} target="_blank" rel="noopener noreferrer" key={platform.id} className="group">
             <Card className="h-full flex flex-col transition-all duration-300 ease-in-out group-hover:border-primary group-hover:shadow-xl group-hover:-translate-y-1">
-              <CardHeader className="flex-row items-start gap-4">
-                <div className="w-16 h-16 flex-shrink-0 bg-card flex items-center justify-center rounded-lg p-2">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={platform.logo} alt={`${platform.name} logo`} className={cn("object-contain w-full h-full", platform.logo.endsWith('.svg') && 'dark:invert')} />
-                </div>
-                <div>
-                  <CardTitle className="font-headline text-2xl group-hover:text-primary transition-colors">{platform.name}</CardTitle>
-                </div>
+              <CardHeader>
+                <CardTitle className="font-headline text-2xl group-hover:text-primary transition-colors">{platform.name}</CardTitle>
               </CardHeader>
               <CardContent className="flex-grow">
                 <p className="text-muted-foreground line-clamp-4">{platform.description}</p>

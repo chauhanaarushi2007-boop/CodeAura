@@ -44,7 +44,7 @@ export type WebsiteReference = {
   name: string;
   url: string;
   description: string;
-  icon: 'BrainCircuit' | 'Network' | 'Code' | 'BookOpen' | 'School';
+  icon: 'Brain' | 'Globe' | 'Code' | 'BookOpen' | 'School';
 };
 
 export type CertificatePlatform = {
@@ -53,5 +53,4 @@ export type CertificatePlatform = {
   url: string;
   description: string;
   tags: string[];
-  logo: string; // URL to the logo
 };
