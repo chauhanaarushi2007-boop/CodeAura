@@ -10,6 +10,7 @@ import { Play, Terminal } from "lucide-react";
 import { useState, useTransition } from "react";
 import { runCode } from "@/app/actions";
 import { Label } from "@/components/ui/label";
+import Image from "next/image";
 
 export default function CodeRunnerPage() {
     const [output, setOutput] = useState("Your code output will appear here.");
@@ -30,8 +31,15 @@ export default function CodeRunnerPage() {
     const availableLanguages = languages;
 
   return (
-    <div className="relative min-h-[calc(100vh-var(--header-height))] py-8 md:py-12 bg-grid-pattern">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background"></div>
+    <div className="relative min-h-[calc(100vh-var(--header-height))] py-8 md:py-12 flex flex-col items-center justify-center isolate">
+       <Image
+          src="https://images.unsplash.com/photo-1555066931-4365d14694dd?q=80&w=2070&auto=format&fit=crop"
+          alt="Realistic coding background"
+          fill
+          className="object-cover -z-10"
+          data-ai-hint="realistic code editor"
+        />
+      <div className="absolute inset-0 bg-background/80 -z-10"></div>
       <div className="container relative">
 
         <div className="text-center mb-12">
