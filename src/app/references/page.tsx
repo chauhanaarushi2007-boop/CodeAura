@@ -16,13 +16,6 @@ export default function ReferencesPage() {
     return PlaceHolderImages.find(img => img.id === id);
   };
 
-  const levelData = [
-    { level: 'Beginner', topics: 'Fundamentals', books: ['"Head First …"', '"Automate the Boring Stuff"'] },
-    { level: 'Intermediate', topics: 'Best practices & patterns', books: ['"Effective …"', '"Fluent …"', '"Clean Code"'] },
-    { level: 'Advanced', topics: 'Deep internals & theory', books: ['"Pattern Recognition and ML"', '"Deep Learning"', '"AI: A Modern Approach"'] },
-    { level: 'Security Focus', topics: 'Ethical hacking & cybersecurity', books: ['"Web App Hacker’s Handbook"'] },
-  ];
-
   const groupedCategories = [
     { title: 'Programming Languages', ids: ['python', 'javascript', 'java', 'c', 'cpp', 'csharp', 'go', 'rust', 'ruby', 'swift'] },
     { title: 'Cybersecurity', ids: ['ethical-hacking', 'cybersecurity'] },
@@ -105,42 +98,6 @@ export default function ReferencesPage() {
             </div>
           </div>
         ))}
-        
-        <div className="mt-24">
-            <h2 className="font-headline text-3xl sm:text-4xl font-bold tracking-tight mb-8 text-center">Quick Reference by Level</h2>
-             <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-             >
-                <Card className="overflow-hidden bg-card/80 backdrop-blur-sm border-border/50">
-                    <Table>
-                        <TableHeader>
-                            <TableRow className="hover:bg-transparent border-b-border/50">
-                                <TableHead className="w-[150px] font-headline text-lg">Level</TableHead>
-                                <TableHead className="font-headline text-lg">Topics Covered</TableHead>
-                                <TableHead className="font-headline text-lg">Recommended Books</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {levelData.map(row => (
-                                <TableRow key={row.level} className="border-border/20">
-                                    <TableCell className="font-semibold text-primary">{row.level}</TableCell>
-                                    <TableCell>{row.topics}</TableCell>
-                                    <TableCell>
-                                        <div className="flex flex-wrap gap-2">
-                                            {row.books.map(book => <Badge key={book} variant="secondary">{book}</Badge>)}
-                                        </div>
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </Card>
-                <p className="text-center text-sm text-muted-foreground mt-4">✔ Supplement books with tutorials and documentation.</p>
-            </motion.div>
-        </div>
       </main>
     </div>
   );
