@@ -9,7 +9,7 @@
     {
       "id": "book-python-crash-course",
       "description": "Python Crash Course book cover",
-      "imageUrl": "https://images.unsplash.com/photo-1618498082410-b4aa22193b38?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&h=400&auto=format&fit=crop",
       "imageHint": "python code"
     },
     {
@@ -27,7 +27,7 @@
     {
       "id": "book-gof",
       "description": "Design Patterns book cover",
-      "imageUrl": "https://images.unsplash.com/photo-1555949963-ff980877a244?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageUrl": "https://storage.googleapis.com/stately-temp-images/uploads/1723561955355-Design-Patterns-Book-Cover.jpg",
       "imageHint": "software architecture"
     },
     {
