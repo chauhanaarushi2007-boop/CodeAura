@@ -3,7 +3,7 @@
     {
       "id": "book-sicp",
       "description": "SICP book cover",
-      "imageUrl": "https://images.unsplash.com/photo-1658673609646-9c7ba9514b89?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx3aXphcmQlMjBjb21wdXRlcnxlbnwwfHx8fDE3NjY4NTA1NDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1649877508777-1554357604eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3aXphcmQlMjBjb21wdXRlcnxlbnwwfHx8fDE3NjY4NTA1NDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "wizard computer"
     },
     {
@@ -21,43 +21,43 @@
     {
       "id": "book-js",
       "description": "Eloquent JavaScript book cover",
-      "imageUrl": "https://images.unsplash.com/photo-1593720216276-0caa6452e004?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8amF2YXNjcmlwdCUyMGNvZGV8ZW58MHx8fHwxNzY2ODE2MzQwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxqYXZhc2NyaXB0JTIwY29kZXxlbnwwfHx8fDE3NjY4MTYzNDB8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "javascript code"
     },
     {
       "id": "book-python-crash-course",
       "description": "Python Crash Course book cover",
-      "imageUrl": "https://images.unsplash.com/photo-1551033406-611cf9a28f67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxweXRob24lMjBjb2RlfGVufDB8fHx8MTc2Njg1MDU0Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1615525137689-198778541af6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxweXRob24lMjBjb2RlfGVufDB8fHx8MTc2Njg1MDU0Nnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "python code"
     },
     {
       "id": "book-java",
       "description": "Effective Java book cover",
-      "imageUrl": "https://images.unsplash.com/photo-1638625864149-ba4396c78274?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxqYXZhJTIwY29kZXxlbnwwfHx8fDE3NjY4NTA1NDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1664570000007-db164768644d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxqYXZhJTIwY29kZXxlbnwwfHx8fDE3NjY4NTA1NDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "java code"
     },
     {
       "id": "book-clean-code",
       "description": "Clean Code book cover",
-      "imageUrl": "https://images.unsplash.com/photo-1504969452-3a3567e73abe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjbGVhbiUyMGNvZGV8ZW58MHx8fHwxNzY2ODUwNTQ2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1506777775294-c79f090bac1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjbGVhbiUyMGNvZGV8ZW58MHx8fHwxNzY2ODUwNTQ2fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "clean code"
     },
     {
       "id": "book-gof",
       "description": "Design Patterns book cover",
-      "imageUrl": "https://storage.googleapis.com/stately-temp-images/uploads/1723561955355-Design-Patterns-Book-Cover.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1649451844931-57e22fc82de3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzb2Z0d2FyZSUyMGFyY2hpdGVjdHVyZXxlbnwwfHx8fDE3NjY4MjgwNTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "software architecture"
     },
     {
       "id": "book-cpp-primer",
       "description": "C++ Primer book cover",
-      "imageUrl": "https://images.unsplash.com/photo-1753998943413-8cba1b923c0e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjJTIwJTIwJTIwY29kZXxlbnwwfHx8fDE3NjY4NTA1NDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1594904351111-a072f80b1a71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjJTIwJTIwJTIwY29kZXxlbnwwfHx8fDE3NjY4NTA1NDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "c++ code"
     },
     {
       "id": "book-head-first-java",
       "description": "Head First Java book cover",
-      "imageUrl": "https://images.unsplash.com/photo-1711526601867-65aadc6580c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxqYXZhJTIwYm9va3xlbnwwfHx8fDE3NjY4NTA1NDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1656319753077-fa747d362634?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxqYXZhJTIwYm9va3xlbnwwfHx8fDE3NjY4NTA1NDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "java book"
     },
     {
@@ -69,7 +69,7 @@
     {
       "id": "book-pragmatic",
       "description": "The Pragmatic Programmer book cover",
-      "imageUrl": "https://images.unsplash.com/photo-1722681983715-5a4630e6c08d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y29kaW5nJTIwa2V5Ym9hcmR8ZW58MHx8fHwxNzY2ODUwNTQ2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1672385503236-b265b253268e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjb2RpbmclMjBrZXlib2FyZHxlbnwwfHx8fDE3NjY4NTA1NDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "coding keyboard"
     }
   ]
