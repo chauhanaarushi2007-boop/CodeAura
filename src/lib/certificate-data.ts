@@ -71,7 +71,7 @@ export const certificatePlatforms: CertificatePlatform[] = [
     description:
       'NVIDIA\'s Deep Learning Institute (DLI) offers self-paced, online courses on AI, data science, and accelerated computing. Many introductory courses are free.',
     tags: ['deep learning', 'ai', 'cuda', 'data science', 'accelerated computing'],
-    logo: 'https://developer.nvidia.com/sites/all/themes/nvidia_developer/logo.png',
+    logo: 'https://www.nvidia.com/content/dam/en-zz/Solutions/deep-learning-ai/mark-NVIDIA-logo-vertical-wht-grn-rgb-for-screen.svg',
   },
   {
     id: 'cisco-networking-academy',
