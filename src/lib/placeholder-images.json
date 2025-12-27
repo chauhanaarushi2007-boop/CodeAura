@@ -9,44 +9,44 @@
     {
       "id": "book-python",
       "description": "A book cover for a Python book",
-      "imageUrl": "https://images.unsplash.com/photo-1629904853716-f0bc642d4d6a?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1526379095098-d656fd08b371?q=80&w=600&h=400&auto=format&fit=crop",
       "imageHint": "python code"
     },
     {
       "id": "book-java",
       "description": "A book cover for a Java book",
-      "imageUrl": "https://images.unsplash.com/photo-1592424002053-21f36977f0d2?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=600&h=400&auto=format&fit=crop",
       "imageHint": "tech abstract"
     },
     {
-      "id": "book-cpp",
-      "description": "A book cover for a C++ book",
-      "imageUrl": "https://images.unsplash.com/photo-1598379026484-6aa3d1314159?q=80&w=600&h=400&auto=format&fit=crop",
-      "imageHint": "circuit board"
+      "id": "book-c",
+      "description": "A book cover for a C book",
+      "imageUrl": "https://images.unsplash.com/photo-1508344928928-7165b67de128?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageHint": "retro computer"
     },
     {
-      "id": "book-html-css",
-      "description": "A book cover for an HTML and CSS book",
-      "imageUrl": "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?q=80&w=600&h=400&auto=format&fit=crop",
-      "imageHint": "web design"
+      "id": "book-gof",
+      "description": "A book cover for the Gang of Four Design Patterns book",
+      "imageUrl": "https://images.unsplash.com/photo-1555949963-ff980877a244?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageHint": "software architecture"
     },
     {
-      "id": "book-php",
-      "description": "A book cover for a PHP book",
-      "imageUrl": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=600&h=400&auto=format&fit=crop",
-      "imageHint": "web development"
+      "id": "book-clean-code",
+      "description": "A book cover for Clean Code",
+      "imageUrl": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageHint": "clean code"
     },
     {
-      "id": "book-ai-1",
-      "description": "A book cover for an AI book",
-      "imageUrl": "https://images.unsplash.com/photo-1620712943543-bcc4658e7485?q=80&w=600&h=400&auto=format&fit=crop",
-      "imageHint": "ai abstract"
+      "id": "book-pragmatic",
+      "description": "A book cover for The Pragmatic Programmer",
+      "imageUrl": "https://images.unsplash.com/photo-1516116216624-53e6973bea1c?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageHint": "coding keyboard"
     },
     {
-      "id": "book-ai-2",
-      "description": "A book cover for a machine learning book",
-      "imageUrl": "https://images.unsplash.com/photo-1677756119517-756a188d2d94?q=80&w=600&h=400&auto=format&fit=crop",
-      "imageHint": "machine learning"
+      "id": "book-sicp",
+      "description": "A book cover for SICP",
+      "imageUrl": "https://images.unsplash.com/photo-1632239522386-429944641c2c?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageHint": "wizard computer"
     }
   ]
 }
