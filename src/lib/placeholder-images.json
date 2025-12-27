@@ -3,25 +3,25 @@
     {
       "id": "book-js",
       "description": "Eloquent JavaScript book cover",
-      "imageUrl": "https://images.unsplash.com/photo-1544256718-3b62ff584963?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1653387319597-84bde7e5368e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxqYXZhc2NyaXB0JTIwY29kZXxlbnwwfHx8fDE3NjY4MTYzNDB8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "javascript code"
     },
     {
       "id": "book-python-crash-course",
       "description": "Python Crash Course book cover",
-      "imageUrl": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1551033406-611cf9a28f67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxweXRob24lMjBjb2RlfGVufDB8fHx8MTc2Njg1MDU0Nnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "python code"
     },
     {
       "id": "book-java",
       "description": "Effective Java book cover",
-      "imageUrl": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1551033406-611cf9a28f67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxqYXZhJTIwY29kZXxlbnwwfHx8fDE3NjY4NTA1NDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "java code"
     },
     {
       "id": "book-c",
       "description": "The C Programming Language book cover",
-      "imageUrl": "https://images.unsplash.com/photo-1504639725590-771e694d735d?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1594904351111-a072f80b1a71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjJTIwY29kZXxlbnwwfHx8fDE3NjY4NTA1NDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "c code"
     },
     {
@@ -33,26 +33,44 @@
     {
       "id": "book-clean-code",
       "description": "Clean Code book cover",
-      "imageUrl": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1506777775294-c79f090bac1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjbGVhbiUyMGNvZGV8ZW58MHx8fHwxNzY2ODUwNTQ2fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "clean code"
     },
     {
       "id": "book-pragmatic",
       "description": "The Pragmatic Programmer book cover",
-      "imageUrl": "https://images.unsplash.com/photo-1516116216624-53e6973bea1c?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1543966888-cbd9a4456f85?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjb2RpbmclMjBrZXlib2FyZHxlbnwwfHx8fDE3NjY4NTA1NDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "coding keyboard"
     },
     {
       "id": "book-sicp",
       "description": "SICP book cover",
-      "imageUrl": "https://images.unsplash.com/photo-1632239522386-429944641c2c?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1624357676666-4cca3b657627?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx3aXphcmQlMjBjb21wdXRlcnxlbnwwfHx8fDE3NjY4NTA1NDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "wizard computer"
     },
     {
       "id": "book-let-us-c",
       "description": "Let Us C book cover",
-      "imageUrl": "https://images.unsplash.com/photo-1583947215259-38e31be8751f?q=80&w=600&h=400&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1732304722020-be33345c00c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwcm9ncmFtbWluZyUyMGJvb2t8ZW58MHx8fHwxNzY2ODUwNTQ2fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "programming book"
+    },
+    {
+      "id": "book-cpp-primer",
+      "description": "C++ Primer book cover",
+      "imageUrl": "https://images.unsplash.com/photo-1635775017492-1eb935a082a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjJTIwJTIwJTIwY29kZXxlbnwwfHx8fDE3NjY4NTA1NDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "c++ code"
+    },
+    {
+      "id": "book-head-first-java",
+      "description": "Head First Java book cover",
+      "imageUrl": "https://images.unsplash.com/photo-1696402627658-43f79d8ed156?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxqYXZhJTIwYm9va3xlbnwwfHx8fDE3NjY4NTA1NDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "java book"
+    },
+    {
+      "id": "book-tclp",
+      "description": "The Go Programming Language book cover",
+      "imageUrl": "https://images.unsplash.com/photo-1642367416545-45fd7287fc28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxnbyUyMGdvcGhlcnxlbnwwfHx8fDE3NjY3ODQyNzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "go gopher"
     }
   ]
 }
