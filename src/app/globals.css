@@ -156,4 +156,28 @@ body {
   .animate-fade-in {
     animation: fade-in 0.8s ease-in-out;
   }
+
+  @keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-in-out;
+  }
+  
+  @keyframes ken-burns {
+    0%, 100% {
+      transform: scale(1.05) translate(2%, -1%);
+      animation-timing-function: ease-in-out;
+    }
+    50% {
+      transform: scale(1.1) translate(-2%, 1%);
+      animation-timing-function: ease-in-out;
+    }
+  }
+
+  .animate-ken-burns {
+    animation: ken-burns 30s infinite;
+  }
 }

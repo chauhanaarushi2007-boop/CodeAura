@@ -10,8 +10,8 @@ import { BookOpen, Brain, Code, Globe, School } from "lucide-react";
 import { motion } from "framer-motion";
 
 const iconMap = {
-  BrainCircuit: Brain,
-  Network: Globe,
+  Brain: Brain,
+  Globe: Globe,
   Code: Code,
   BookOpen: BookOpen,
   School: School
@@ -47,57 +47,61 @@ export default function ReferencesPage() {
 
       <main className="container pb-24 space-y-20">
         <div>
-            <h2 className="font-headline text-4xl sm:text-5xl font-bold tracking-tight mb-12 text-center">Recommended Books</h2>
+            <h2 className="font-headline text-4xl sm:text-5xl font-bold tracking-tight mb-12 text-center animate-fade-in-up">Recommended Books</h2>
             <div className="space-y-20">
-            {bookCategories.map((category, groupIndex) => (
-              <div key={category.id}>
-                <h3 className="font-headline text-3xl sm:text-4xl font-bold tracking-tight mb-8 border-b-2 border-primary pb-2">{category.title}</h3>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  {category.books.map((book, index) => {
-                    const image = getImage(book.id);
-                    return (
-                      <motion.div
-                        key={book.id}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: (index * 0.1) + (groupIndex * 0.1) }}
-                      >
-                         <Link href={book.url} target="_blank" rel="noopener noreferrer" className="block h-full group">
-                            <Card className="relative overflow-hidden h-full flex flex-col perspective-card bg-card/80 backdrop-blur-sm border-border/50 shadow-lg hover:shadow-primary/20 transition-all duration-300">
-                              <div className="w-full h-64 bg-muted relative">
-                                {image && (
-                                  <Image
-                                    src={image.imageUrl}
-                                    alt={book.title}
-                                    fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                                    data-ai-hint={image.imageHint}
-                                  />
-                                )}
-                                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/80 to-transparent"></div>
-                              </div>
-                              <div className="relative z-10 flex flex-col h-full p-6">
-                                  <h4 className="font-semibold text-lg font-headline">{book.title}</h4>
-                                  <p className="text-sm text-muted-foreground italic mb-2">by {book.author}</p>
-                                  <p className="text-sm text-foreground/80 flex-grow">{book.description}</p>
-                              </div>
-                            </Card>
-                         </Link>
-                      </motion.div>
-                    );
-                  })}
+            {bookCategories.map((category, groupIndex) => {
+              const image = getImage(category.id);
+              return (
+              <div key={category.id} className="relative group overflow-hidden rounded-2xl p-8 bg-card/50 border border-border/20 backdrop-blur-sm shadow-2xl shadow-primary/5">
+                <div className="absolute inset-0 z-0 overflow-hidden rounded-xl">
+                    {image && (
+                    <Image
+                        src={image.imageUrl}
+                        alt={`${category.title} background`}
+                        fill
+                        className="object-cover transition-all duration-500 group-hover:scale-105 animate-ken-burns"
+                        data-ai-hint={image.imageHint}
+                    />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/80 to-transparent"></div>
+                </div>
+
+                <div className="relative z-10 animate-fade-in-up">
+                  <h3 className="font-headline text-3xl sm:text-4xl font-bold tracking-tight mb-8 border-b-2 border-primary pb-2 text-shadow-lg shadow-black/50">{category.title}</h3>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {category.books.map((book, index) => {
+                      return (
+                        <motion.div
+                          key={book.id}
+                          initial={{ opacity: 0, y: 30 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: (index * 0.1) + (groupIndex * 0.1) }}
+                        >
+                          <Link href={book.url} target="_blank" rel="noopener noreferrer" className="block h-full group/book">
+                              <Card className="relative overflow-hidden h-full flex flex-col perspective-card bg-card/80 backdrop-blur-sm border-border/50 shadow-lg hover:shadow-primary/20 transition-all duration-300">
+                                <div className="relative z-10 flex flex-col h-full p-6">
+                                    <h4 className="font-semibold text-lg font-headline">{book.title}</h4>
+                                    <p className="text-sm text-muted-foreground italic mb-2">by {book.author}</p>
+                                    <p className="text-sm text-foreground/80 flex-grow">{book.description}</p>
+                                </div>
+                              </Card>
+                          </Link>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
-            ))}
+            )})}
           </div>
         </div>
 
-        <div>
+        <div className="animate-fade-in-up">
             <h2 className="font-headline text-4xl sm:text-5xl font-bold tracking-tight mb-12 text-center">Helpful Websites</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {websites.map((site, index) => {
-                    const Icon = iconMap[site.icon];
+                    const Icon = iconMap[site.icon as keyof typeof iconMap];
                     return (
                         <motion.div
                             key={site.id}
@@ -110,7 +114,7 @@ export default function ReferencesPage() {
                                 <Card className="h-full flex flex-col perspective-card bg-card/80 backdrop-blur-sm border-border/50 shadow-lg hover:shadow-primary/20 transition-all duration-300 p-6">
                                     <CardHeader className="flex-row items-center gap-4 p-0 mb-4">
                                         <div className="p-3 bg-primary/10 rounded-lg">
-                                            <Icon className="w-8 h-8 text-primary" />
+                                            {Icon && <Icon className="w-8 h-8 text-primary" />}
                                         </div>
                                         <CardTitle className="font-headline text-2xl group-hover:text-primary transition-colors">{site.name}</CardTitle>
                                     </CardHeader>
@@ -124,7 +128,6 @@ export default function ReferencesPage() {
                 })}
             </div>
         </div>
-
       </main>
     </div>
   );
