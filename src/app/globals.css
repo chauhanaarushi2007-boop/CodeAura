@@ -148,18 +148,4 @@ body {
     background-size: 4rem 4rem;
   }
   
-  @keyframes ken-burns {
-    0%, 100% {
-      transform: scale(1.05) translate(2%, -1%);
-      animation-timing-function: ease-in-out;
-    }
-    50% {
-      transform: scale(1.1) translate(-2%, 1%);
-      animation-timing-function: ease-in-out;
-    }
-  }
-
-  .animate-ken-burns {
-    animation: ken-burns 30s infinite;
-  }
 }

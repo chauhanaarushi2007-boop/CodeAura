@@ -53,13 +53,13 @@ export default function ReferencesPage() {
               const image = getImage(category.id);
               return (
               <div key={category.id} className="relative group overflow-hidden rounded-2xl p-8 bg-card/50 border border-border/20 backdrop-blur-sm shadow-2xl shadow-primary/5">
-                <div className="absolute inset-0 z-0 overflow-hidden rounded-xl">
+                <div className="absolute inset-0 z-0 overflow-hidden rounded-xl glow-card">
                     {image && (
                     <Image
                         src={image.imageUrl}
                         alt={`${category.title} background`}
                         fill
-                        className="object-cover transition-all duration-500 group-hover:scale-105 animate-ken-burns"
+                        className="object-cover transition-all duration-500 group-hover:scale-105"
                         data-ai-hint={image.imageHint}
                     />
                     )}
