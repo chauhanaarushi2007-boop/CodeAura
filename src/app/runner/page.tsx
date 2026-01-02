@@ -36,7 +36,7 @@ export default function CodeRunnerPage() {
     const [isRunPending, startRunTransition] = useTransition();
     const [isDebugPending, startDebugTransition] = useTransition();
 
-    const handleDebugCode = (errorOutput = runResult.output) => {
+    const handleDebugCode = (errorOutput: string = "The user wants me to find and fix any bugs or mistakes in this code.") => {
         startDebugTransition(async () => {
             setDebugResult(null); // Clear previous debug result while fetching new one
             const result = await debugCode(code, language, errorOutput);
@@ -170,7 +170,7 @@ export default function CodeRunnerPage() {
                                      <motion.div key="loading" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="flex-grow flex items-center justify-center">
                                         <p className="text-muted-foreground animate-pulse">{isRunPending ? "Running..." : "Debugging..."}</p>
                                      </motion.div>
-                                ) : debugResult ? (
+                                ) : debugResult && debugResult.fixedCode !== 'Error' ? (
                                     <motion.div 
                                         key="debug"
                                         initial={{ opacity: 0, y: 10 }}
@@ -233,3 +233,5 @@ export default function CodeRunnerPage() {
     </div>
   );
 }
+
+    
