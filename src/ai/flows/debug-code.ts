@@ -56,7 +56,12 @@ Original Code:
 {{{code}}}
 '''
 
-Analyze the code and the error. Provide the fixed code and a step-by-step explanation of the changes.`,
+Analyze the code and the error. Provide the fixed code and a step-by-step explanation of the changes.
+
+Your response must be in the following format:
+  "fixedCode": "The corrected code snippet goes here.",
+  "explanation": "A detailed explanation of what was wrong and how the code was fixed."
+`,
 });
 
 const debugCodeFlow = ai.defineFlow(
