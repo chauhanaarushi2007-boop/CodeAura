@@ -110,6 +110,9 @@ export default function CodeRunnerPage() {
                                 <TabsTrigger value="output">Output</TabsTrigger>
                                 <TabsTrigger value="input">Input (stdin)</TabsTrigger>
                             </TabsList>
+                            <CardDescription className="text-xs text-muted-foreground p-2 text-center">
+                              For languages like C, Java, or Python that require user input, type your input in the &quot;Input (stdin)&quot; tab before running the code.
+                            </CardDescription>
                             <TabsContent value="output" className="flex-grow">
                                 {shouldRenderHtml ? (
                                     <iframe
