@@ -9,6 +9,8 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import { checkRateLimit } from '@/services/rate-limiter';
+import { headers } from 'next/headers';
 
 const GeneralQueryInputSchema = z.object({
   query: z.string().describe('The query from the user.'),
@@ -21,6 +23,14 @@ const GeneralQueryOutputSchema = z.object({
 export type GeneralQueryOutput = z.infer<typeof GeneralQueryOutputSchema>;
 
 export async function generalQuery(input: GeneralQueryInput): Promise<GeneralQueryOutput> {
+  const headersList = headers();
+  const ip = (headersList.get('x-forwarded-for') || 'anonymous').split(',')[0].trim();
+  
+  const rateLimit = await checkRateLimit(ip, 'chatbot');
+  if (!rateLimit.allowed) {
+    throw new Error(rateLimit.error);
+  }
+
   return generalQueryFlow(input);
 }
 
@@ -40,6 +50,9 @@ const generalQueryFlow = ai.defineFlow(
     name: 'generalQueryFlow',
     inputSchema: GeneralQueryInputSchema,
     outputSchema: GeneralQueryOutputSchema,
+    config: {
+        maxOutputTokens: 150,
+    }
   },
   async input => {
     const {output} = await prompt(input);
