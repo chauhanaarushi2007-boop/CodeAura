@@ -53,11 +53,20 @@ export default function CodeRunnerPage() {
             setDebugResult(null); 
             setRunResult({ output: "Running code...", isError: false });
             const result = await runCode(code, language, input);
-            setRunResult(result);
             
             // If the code runs and an error is detected, automatically trigger the debugger
             if (result.isError) {
-                handleDebugCode(result.output);
+                setRunResult(result); // Show the error briefly while debugger runs
+                startDebugTransition(async () => {
+                    const debug_result = await debugCode(code, language, result.output);
+                     if (!debug_result.error) {
+                        setDebugResult({ fixedCode: debug_result.fixedCode, explanation: debug_result.explanation });
+                    } else {
+                         setDebugResult({ fixedCode: "Error", explanation: debug_result.explanation });
+                    }
+                });
+            } else {
+                setRunResult(result);
             }
         });
     }
