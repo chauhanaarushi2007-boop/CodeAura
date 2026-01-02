@@ -146,8 +146,8 @@ export default function CertificatesPage() {
                 <CardHeader>
                   <div className="flex items-center justify-between mb-4">
                       <CardTitle className="font-headline text-2xl group-hover:text-primary transition-colors">{platform.name}</CardTitle>
-                      <div className="h-10 w-20 flex items-center justify-end">
-                        <span className="font-headline text-lg font-bold text-transparent bg-clip-text bg-gradient-to-br from-muted-foreground to-foreground/50 group-hover:from-primary group-hover:to-accent/80 transition-all duration-300">
+                      <div className="h-10 w-24 flex items-center justify-end">
+                        <span className="font-headline text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary/80 transition-all duration-300 group-hover:saturate-150">
                             {platform.name.split(' ')[0]}
                         </span>
                       </div>
