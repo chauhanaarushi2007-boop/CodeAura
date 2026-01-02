@@ -51,8 +51,6 @@ export type CertificatePlatform = {
   id: string;
   name: string;
   url: string;
-  logo: string;
-  logo_dark?: string;
   description: string;
   tags: string[];
 };

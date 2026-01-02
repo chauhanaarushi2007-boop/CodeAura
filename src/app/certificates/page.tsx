@@ -146,11 +146,10 @@ export default function CertificatesPage() {
                 <CardHeader>
                   <div className="flex items-center justify-between mb-4">
                       <CardTitle className="font-headline text-2xl group-hover:text-primary transition-colors">{platform.name}</CardTitle>
-                      <div className="relative h-10 w-20">
-                          {platform.logo_dark && (
-                            <Image src={platform.logo_dark} alt={`${platform.name} logo`} fill className={cn("object-contain hidden dark:block", ['freecodecamp', 'ibm', 'kaggle'].includes(platform.id) && "dark:invert")} />
-                          )}
-                          <Image src={platform.logo} alt={`${platform.name} logo`} fill className={cn("object-contain dark:hidden", ['ibm', 'kaggle'].includes(platform.id) && "invert")} />
+                      <div className="h-10 w-20 flex items-center justify-end">
+                        <span className="font-headline text-lg font-bold text-transparent bg-clip-text bg-gradient-to-br from-muted-foreground to-foreground/50 group-hover:from-primary group-hover:to-accent/80 transition-all duration-300">
+                            {platform.name.split(' ')[0]}
+                        </span>
                       </div>
                   </div>
                 </CardHeader>
