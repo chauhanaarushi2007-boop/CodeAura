@@ -16,27 +16,6 @@
         }
       },
       "required": ["displayName", "email"]
-    },
-    "RequestLog": {
-        "title": "Request Log",
-        "description": "A log of a user request for rate limiting.",
-        "type": "object",
-        "properties": {
-            "userId": {
-                "type": "string",
-                "description": "The unique identifier for the user."
-            },
-            "feature": {
-                "type": "string",
-                "description": "The feature being accessed (e.g., 'chatbot', 'codeRunner')."
-            },
-            "timestamp": {
-                "type": "string",
-                "format": "date-time",
-                "description": "The timestamp of the request."
-            }
-        },
-        "required": ["userId", "feature", "timestamp"]
     }
   },
   "auth": {
@@ -48,12 +27,6 @@
         "$ref": "#/backend/entities/UserProfile"
       },
       "description": "Stores public profile information for users."
-    },
-    "/requests/{requestId}": {
-        "schema": {
-            "$ref": "#/backend/entities/RequestLog"
-        },
-        "description": "Stores user request logs for rate limiting purposes."
     }
   }
 }

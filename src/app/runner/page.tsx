@@ -36,46 +36,28 @@ export default function CodeRunnerPage() {
     const [isRunPending, startRunTransition] = useTransition();
     const [isDebugPending, startDebugTransition] = useTransition();
 
-    const handleDebugCode = async (errorOutput: string = "The user wants me to find and fix any bugs or mistakes in this code.") => {
-        setDebugResult(null); // Clear previous debug result
-        const result = await debugCode(code, language, errorOutput);
-        if (!result.error) {
-            return result;
-        } else {
-            setDebugResult({ fixedCode: "Error", explanation: result.explanation });
-            return null;
-        }
+    const handleDebugCode = (errorOutput: string = "The user wants me to find and fix any bugs or mistakes in this code.") => {
+        startDebugTransition(async () => {
+            setDebugResult(null); // Clear previous debug result
+            const result = await debugCode(code, language, errorOutput);
+            if (!result.error) {
+                setDebugResult(result);
+            } else {
+                setDebugResult({ fixedCode: "Error", explanation: result.explanation });
+            }
+        });
     }
 
     const handleRunCode = () => {
         startRunTransition(async () => {
             setDebugResult(null); 
             setRunResult({ output: "Running code...", isError: false });
-            let result = await runCode(code, language, input);
-            
+            const result = await runCode(code, language, input);
+            setRunResult(result);
+
             if (result.isError) {
                 // If there's an error, trigger the debugger automatically
-                startDebugTransition(async () => {
-                    setRunResult({ output: "Error detected. Debugging...", isError: true });
-                    const debugFix = await handleDebugCode(result.output);
-                    
-                    if (debugFix && debugFix.fixedCode) {
-                        // If debugger provides a fix, update the code and run it again
-                        setCode(debugFix.fixedCode);
-                        setRunResult({ output: "Code fixed. Re-running...", isError: false });
-                        
-                        // Re-run the corrected code
-                        const finalResult = await runCode(debugFix.fixedCode, language, input);
-                        setRunResult(finalResult);
-                    } else {
-                        // If debugger fails, show the original error
-                        setRunResult(result);
-                    }
-                    // Clear debug result after the process is complete
-                    setDebugResult(null);
-                });
-            } else {
-                setRunResult(result);
+                handleDebugCode(result.output);
             }
         });
     }
@@ -250,5 +232,3 @@ export default function CodeRunnerPage() {
     </div>
   );
 }
-
-    

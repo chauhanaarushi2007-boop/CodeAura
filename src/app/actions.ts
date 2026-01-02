@@ -4,7 +4,6 @@
 import { generalQuery } from "@/ai/flows/chatbot-programming-language-query";
 import { runCode as runCodeFlow } from "@/ai/flows/run-code";
 import { debugCode as debugCodeFlow } from "@/ai/flows/debug-code";
-import { headers } from "next/headers";
 
 export async function askAurix(query: string) {
     if (!query || query.trim().length === 0) {
