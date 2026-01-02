@@ -1,0 +1,73 @@
+# The name of the backend resource.
+# This can be whatever you want, but it's helpful to make it descriptive.
+# We recommend the name of the repository.
+backend: codeaurav2-7239
+# The region to deploy the backend to.
+region: us-central1
+# The minimum number of instances to keep running.
+# This is optional, but recommended for production apps.
+# See https://cloud.google.com/run/docs/configuring/min-instances
+# for more details.
+minInstances: 0
+# The maximum number of instances to scale up to.
+# This is optional, but recommended for production apps.
+# See https://cloud.google.com/run/docs/configuring/max-instances
+# for more details.
+maxInstances: 100
+# The number of concurrent requests an instance can receive.
+# This is optional, but recommended for production apps.
+# See https://cloud.google.com/run/docs/configuring/concurrency
+# for more details.
+concurrency: 80
+# The directory that contains the source code.
+# This is optional. If you don't provide it, it will default to the
+# directory containing the apphosting.yaml file.
+# We recommend that you leave this blank.
+# codebase: .
+# A list of files and directories to ignore.
+# This is optional. Some files are ignored by default. Run
+# `firebase apphosting:backends:get` for a full list of ignored files.
+# We recommend that you leave this blank.
+# ignore:
+#   - .env
+# A list of environment variables to set in the backend.
+# This is optional.
+# env:
+#   - variable: API_KEY
+#     availability:
+#       - BUILD
+#       - RUNTIME
+#     secret: API_KEY_SECRET
+#   - variable: API_URL
+#     value: https://api.example.com
+# The ID of a service account to run the backend with.
+# This is optional.
+# See https://cloud.google.com/run/docs/configuring/service-accounts
+# for more details.
+# serviceAccount: my-service-account
+# The VPC connector to use.
+# This is optional.
+# See https://cloud.google.com/run/docs/configuring/connecting-vpc
+# for more details.
+# vpc:
+#   connector: my-vpc-connector
+#   egress: all-traffic
+# The scaling settings for the backend.
+# This is optional.
+# cpu: 2
+# memoryMiB: 1024
+# Cloud Secret Manager secrets to mount as volumes.
+# This is optional.
+# secrets:
+#   - secret: API_KEY_SECRET
+#     mountPath: /secrets/api
+# The build-time environment variables to set.
+# This is optional.
+# build:
+#   env:
+#     - variable: BUILD_VARIABLE
+#       value: build_value
+# The entry point for the backend.
+# This is optional.
+# entrypoint: npm run start
+

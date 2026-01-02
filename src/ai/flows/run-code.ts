@@ -9,6 +9,7 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import { checkRateLimit } from '@/services/rate-limiter';
 
 const RunCodeInputSchema = z.object({
   code: z.string().describe('The code snippet to execute.'),
@@ -22,7 +23,11 @@ const RunCodeOutputSchema = z.object({
 });
 export type RunCodeOutput = z.infer<typeof RunCodeOutputSchema>;
 
-export async function runCode(input: RunCodeInput): Promise<RunCodeOutput> {
+export async function runCode(input: RunCodeInput): Promise<RunCodeOutput | string> {
+  const rateLimitError = await checkRateLimit('codeRunner');
+  if (rateLimitError) {
+    return rateLimitError;
+  }
   return runCodeFlow(input);
 }
 

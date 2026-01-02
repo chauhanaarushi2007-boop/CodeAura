@@ -15,6 +15,12 @@ export async function askAurix(query: string) {
 
     try {
         const result = await generalQuery({ query });
+        if (typeof result === 'string') {
+            return {
+                answer: result,
+                error: true,
+            };
+        }
         return {
             answer: result.answer,
             error: false
@@ -38,6 +44,12 @@ export async function runCode(code: string, language: string, input: string) {
 
     try {
         const result = await runCodeFlow({ code, language, input });
+        if (typeof result === 'string') {
+            return {
+                output: result,
+                isError: true,
+            };
+        }
         // Simple heuristic to detect if the output is an error message
         const isError = /error|exception|fatal|undefined|unresolved|panic/i.test(result.output);
         return {
@@ -78,3 +90,4 @@ export async function debugCode(code: string, language: string, error: string) {
         };
     }
 }
+

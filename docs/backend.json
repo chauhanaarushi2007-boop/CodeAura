@@ -16,9 +16,29 @@
         }
       },
       "required": ["displayName", "email"]
+    },
+    "RequestLog": {
+      "title": "Request Log",
+      "description": "Logs a timestamp for a user request to a specific feature.",
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The time the request was made."
+        }
+      }
     }
   },
   "auth": {
     "providers": []
+  },
+  "firestore": {
+    "/users/{userId}/requests/{requestId}": {
+      "schema": {
+        "$ref": "#/entities/RequestLog"
+      },
+      "description": "Stores logs of user requests for rate limiting purposes."
+    }
   }
 }
