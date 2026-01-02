@@ -44,13 +44,15 @@ export type WebsiteReference = {
   name: string;
   url: string;
   description: string;
-  icon: 'Brain' | 'Globe' | 'Code' | 'BookOpen' | 'School';
+  icon: 'BrainCircuit' | 'Network' | 'Code' | 'BookOpen' | 'School';
 };
 
 export type CertificatePlatform = {
   id: string;
   name: string;
   url: string;
+  logo: string;
+  logo_dark?: string;
   description: string;
   tags: string[];
 };

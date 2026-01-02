@@ -6,12 +6,13 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Input } from '@/components/ui/input';
 import { certificatePlatforms } from '@/lib/certificate-data';
 import type { CertificatePlatform } from '@/lib/types';
-import { ArrowRight, Award, Search, BookOpen, Link as LinkIcon, Bot } from 'lucide-react';
+import { ArrowRight, Award, Search, BookOpen, Bot } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { findFreeCourses } from '../actions';
 import { Skeleton } from '@/components/ui/skeleton';
+import Image from 'next/image';
 
 type FoundCourse = {
   title: string;
@@ -143,7 +144,15 @@ export default function CertificatesPage() {
             <Link href={platform.url} target="_blank" rel="noopener noreferrer" key={platform.id} className="group">
               <Card className="h-full flex flex-col transition-all duration-300 ease-in-out group-hover:border-primary group-hover:shadow-xl group-hover:-translate-y-1">
                 <CardHeader>
-                  <CardTitle className="font-headline text-2xl group-hover:text-primary transition-colors">{platform.name}</CardTitle>
+                  <div className="flex items-center justify-between mb-4">
+                      <CardTitle className="font-headline text-2xl group-hover:text-primary transition-colors">{platform.name}</CardTitle>
+                      <div className="relative h-10 w-20">
+                          {platform.logo_dark && (
+                            <Image src={platform.logo_dark} alt={`${platform.name} logo`} fill className="object-contain hidden dark:block" />
+                          )}
+                          <Image src={platform.logo} alt={`${platform.name} logo`} fill className="object-contain dark:hidden" />
+                      </div>
+                  </div>
                 </CardHeader>
                 <CardContent className="flex-grow">
                   <p className="text-muted-foreground line-clamp-4">{platform.description}</p>
