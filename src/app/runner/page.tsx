@@ -12,6 +12,8 @@ import { runCode } from "@/app/actions";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function CodeRunnerPage() {
     const [output, setOutput] = useState("Your code output will appear here.");
@@ -45,12 +47,12 @@ export default function CodeRunnerPage() {
           <div className="absolute inset-0 bg-background/60 backdrop-blur-sm"></div>
        </div>
 
-      <div className="container relative">
+      <div className="container relative h-full flex flex-col">
         <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="text-center mb-12"
+            className="text-center mb-8"
         >
           <Terminal className="w-16 h-16 mx-auto mb-4 text-primary" />
           <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl animated-gradient-text bg-gradient-to-r from-primary via-accent to-primary">
@@ -65,8 +67,9 @@ export default function CodeRunnerPage() {
              initial={{ opacity: 0, scale: 0.95 }}
              animate={{ opacity: 1, scale: 1 }}
              transition={{ duration: 0.7, delay: 0.2 }}
+             className="flex-grow min-h-[500px]"
         >
-          <Card className="bg-card/70 backdrop-blur-xl border-border/20 shadow-2xl shadow-primary/10">
+          <Card className="bg-card/70 backdrop-blur-xl border-border/20 shadow-2xl shadow-primary/10 h-full flex flex-col">
               <CardHeader>
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                       <div className="flex-1">
@@ -91,44 +94,49 @@ export default function CodeRunnerPage() {
                       </div>
                   </div>
               </CardHeader>
-              <CardContent className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-4">
-                      <Textarea
-                          value={code}
-                          onChange={(e) => setCode(e.target.value)}
-                          placeholder="console.log('Hello, CodeAura!');"
-                          className="h-80 font-code text-sm resize-none bg-background/70"
-                          />
-                      <div>
-                          <Label htmlFor="input" className="mb-2 block">Input (stdin)</Label>
-                          <Textarea
-                              id="input"
-                              value={input}
-                              onChange={(e) => setInput(e.target.value)}
-                              placeholder="Enter input for your code here..."
-                              className="h-32 font-code text-sm resize-none bg-background/70"
-                              />
-                      </div>
-                  </div>
-                  <div>
-                      <Card className="bg-muted/40 h-full shadow-inner">
-                          <CardHeader>
-                              <CardTitle className="text-lg font-medium">Output</CardTitle>
-                          </CardHeader>
-                          <CardContent className="h-full p-0">
-                              {shouldRenderHtml ? (
-                                  <iframe
-                                      srcDoc={output}
-                                      title="Code Output"
-                                      sandbox="allow-scripts"
-                                      className="w-full h-full border-0 min-h-[440px] md:min-h-0 bg-transparent rounded-b-lg"
-                                  />
-                              ) : (
-                                  <pre className="font-code text-sm text-muted-foreground whitespace-pre-wrap p-6 pt-0">{output}</pre>
-                              )}
-                          </CardContent>
-                      </Card>
-                  </div>
+              <CardContent className="flex-grow flex flex-col">
+                <ResizablePanelGroup direction="vertical" className="flex-grow">
+                    <ResizablePanel defaultSize={60}>
+                         <Textarea
+                            value={code}
+                            onChange={(e) => setCode(e.target.value)}
+                            placeholder="console.log('Hello, CodeAura!');"
+                            className="h-full w-full font-code text-sm resize-none bg-background/70"
+                            />
+                    </ResizablePanel>
+                    <ResizableHandle withHandle />
+                    <ResizablePanel defaultSize={40}>
+                       <Tabs defaultValue="output" className="h-full flex flex-col">
+                            <TabsList className="grid w-full grid-cols-2">
+                                <TabsTrigger value="output">Output</TabsTrigger>
+                                <TabsTrigger value="input">Input (stdin)</TabsTrigger>
+                            </TabsList>
+                            <TabsContent value="output" className="flex-grow">
+                                {shouldRenderHtml ? (
+                                    <iframe
+                                        srcDoc={output}
+                                        title="Code Output"
+                                        sandbox="allow-scripts"
+                                        className="w-full h-full border-0 bg-transparent rounded-b-lg"
+                                    />
+                                ) : (
+                                    <pre className="font-code text-sm text-muted-foreground whitespace-pre-wrap p-4 h-full overflow-auto bg-muted/40 rounded-b-md">
+                                        {output}
+                                    </pre>
+                                )}
+                            </TabsContent>
+                            <TabsContent value="input" className="flex-grow">
+                                <Textarea
+                                    id="input"
+                                    value={input}
+                                    onChange={(e) => setInput(e.target.value)}
+                                    placeholder="Enter input for your code here..."
+                                    className="h-full font-code text-sm resize-none bg-muted/40 rounded-b-md"
+                                />
+                            </TabsContent>
+                        </Tabs>
+                    </ResizablePanel>
+                </ResizablePanelGroup>
               </CardContent>
           </Card>
         </motion.div>
