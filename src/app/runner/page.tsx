@@ -9,7 +9,6 @@ import { languages } from "@/lib/placeholder-data";
 import { Play, Terminal } from "lucide-react";
 import { useState, useTransition } from "react";
 import { runCode } from "@/app/actions";
-import { Label } from "@/components/ui/label";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
@@ -47,7 +46,7 @@ export default function CodeRunnerPage() {
           <div className="absolute inset-0 bg-background/60 backdrop-blur-sm"></div>
        </div>
 
-      <div className="container relative h-full flex flex-col">
+      <div className="container relative h-full flex flex-col flex-grow">
         <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -67,9 +66,9 @@ export default function CodeRunnerPage() {
              initial={{ opacity: 0, scale: 0.95 }}
              animate={{ opacity: 1, scale: 1 }}
              transition={{ duration: 0.7, delay: 0.2 }}
-             className="flex-grow min-h-[500px]"
+             className="flex-grow flex flex-col"
         >
-          <Card className="bg-card/70 backdrop-blur-xl border-border/20 shadow-2xl shadow-primary/10 h-full flex flex-col">
+          <Card className="bg-card/70 backdrop-blur-xl border-border/20 shadow-2xl shadow-primary/10 h-full flex flex-col flex-grow">
               <CardHeader>
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                       <div className="flex-1">
@@ -95,7 +94,7 @@ export default function CodeRunnerPage() {
                   </div>
               </CardHeader>
               <CardContent className="flex-grow flex flex-col">
-                <ResizablePanelGroup direction="vertical" className="flex-grow">
+                <ResizablePanelGroup direction="vertical" className="flex-grow min-h-[500px]">
                     <ResizablePanel defaultSize={60}>
                          <Textarea
                             value={code}
