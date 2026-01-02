@@ -4,6 +4,7 @@
 import { generalQuery } from "@/ai/flows/chatbot-programming-language-query";
 import { runCode as runCodeFlow } from "@/ai/flows/run-code";
 import { debugCode as debugCodeFlow } from "@/ai/flows/debug-code";
+import { findFreeCourses as findFreeCoursesFlow } from "@/ai/flows/find-free-courses";
 
 export async function askAurix(query: string) {
     if (!query || query.trim().length === 0) {
@@ -15,12 +16,6 @@ export async function askAurix(query: string) {
 
     try {
         const result = await generalQuery({ query });
-        if (typeof result === 'string') {
-            return {
-                answer: result,
-                error: true,
-            };
-        }
         return {
             answer: result.answer,
             error: false
@@ -44,12 +39,6 @@ export async function runCode(code: string, language: string, input: string) {
 
     try {
         const result = await runCodeFlow({ code, language, input });
-        if (typeof result === 'string') {
-            return {
-                output: result,
-                isError: true,
-            };
-        }
         // Simple heuristic to detect if the output is an error message
         const isError = /error|exception|fatal|undefined|unresolved|panic/i.test(result.output);
         return {
@@ -91,3 +80,26 @@ export async function debugCode(code: string, language: string, error: string) {
     }
 }
 
+
+export async function findFreeCourses(topic: string) {
+    if (!topic || topic.trim().length === 0) {
+        return {
+            courses: [],
+            error: "Please enter a topic to search for."
+        };
+    }
+
+    try {
+        const result = await findFreeCoursesFlow({ topic });
+        return {
+            courses: result.courses,
+            error: null
+        };
+    } catch (e: any) {
+        console.error("Error in findFreeCourses action:", e);
+        return {
+            courses: [],
+            error: e.message || "Sorry, I couldn't find courses right now. Please try again."
+        };
+    }
+}

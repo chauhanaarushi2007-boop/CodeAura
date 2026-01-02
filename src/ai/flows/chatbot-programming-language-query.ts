@@ -9,7 +9,6 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
-import { checkRateLimit } from '@/services/rate-limiter';
 
 const GeneralQueryInputSchema = z.object({
   query: z.string().describe('The query from the user.'),
@@ -21,11 +20,7 @@ const GeneralQueryOutputSchema = z.object({
 });
 export type GeneralQueryOutput = z.infer<typeof GeneralQueryOutputSchema>;
 
-export async function generalQuery(input: GeneralQueryInput): Promise<GeneralQueryOutput | string> {
-  const rateLimitError = await checkRateLimit('chatbot');
-  if (rateLimitError) {
-    return rateLimitError;
-  }
+export async function generalQuery(input: GeneralQueryInput): Promise<GeneralQueryOutput> {
   return generalQueryFlow(input);
 }
 
