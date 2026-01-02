@@ -36,29 +36,44 @@ export default function CodeRunnerPage() {
     const [isRunPending, startRunTransition] = useTransition();
     const [isDebugPending, startDebugTransition] = useTransition();
 
-    const handleDebugCode = (errorOutput: string = "The user wants me to find and fix any bugs or mistakes in this code.") => {
-        startDebugTransition(async () => {
-            setRunResult({ output: "", isError: false }); // Clear run result
-            setDebugResult(null); // Clear previous debug result while fetching new one
-            const result = await debugCode(code, language, errorOutput);
-             if (!result.error) {
-                setDebugResult({ fixedCode: result.fixedCode, explanation: result.explanation });
-            } else {
-                 setDebugResult({ fixedCode: "Error", explanation: result.explanation });
-            }
-        });
+    const handleDebugCode = async (errorOutput: string = "The user wants me to find and fix any bugs or mistakes in this code.") => {
+        setDebugResult(null); // Clear previous debug result
+        const result = await debugCode(code, language, errorOutput);
+        if (!result.error) {
+            return result;
+        } else {
+            setDebugResult({ fixedCode: "Error", explanation: result.explanation });
+            return null;
+        }
     }
 
     const handleRunCode = () => {
         startRunTransition(async () => {
             setDebugResult(null); 
             setRunResult({ output: "Running code...", isError: false });
-            const result = await runCode(code, language, input);
+            let result = await runCode(code, language, input);
             
             if (result.isError) {
-                // Don't set the run result if there's an error.
-                // Instead, immediately trigger the debugger.
-                handleDebugCode(result.output);
+                // If there's an error, trigger the debugger automatically
+                startDebugTransition(async () => {
+                    setRunResult({ output: "Error detected. Debugging...", isError: true });
+                    const debugFix = await handleDebugCode(result.output);
+                    
+                    if (debugFix && debugFix.fixedCode) {
+                        // If debugger provides a fix, update the code and run it again
+                        setCode(debugFix.fixedCode);
+                        setRunResult({ output: "Code fixed. Re-running...", isError: false });
+                        
+                        // Re-run the corrected code
+                        const finalResult = await runCode(debugFix.fixedCode, language, input);
+                        setRunResult(finalResult);
+                    } else {
+                        // If debugger fails, show the original error
+                        setRunResult(result);
+                    }
+                    // Clear debug result after the process is complete
+                    setDebugResult(null);
+                });
             } else {
                 setRunResult(result);
             }
@@ -170,7 +185,7 @@ export default function CodeRunnerPage() {
                                 <AnimatePresence mode="wait">
                                 {isLoading ? (
                                      <motion.div key="loading" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="flex-grow flex items-center justify-center">
-                                        <p className="text-muted-foreground animate-pulse">{isRunPending ? "Running..." : "Debugging..."}</p>
+                                        <p className="text-muted-foreground animate-pulse">{isRunPending ? "Running..." : isDebugPending ? "Debugging..." : "Processing..."}</p>
                                      </motion.div>
                                 ) : debugResult && debugResult.fixedCode !== 'Error' ? (
                                     <motion.div 
@@ -235,3 +250,5 @@ export default function CodeRunnerPage() {
     </div>
   );
 }
+
+    
