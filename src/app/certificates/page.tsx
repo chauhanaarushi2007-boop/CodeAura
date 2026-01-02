@@ -148,9 +148,9 @@ export default function CertificatesPage() {
                       <CardTitle className="font-headline text-2xl group-hover:text-primary transition-colors">{platform.name}</CardTitle>
                       <div className="relative h-10 w-20">
                           {platform.logo_dark && (
-                            <Image src={platform.logo_dark} alt={`${platform.name} logo`} fill className="object-contain hidden dark:block" />
+                            <Image src={platform.logo_dark} alt={`${platform.name} logo`} fill className={cn("object-contain hidden dark:block", ['freecodecamp', 'ibm', 'kaggle'].includes(platform.id) && "dark:invert")} />
                           )}
-                          <Image src={platform.logo} alt={`${platform.name} logo`} fill className="object-contain dark:hidden" />
+                          <Image src={platform.logo} alt={`${platform.name} logo`} fill className={cn("object-contain dark:hidden", ['ibm', 'kaggle'].includes(platform.id) && "invert")} />
                       </div>
                   </div>
                 </CardHeader>
