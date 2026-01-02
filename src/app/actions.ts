@@ -3,6 +3,7 @@
 
 import { generalQuery } from "@/ai/flows/chatbot-programming-language-query";
 import { runCode as runCodeFlow } from "@/ai/flows/run-code";
+import { debugCode as debugCodeFlow } from "@/ai/flows/debug-code";
 import { headers } from "next/headers";
 
 export async function askAurix(query: string) {
@@ -46,6 +47,31 @@ export async function runCode(code: string, language: string, input: string) {
         console.error(e);
         return {
             output: "Sorry, I couldn't run your code right now. Please try again.",
+            error: true
+        };
+    }
+}
+
+export async function debugCode(code: string, language: string, error: string) {
+    if (!code || code.trim().length === 0) {
+        return {
+            fixedCode: "",
+            explanation: "Please enter some code to debug.",
+            error: true
+        };
+    }
+
+    try {
+        const result = await debugCodeFlow({ code, language, error });
+        return {
+            ...result,
+            error: false
+        };
+    } catch (e) {
+        console.error(e);
+        return {
+            fixedCode: "",
+            explanation: "Sorry, I couldn't debug your code right now. Please try again.",
             error: true
         };
     }
