@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { languages } from "@/lib/placeholder-data";
-import { Play, Terminal, Bug, Sparkles } from "lucide-react";
+import { Play, Terminal, Bug } from "lucide-react";
 import { useState, useTransition } from "react";
 import { runCode, debugCode } from "@/app/actions";
 import Image from "next/image";
@@ -159,9 +159,9 @@ export default function CodeRunnerPage() {
                             </CardDescription>
                             <TabsContent value="output" className="flex-grow flex flex-col">
                                 <AnimatePresence mode="wait">
-                                {isRunPending ? (
+                                {isRunPending || isDebugPending ? (
                                      <motion.div key="loading" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="flex-grow flex items-center justify-center">
-                                        <p className="text-muted-foreground animate-pulse">Running...</p>
+                                        <p className="text-muted-foreground animate-pulse">{isRunPending ? "Running..." : "Debugging..."}</p>
                                      </motion.div>
                                 ) : debugResult ? (
                                     <motion.div 
@@ -226,3 +226,5 @@ export default function CodeRunnerPage() {
     </div>
   );
 }
+
+    
