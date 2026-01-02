@@ -38,6 +38,7 @@ export default function CodeRunnerPage() {
 
     const handleDebugCode = (errorOutput: string = "The user wants me to find and fix any bugs or mistakes in this code.") => {
         startDebugTransition(async () => {
+            setRunResult({ output: "", isError: false }); // Clear run result
             setDebugResult(null); // Clear previous debug result while fetching new one
             const result = await debugCode(code, language, errorOutput);
              if (!result.error) {
@@ -54,17 +55,10 @@ export default function CodeRunnerPage() {
             setRunResult({ output: "Running code...", isError: false });
             const result = await runCode(code, language, input);
             
-            // If the code runs and an error is detected, automatically trigger the debugger
             if (result.isError) {
-                setRunResult(result); // Show the error briefly while debugger runs
-                startDebugTransition(async () => {
-                    const debug_result = await debugCode(code, language, result.output);
-                     if (!debug_result.error) {
-                        setDebugResult({ fixedCode: debug_result.fixedCode, explanation: debug_result.explanation });
-                    } else {
-                         setDebugResult({ fixedCode: "Error", explanation: debug_result.explanation });
-                    }
-                });
+                // Don't set the run result if there's an error.
+                // Instead, immediately trigger the debugger.
+                handleDebugCode(result.output);
             } else {
                 setRunResult(result);
             }
@@ -75,7 +69,6 @@ export default function CodeRunnerPage() {
         if(debugResult) {
             setCode(debugResult.fixedCode);
             setDebugResult(null);
-            // Optionally clear the run result to avoid confusion
             setRunResult({ output: "Code updated. Ready to run again.", isError: false });
         }
     }
@@ -242,5 +235,3 @@ export default function CodeRunnerPage() {
     </div>
   );
 }
-
-    
