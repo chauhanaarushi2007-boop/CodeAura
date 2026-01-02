@@ -6,27 +6,63 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { languages } from "@/lib/placeholder-data";
-import { Play, Terminal } from "lucide-react";
+import { Play, Terminal, Bug, Sparkles } from "lucide-react";
 import { useState, useTransition } from "react";
-import { runCode } from "@/app/actions";
+import { runCode, debugCode } from "@/app/actions";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { CodeBlock } from "@/components/ui/code-block";
+import { Label } from "@/components/ui/label";
+
+type RunResult = {
+  output: string;
+  isError: boolean;
+};
+
+type DebugResult = {
+    fixedCode: string;
+    explanation: string;
+};
 
 export default function CodeRunnerPage() {
-    const [output, setOutput] = useState("Your code output will appear here.");
+    const [runResult, setRunResult] = useState<RunResult>({ output: "Your code output will appear here.", isError: false});
+    const [debugResult, setDebugResult] = useState<DebugResult | null>(null);
     const [code, setCode] = useState("<h1>Hello, CodeAura!</h1>\n<style>\n  h1 { color: hsl(var(--primary)); }\n</style>");
     const [language, setLanguage] = useState("html");
     const [input, setInput] = useState("");
-    const [isPending, startTransition] = useTransition();
+    
+    const [isRunPending, startRunTransition] = useTransition();
+    const [isDebugPending, startDebugTransition] = useTransition();
 
     const handleRunCode = () => {
-        startTransition(async () => {
-            setOutput("Running code...");
+        startRunTransition(async () => {
+            setDebugResult(null); // Clear previous debug results
+            setRunResult({ output: "Running code...", isError: false });
             const result = await runCode(code, language, input);
-            setOutput(result.output);
+            setRunResult(result);
         });
+    }
+
+    const handleDebugCode = () => {
+        if (!runResult.output || !runResult.isError) return;
+        startDebugTransition(async () => {
+            setDebugResult(null);
+            const result = await debugCode(code, language, runResult.output);
+             if (!result.error) {
+                setDebugResult({ fixedCode: result.fixedCode, explanation: result.explanation });
+            } else {
+                 setDebugResult({ fixedCode: "Error", explanation: result.explanation });
+            }
+        });
+    }
+    
+    const handleUseFix = () => {
+        if(debugResult) {
+            setCode(debugResult.fixedCode);
+            setDebugResult(null);
+        }
     }
 
     const shouldRenderHtml = ['html', 'css', 'php'].includes(language);
@@ -58,7 +94,7 @@ export default function CodeRunnerPage() {
             Live Code Runner
           </h1>
           <p className="max-w-[600px] mx-auto mt-4 text-muted-foreground md:text-xl">
-            Write, run, and test your code snippets instantly. No setup required.
+            Write, run, test, and debug your code snippets instantly.
           </p>
         </motion.div>
 
@@ -76,7 +112,7 @@ export default function CodeRunnerPage() {
                           <CardDescription>Select a language and start coding.</CardDescription>
                       </div>
                       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-                          <Select value={language} onValueChange={setLanguage}>
+                          <Select value={language} onValueChange={(val) => { setLanguage(val); setDebugResult(null); setRunResult({output: "Your code output will appear here.", isError: false})}}>
                               <SelectTrigger className="w-full sm:w-[180px] bg-background/50">
                                   <SelectValue placeholder="Select Language" />
                               </SelectTrigger>
@@ -86,15 +122,15 @@ export default function CodeRunnerPage() {
                                   ))}
                               </SelectContent>
                           </Select>
-                          <Button onClick={handleRunCode} disabled={isPending} className="shadow-lg shadow-primary/20">
+                          <Button onClick={handleRunCode} disabled={isRunPending} className="shadow-lg shadow-primary/20">
                               <Play className="mr-2 h-4 w-4" />
-                              {isPending ? "Running..." : "Run"}
+                              {isRunPending ? "Running..." : "Run"}
                           </Button>
                       </div>
                   </div>
               </CardHeader>
               <CardContent className="flex-grow flex flex-col">
-                <ResizablePanelGroup direction="vertical" className="flex-grow min-h-[500px]">
+                <ResizablePanelGroup direction="vertical" className="flex-grow min-h-[600px]">
                     <ResizablePanel defaultSize={60}>
                          <Textarea
                             value={code}
@@ -106,26 +142,70 @@ export default function CodeRunnerPage() {
                     <ResizableHandle withHandle />
                     <ResizablePanel defaultSize={40}>
                        <Tabs defaultValue="output" className="h-full flex flex-col">
-                            <TabsList className="grid w-full grid-cols-2">
-                                <TabsTrigger value="output">Output</TabsTrigger>
-                                <TabsTrigger value="input">Input (stdin)</TabsTrigger>
-                            </TabsList>
-                            <CardDescription className="text-xs text-muted-foreground p-2 text-center">
-                              For languages like C, Java, or Python that require user input, type your input in the &quot;Input (stdin)&quot; tab before running the code.
-                            </CardDescription>
-                            <TabsContent value="output" className="flex-grow">
-                                {shouldRenderHtml ? (
-                                    <iframe
-                                        srcDoc={output}
-                                        title="Code Output"
-                                        sandbox="allow-scripts"
-                                        className="w-full h-full border-0 bg-transparent rounded-b-lg"
-                                    />
-                                ) : (
-                                    <pre className="font-code text-sm text-muted-foreground whitespace-pre-wrap p-4 h-full overflow-auto bg-muted/40 rounded-b-md">
-                                        {output}
-                                    </pre>
+                            <div className="flex items-center">
+                                <TabsList className="grid w-full grid-cols-2">
+                                    <TabsTrigger value="output">Output</TabsTrigger>
+                                    <TabsTrigger value="input">Input (stdin)</TabsTrigger>
+                                </TabsList>
+                                 {runResult.isError && !isDebugPending && !debugResult && (
+                                    <Button onClick={handleDebugCode} variant="destructive" className="ml-4">
+                                        <Bug className="mr-2 h-4 w-4"/>
+                                        Debug with AI
+                                    </Button>
                                 )}
+                            </div>
+                            <CardDescription className="text-xs text-muted-foreground p-2 text-center">
+                              For languages like C, Java, or Python, type your input in the &quot;Input (stdin)&quot; tab before running.
+                            </CardDescription>
+                            <TabsContent value="output" className="flex-grow flex flex-col">
+                                <AnimatePresence mode="wait">
+                                {isRunPending ? (
+                                     <motion.div key="loading" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="flex-grow flex items-center justify-center">
+                                        <p className="text-muted-foreground animate-pulse">Running...</p>
+                                     </motion.div>
+                                ) : debugResult ? (
+                                    <motion.div 
+                                        key="debug"
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.5 }}
+                                        className="space-y-4 pt-4 flex-grow overflow-auto"
+                                      >
+                                        <div className="grid md:grid-cols-2 gap-4 h-full">
+                                            <div className="flex flex-col gap-2">
+                                                <Label>Suggested Fix</Label>
+                                                <div className="relative flex-grow">
+                                                  <CodeBlock code={debugResult.fixedCode} language={language} className="h-full"/>
+                                                  <Button size="sm" className="absolute bottom-2 right-2" onClick={handleUseFix}>
+                                                      Use This Code
+                                                  </Button>
+                                                </div>
+                                            </div>
+                                            <div className="flex flex-col gap-2">
+                                                <Label>Explanation</Label>
+                                                <Card className="bg-muted/40 h-full shadow-inner flex-grow">
+                                                <CardContent className="p-4 text-sm whitespace-pre-wrap overflow-y-auto h-full">
+                                                    {debugResult.explanation}
+                                                </CardContent>
+                                                </Card>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                ) : shouldRenderHtml ? (
+                                    <motion.div key="html" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="flex-grow">
+                                        <iframe
+                                            srcDoc={runResult.output}
+                                            title="Code Output"
+                                            sandbox="allow-scripts"
+                                            className="w-full h-full border-0 bg-transparent rounded-b-lg"
+                                        />
+                                    </motion.div>
+                                ) : (
+                                    <motion.pre key="text" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className={`font-code text-sm whitespace-pre-wrap p-4 h-full overflow-auto bg-muted/40 rounded-b-md ${runResult.isError ? 'text-destructive' : 'text-muted-foreground'}`}>
+                                        {runResult.output}
+                                    </motion.pre>
+                                )}
+                                </AnimatePresence>
                             </TabsContent>
                             <TabsContent value="input" className="flex-grow">
                                 <Textarea

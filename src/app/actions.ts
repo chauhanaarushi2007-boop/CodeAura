@@ -33,24 +33,27 @@ export async function runCode(code: string, language: string, input: string) {
     if (!code || code.trim().length === 0) {
         return {
             output: "Please enter some code to run.",
-            error: true
+            isError: true
         };
     }
 
     try {
         const result = await runCodeFlow({ code, language, input });
+        // Simple heuristic to detect if the output is an error message
+        const isError = /error|exception|fatal|undefined|unresolved|panic/i.test(result.output);
         return {
             output: result.output,
-            error: false
+            isError: isError
         };
-    } catch (e) {
+    } catch (e: any) {
         console.error(e);
         return {
-            output: "Sorry, I couldn't run your code right now. Please try again.",
-            error: true
+            output: e.message || "Sorry, I couldn't run your code right now. Please try again.",
+            isError: true
         };
     }
 }
+
 
 export async function debugCode(code: string, language: string, error: string) {
     if (!code || code.trim().length === 0) {
