@@ -46,7 +46,6 @@ export default function CodeRunnerPage() {
     }
 
     const handleDebugCode = () => {
-        if (!runResult.output || !runResult.isError) return;
         startDebugTransition(async () => {
             setDebugResult(null);
             const result = await debugCode(code, language, runResult.output);
@@ -122,10 +121,16 @@ export default function CodeRunnerPage() {
                                   ))}
                               </SelectContent>
                           </Select>
-                          <Button onClick={handleRunCode} disabled={isRunPending} className="shadow-lg shadow-primary/20">
-                              <Play className="mr-2 h-4 w-4" />
-                              {isRunPending ? "Running..." : "Run"}
-                          </Button>
+                           <div className="flex gap-2">
+                                <Button onClick={handleRunCode} disabled={isRunPending} className="flex-1 shadow-lg shadow-primary/20">
+                                    <Play className="mr-2 h-4 w-4" />
+                                    {isRunPending ? "Running..." : "Run"}
+                                </Button>
+                                <Button onClick={handleDebugCode} disabled={isDebugPending} variant="outline" className="flex-1">
+                                    <Bug className="mr-2 h-4 w-4"/>
+                                    {isDebugPending ? "Debugging..." : "Debug"}
+                                </Button>
+                           </div>
                       </div>
                   </div>
               </CardHeader>
@@ -147,12 +152,6 @@ export default function CodeRunnerPage() {
                                     <TabsTrigger value="output">Output</TabsTrigger>
                                     <TabsTrigger value="input">Input (stdin)</TabsTrigger>
                                 </TabsList>
-                                 {runResult.isError && !isDebugPending && !debugResult && (
-                                    <Button onClick={handleDebugCode} variant="destructive" className="ml-4">
-                                        <Bug className="mr-2 h-4 w-4"/>
-                                        Debug with AI
-                                    </Button>
-                                )}
                             </div>
                             <CardDescription className="text-xs text-muted-foreground p-2 text-center">
                               For languages like C, Java, or Python, type your input in the &quot;Input (stdin)&quot; tab before running.
@@ -226,5 +225,3 @@ export default function CodeRunnerPage() {
     </div>
   );
 }
-
-    
