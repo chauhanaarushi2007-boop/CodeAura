@@ -36,23 +36,28 @@ export default function CodeRunnerPage() {
     const [isRunPending, startRunTransition] = useTransition();
     const [isDebugPending, startDebugTransition] = useTransition();
 
-    const handleRunCode = () => {
-        startRunTransition(async () => {
-            setDebugResult(null); // Clear previous debug results
-            setRunResult({ output: "Running code...", isError: false });
-            const result = await runCode(code, language, input);
-            setRunResult(result);
-        });
-    }
-
-    const handleDebugCode = () => {
+    const handleDebugCode = (errorOutput = runResult.output) => {
         startDebugTransition(async () => {
-            setDebugResult(null);
-            const result = await debugCode(code, language, runResult.output);
+            setDebugResult(null); // Clear previous debug result while fetching new one
+            const result = await debugCode(code, language, errorOutput);
              if (!result.error) {
                 setDebugResult({ fixedCode: result.fixedCode, explanation: result.explanation });
             } else {
                  setDebugResult({ fixedCode: "Error", explanation: result.explanation });
+            }
+        });
+    }
+
+    const handleRunCode = () => {
+        startRunTransition(async () => {
+            setDebugResult(null); 
+            setRunResult({ output: "Running code...", isError: false });
+            const result = await runCode(code, language, input);
+            setRunResult(result);
+            
+            // If the code runs and an error is detected, automatically trigger the debugger
+            if (result.isError) {
+                handleDebugCode(result.output);
             }
         });
     }
@@ -61,11 +66,14 @@ export default function CodeRunnerPage() {
         if(debugResult) {
             setCode(debugResult.fixedCode);
             setDebugResult(null);
+            // Optionally clear the run result to avoid confusion
+            setRunResult({ output: "Code updated. Ready to run again.", isError: false });
         }
     }
 
     const shouldRenderHtml = ['html', 'css', 'php'].includes(language);
     const availableLanguages = languages;
+    const isLoading = isRunPending || isDebugPending;
 
   return (
     <div className="relative min-h-[calc(100vh-var(--header-height))] py-8 md:py-12 flex flex-col items-center justify-center isolate overflow-hidden">
@@ -122,11 +130,11 @@ export default function CodeRunnerPage() {
                               </SelectContent>
                           </Select>
                            <div className="flex gap-2">
-                                <Button onClick={handleRunCode} disabled={isRunPending} className="flex-1 shadow-lg shadow-primary/20">
+                                <Button onClick={handleRunCode} disabled={isLoading} className="flex-1 shadow-lg shadow-primary/20">
                                     <Play className="mr-2 h-4 w-4" />
                                     {isRunPending ? "Running..." : "Run"}
                                 </Button>
-                                <Button onClick={handleDebugCode} disabled={isDebugPending} variant="outline" className="flex-1">
+                                <Button onClick={() => handleDebugCode()} disabled={isLoading} variant="outline" className="flex-1">
                                     <Bug className="mr-2 h-4 w-4"/>
                                     {isDebugPending ? "Debugging..." : "Debug"}
                                 </Button>
@@ -158,7 +166,7 @@ export default function CodeRunnerPage() {
                             </CardDescription>
                             <TabsContent value="output" className="flex-grow flex flex-col">
                                 <AnimatePresence mode="wait">
-                                {isRunPending || isDebugPending ? (
+                                {isLoading ? (
                                      <motion.div key="loading" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="flex-grow flex items-center justify-center">
                                         <p className="text-muted-foreground animate-pulse">{isRunPending ? "Running..." : "Debugging..."}</p>
                                      </motion.div>
@@ -190,7 +198,7 @@ export default function CodeRunnerPage() {
                                             </div>
                                         </div>
                                     </motion.div>
-                                ) : shouldRenderHtml ? (
+                                ) : shouldRenderHtml && !runResult.isError ? (
                                     <motion.div key="html" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="flex-grow">
                                         <iframe
                                             srcDoc={runResult.output}
