@@ -3,7 +3,6 @@
 import { ThemeProvider } from 'next-themes';
 import { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { FirebaseClientProvider } from '@/firebase/client-provider';
 
 const LAST_VISITED_PAGE_KEY = 'lastVisitedPage';
 
@@ -53,10 +52,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
       defaultTheme="system"
       enableSystem
     >
-      <FirebaseClientProvider>
-        <LastVisitedPageManager />
-        {children}
-      </FirebaseClientProvider>
+      <LastVisitedPageManager />
+      {children}
     </ThemeProvider>
   );
 }

@@ -1,6 +1,7 @@
+
 'use server';
 
-import { initializeFirebase } from "@/firebase";
+import { initializeFirebase } from "@/firebase/init";
 import { collection, addDoc, query, where, getDocs, Timestamp } from "firebase/firestore";
 
 const { firestore } = initializeFirebase();

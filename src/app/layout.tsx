@@ -6,8 +6,7 @@ import { Footer } from '@/components/layout/footer';
 import { Toaster } from "@/components/ui/toaster";
 import Chatbot from '@/components/chatbot';
 import { Providers } from './providers';
-import { FirebaseProvider } from '@/firebase/provider';
-import { initializeFirebase } from '@/firebase';
+import { FirebaseClientProvider } from '@/firebase/client-provider';
 
 export const metadata: Metadata = {
   title: 'CodeAura - The Aura of Programmers Begins Here.',
@@ -19,7 +18,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const firebaseApp = initializeFirebase();
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -28,7 +26,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body className={cn("font-body antialiased", "min-h-screen bg-background flex flex-col")}>
-        <FirebaseProvider {...firebaseApp}>
+        <FirebaseClientProvider>
           <Providers>
               <Header />
               <main className="flex-grow">
@@ -38,7 +36,7 @@ export default function RootLayout({
               <Chatbot />
               <Toaster />
           </Providers>
-        </FirebaseProvider>
+        </FirebaseClientProvider>
       </body>
     </html>
   );
