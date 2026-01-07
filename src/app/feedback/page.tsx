@@ -11,6 +11,7 @@ import { addFeedback, useFeedback } from '@/services/feedback';
 import { cn } from '@/lib/utils';
 import { Progress } from '@/components/ui/progress';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useFirestore } from '@/firebase';
 
 const StarRating = ({ rating, setRating, disabled }: { rating: number; setRating: (r: number) => void; disabled: boolean }) => {
   const [hover, setHover] = useState(0);
@@ -61,8 +62,13 @@ export default function FeedbackPage() {
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
   const { feedback, loading } = useFeedback();
+  const db = useFirestore();
 
   const handleSubmit = () => {
+    if (!db) {
+        toast({ variant: 'destructive', title: 'Error', description: 'Database not available. Please try again later.' });
+        return;
+    }
     if (rating === 0) {
       toast({ variant: 'destructive', title: 'Error', description: 'Please select a star rating.' });
       return;
@@ -74,7 +80,7 @@ export default function FeedbackPage() {
 
     startTransition(async () => {
       try {
-        await addFeedback({ rating, message });
+        await addFeedback(db, { rating, message });
         toast({ title: 'Success!', description: 'Thank you for your feedback.' });
         setRating(0);
         setMessage('');

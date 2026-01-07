@@ -24,8 +24,7 @@ export interface Feedback {
 }
 
 // Service to add feedback
-export async function addFeedback(data: { rating: number; message: string }) {
-  const db = useFirestore();
+export async function addFeedback(db: Firestore, data: { rating: number; message: string }) {
   if (!db) {
     throw new Error('Firestore is not initialized.');
   }
@@ -55,10 +54,7 @@ export async function addFeedback(data: { rating: number; message: string }) {
 // Hook to get feedback
 export function useFeedback() {
   const db = useFirestore();
-  if (!db) {
-    return { feedback: [], loading: true, error: new Error('Firestore not initialized') };
-  }
-  const feedbackCollection = collection(db, 'feedback');
+  const feedbackCollection = db ? collection(db, 'feedback') : null;
   const { data, error, loading } = useCollection(feedbackCollection);
 
   const feedbackData = data ? data.docs.map(doc => ({ id: doc.id, ...doc.data() } as Feedback)) : [];
