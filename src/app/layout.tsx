@@ -6,6 +6,9 @@ import { Footer } from '@/components/layout/footer';
 import { Toaster } from "@/components/ui/toaster";
 import Chatbot from '@/components/chatbot';
 import { Providers } from './providers';
+import { FirebaseProvider } from '@/firebase';
+import FirebaseErrorListener from '@/components/FirebaseErrorListener';
+
 
 export const metadata: Metadata = {
   title: 'CodeAura - The Aura of Programmers Begins Here.',
@@ -26,6 +29,7 @@ export default function RootLayout({
       </head>
       <body className={cn("font-body antialiased", "min-h-screen bg-background flex flex-col")}>
         <Providers>
+          <FirebaseProvider>
             <Header />
             <main className="flex-grow">
               {children}
@@ -33,6 +37,8 @@ export default function RootLayout({
             <Footer />
             <Chatbot />
             <Toaster />
+            <FirebaseErrorListener />
+          </FirebaseProvider>
         </Providers>
       </body>
     </html>
