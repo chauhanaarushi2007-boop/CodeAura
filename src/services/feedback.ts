@@ -11,6 +11,7 @@ import { analyzeFeedback } from '@/ai/flows/analyze-feedback';
 import { errorEmitter } from '@/firebase/error-emitter';
 import type { SecurityRuleContext } from '@/firebase/errors';
 import { FirestorePermissionError } from '@/firebase/errors';
+import { useMemo } from 'react';
 
 export interface Feedback {
   id?: string;
@@ -54,17 +55,20 @@ export async function addFeedback(db: Firestore, data: { rating: number; message
 // Hook to get feedback
 export function useFeedback() {
   const db = useFirestore();
-  const feedbackCollection = db ? collection(db, 'feedback') : null;
-  const { data, error, loading } = useCollection(feedbackCollection);
+  const feedbackCollection = useMemo(() => (db ? collection(db, 'feedback') : null), [db]);
+  const { data: snapshot, error, loading } = useCollection(feedbackCollection);
 
-  const feedbackData = data
-    ? data.docs
+  const feedbackData = useMemo(() => {
+    if (!snapshot) return [];
+    
+    const data = snapshot.docs
         .map(doc => ({ id: doc.id, ...doc.data() } as Feedback))
-        .filter(item => item.createdAt) // Filter out items where createdAt is null
-    : [];
+        .filter(item => item.createdAt); // Filter out items where createdAt is null
 
-  // Sort by creation date, newest first
-  feedbackData.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds);
+    // Sort by creation date, newest first
+    data.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds);
+    return data;
+  }, [snapshot]);
 
   return { feedback: feedbackData, error, loading };
 }
