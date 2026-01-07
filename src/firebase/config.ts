@@ -5,10 +5,10 @@
 import { FirebaseOptions } from 'firebase/app';
 
 export const firebaseConfig: FirebaseOptions = {
-  apiKey: 'REPLACE_WITH_YOUR_API_KEY',
-  authDomain: 'REPLACE_WITH_YOUR_AUTH_DOMAIN',
-  projectId: 'REPLACE_WITH_YOUR_PROJECT_ID',
-  storageBucket: 'REPLACE_WITH_YOUR_STORAGE_BUCKET',
-  messagingSenderId: 'REPLACE_WITH_YOUR_MESSAGING_SENDER_ID',
-  appId: 'REPLACE_WITH_YOUR_APP_ID',
+  projectId: 'studio-2957799203-eaf43',
+  appId: '1:855399476506:web:325b3fd59319b6ec0410a3',
+  apiKey: 'AIzaSyBSNDzuFqqDdthUNgON8farotZSEg7ux5Q',
+  authDomain: 'studio-2957799203-eaf43.firebaseapp.com',
+  measurementId: '',
+  messagingSenderId: '855399476506',
 };
