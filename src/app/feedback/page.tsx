@@ -7,12 +7,12 @@ import { Textarea } from '@/components/ui/textarea';
 import { Star, MessageSquare, TrendingUp, ThumbsDown, ThumbsUp, Meh, User } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useToast } from '@/hooks/use-toast';
-import { addFeedback, useFeedback } from '@/services/feedback';
+import { useFeedback } from '@/services/feedback';
 import { cn } from '@/lib/utils';
 import { Progress } from '@/components/ui/progress';
 import { Skeleton } from '@/components/ui/skeleton';
-import { useFirestore } from '@/firebase';
 import { Input } from '@/components/ui/input';
+import { addFeedback } from '@/app/actions';
 
 const StarRating = ({ rating, setRating, disabled }: { rating: number; setRating: (r: number) => void; disabled: boolean }) => {
   const [hover, setHover] = useState(0);
@@ -64,13 +64,8 @@ export default function FeedbackPage() {
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
   const { feedback, loading } = useFeedback();
-  const db = useFirestore();
 
   const handleSubmit = () => {
-    if (!db) {
-        toast({ variant: 'destructive', title: 'Error', description: 'Database not available. Please try again later.' });
-        return;
-    }
     if (username.trim().length < 2) {
       toast({ variant: 'destructive', title: 'Error', description: 'Please enter a name (min. 2 characters).' });
       return;
@@ -85,14 +80,14 @@ export default function FeedbackPage() {
     }
 
     startTransition(async () => {
-      try {
-        await addFeedback(db, { rating, message, username });
+      const result = await addFeedback({ rating, message, username });
+      if (result.error) {
+        toast({ variant: 'destructive', title: 'Error', description: result.error });
+      } else {
         toast({ title: 'Success!', description: 'Thank you for your feedback.' });
         setRating(0);
         setMessage('');
         setUsername('');
-      } catch (error: any) {
-        toast({ variant: 'destructive', title: 'Error', description: error.message || 'Could not submit feedback.' });
       }
     });
   };

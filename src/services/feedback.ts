@@ -2,15 +2,10 @@
 
 import {
   collection,
-  addDoc,
-  serverTimestamp,
+  query,
   type Firestore,
 } from 'firebase/firestore';
 import { useFirestore, useCollection } from '@/firebase';
-import { analyzeFeedback } from '@/ai/flows/analyze-feedback';
-import { errorEmitter } from '@/firebase/error-emitter';
-import type { SecurityRuleContext } from '@/firebase/errors';
-import { FirestorePermissionError } from '@/firebase/errors';
 import { useMemo } from 'react';
 
 export interface Feedback {
@@ -23,34 +18,6 @@ export interface Feedback {
     seconds: number;
     nanoseconds: number;
   };
-}
-
-// Service to add feedback
-export async function addFeedback(db: Firestore, data: { rating: number; message: string, username: string; }) {
-  if (!db) {
-    throw new Error('Firestore is not initialized.');
-  }
-  
-  // Analyze sentiment before saving
-  const analysis = await analyzeFeedback({ message: data.message });
-
-  if (analysis.isAbusive) {
-      throw new Error("Feedback contains inappropriate content and was not submitted.");
-  }
-
-  const feedbackCollection = collection(db, 'feedback');
-  addDoc(feedbackCollection, {
-    ...data,
-    sentiment: analysis.sentiment,
-    createdAt: serverTimestamp(),
-  }).catch(async (serverError) => {
-    const permissionError = new FirestorePermissionError({
-      path: feedbackCollection.path,
-      operation: 'create',
-      requestResourceData: data,
-    } satisfies SecurityRuleContext);
-    errorEmitter.emit('permission-error', permissionError);
-  });
 }
 
 // Hook to get feedback
