@@ -15,10 +15,55 @@
           "description": "The user's email address."
         }
       },
-      "required": ["displayName", "email"]
+      "required": [
+        "displayName",
+        "email"
+      ]
+    },
+    "Feedback": {
+      "title": "Feedback",
+      "description": "Represents user feedback and rating.",
+      "type": "object",
+      "properties": {
+        "rating": {
+          "type": "number",
+          "description": "The star rating from 1 to 5."
+        },
+        "message": {
+          "type": "string",
+          "description": "The feedback message from the user."
+        },
+        "sentiment": {
+          "type": "string",
+          "enum": [
+            "Positive",
+            "Neutral",
+            "Negative"
+          ],
+          "description": "The AI-analyzed sentiment of the message."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The server timestamp when the feedback was created."
+        }
+      },
+      "required": [
+        "rating",
+        "message",
+        "createdAt"
+      ]
     }
   },
   "auth": {
     "providers": []
+  },
+  "firestore": {
+    "/feedback/{feedbackId}": {
+      "schema": {
+        "$ref": "#/backend/entities/Feedback"
+      },
+      "description": "Stores individual feedback entries submitted by users."
+    }
   }
 }
