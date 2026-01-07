@@ -220,7 +220,7 @@ export default function FeedbackPage() {
                           </div>
                           <p className="text-sm text-foreground/80">{item.message}</p>
                           <p className="text-xs text-muted-foreground mt-2">
-                            {new Date(item.createdAt.seconds * 1000).toLocaleString()}
+                            {item.createdAt?.seconds ? new Date(item.createdAt.seconds * 1000).toLocaleString() : 'Just now'}
                           </p>
                         </motion.div>
                       ))}

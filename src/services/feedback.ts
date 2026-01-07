@@ -57,7 +57,11 @@ export function useFeedback() {
   const feedbackCollection = db ? collection(db, 'feedback') : null;
   const { data, error, loading } = useCollection(feedbackCollection);
 
-  const feedbackData = data ? data.docs.map(doc => ({ id: doc.id, ...doc.data() } as Feedback)) : [];
+  const feedbackData = data
+    ? data.docs
+        .map(doc => ({ id: doc.id, ...doc.data() } as Feedback))
+        .filter(item => item.createdAt) // Filter out items where createdAt is null
+    : [];
 
   // Sort by creation date, newest first
   feedbackData.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds);
