@@ -19,6 +19,7 @@ import { Label } from "@/components/ui/label";
 type RunResult = {
   output: string;
   isError: boolean;
+  rawError?: string;
 };
 
 type DebugResult = {
@@ -57,7 +58,7 @@ export default function CodeRunnerPage() {
 
             if (result.isError) {
                 // If there's an error, trigger the debugger automatically
-                handleDebugCode(result.output);
+                handleDebugCode(result.rawError || result.output);
             }
         });
     }
