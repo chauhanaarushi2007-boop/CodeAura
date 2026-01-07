@@ -134,7 +134,7 @@ export default function CodeRunnerPage() {
                                     <Play className="mr-2 h-4 w-4" />
                                     {isRunPending ? "Running..." : "Run"}
                                 </Button>
-                                <Button onClick={() => handleDebugCode()} disabled={isLoading} variant="outline" className="flex-1">
+                                <Button onClick={() => handleDebugCode(runResult.isError ? runResult.rawError : undefined)} disabled={isLoading} variant="outline" className="flex-1">
                                     <Bug className="mr-2 h-4 w-4"/>
                                     {isDebugPending ? "Debugging..." : "Debug"}
                                 </Button>

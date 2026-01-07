@@ -39,17 +39,17 @@ export async function runCode(code: string, language: string, input: string) {
 
     try {
         const result = await runCodeFlow({ code, language, input });
-        // Simple heuristic to detect if the output is an error message
-        const isError = /error|exception|fatal|undefined|unresolved|panic/i.test(result.output);
-        if (isError) {
+        
+        if (result.error) {
             return {
                 output: "there is an error in your code ....try to debug it",
                 isError: true,
-                rawError: result.output,
+                rawError: result.error,
             };
         }
+        
         return {
-            output: result.output,
+            output: result.output || "",
             isError: false
         };
     } catch (e: any) {

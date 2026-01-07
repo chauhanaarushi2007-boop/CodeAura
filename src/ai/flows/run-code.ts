@@ -18,7 +18,8 @@ const RunCodeInputSchema = z.object({
 export type RunCodeInput = z.infer<typeof RunCodeInputSchema>;
 
 const RunCodeOutputSchema = z.object({
-  output: z.string().describe('The output of the executed code snippet.'),
+  output: z.string().optional().describe('The output of the executed code snippet. This should only be present if there are no errors.'),
+  error: z.string().optional().describe('A description of any syntax or runtime error found in the code. If an error is found, the output field should be empty.'),
 });
 export type RunCodeOutput = z.infer<typeof RunCodeOutputSchema>;
 
@@ -30,24 +31,21 @@ const prompt = ai.definePrompt({
   name: 'runCodePrompt',
   input: {schema: RunCodeInputSchema},
   output: {schema: RunCodeOutputSchema},
-  prompt: `You are a code execution engine. Your task is to execute a given code snippet and return its output.
+  prompt: `You are a code execution engine. Your task is to analyze and execute a given code snippet and return its output.
 
 Follow these rules precisely:
 
-1.  **Rendering vs. Executing**:
-    *   If the language is 'php', 'html', or 'css', act as a web server. The code may be a mix of these. Your output MUST be only the final rendered HTML that a browser would display.
-    *   For all other languages (like C, C++, Python, Java, JavaScript), you will act as a command-line execution environment.
-
-2.  **Handling Input (CRITICAL for C, C++, Java, etc.)**:
-    *   If user input is provided in the "User Input (stdin)" section, you MUST treat it as the program's standard input. The program will read from this input (e.g., via \`scanf\` in C, \`cin\` in C++, etc.).
-    *   Do NOT invent your own input or ignore the provided input. The user's input is the ONLY source for stdin.
+1.  **Analyze First**: Before executing, analyze the code for any obvious syntax errors or logical issues that would prevent it from running correctly. If you find an error, respond with a description of the error in the "error" field and leave the "output" field empty.
+2.  **Rendering vs. Executing**:
+    *   If the language is 'php', 'html', or 'css', and the code is valid, act as a web server. Your output MUST be only the final rendered HTML that a browser would display.
+    *   For all other languages (like C, C++, Python, Java, JavaScript), and if the code is valid, act as a command-line execution environment.
+3.  **Handling Input (CRITICAL for C, C++, Java, etc.)**:
+    *   If user input is provided in the "User Input (stdin)" section, you MUST treat it as the program's standard input.
     *   If no user input is provided, execute the code as if it were run without any piped input.
-
-3.  **Output Format**:
-    *   For executed code (non-web), return ONLY the raw text that would be printed to the console/terminal (stdout).
-    *   For web code, return ONLY the final rendered HTML.
-    *   Do NOT provide any explanations, notes, or markdown formatting like \`\`\`. Your response must be only the code's direct output.
-    *   Do not say "The output is:". Just provide the output itself.
+4.  **Output Format**:
+    *   If there are NO errors, return ONLY the raw text that would be printed to the console/terminal (stdout) or the final rendered HTML in the "output" field.
+    *   If you detect an error, return a description of it in the "error" field and nothing in the "output" field.
+    *   Do NOT provide any extra explanations, notes, or markdown formatting like \`\`\`. Your response must be only the code's direct output or an error message in the correct field.
 
 ---
 **Language**: {{{language}}}
