@@ -4,7 +4,7 @@ import { useState, useTransition, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
-import { Star, MessageSquare, TrendingUp, ThumbsDown, ThumbsUp, Meh } from 'lucide-react';
+import { Star, MessageSquare, TrendingUp, ThumbsDown, ThumbsUp, Meh, User } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useToast } from '@/hooks/use-toast';
 import { addFeedback, useFeedback } from '@/services/feedback';
@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils';
 import { Progress } from '@/components/ui/progress';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useFirestore } from '@/firebase';
+import { Input } from '@/components/ui/input';
 
 const StarRating = ({ rating, setRating, disabled }: { rating: number; setRating: (r: number) => void; disabled: boolean }) => {
   const [hover, setHover] = useState(0);
@@ -59,6 +60,7 @@ const SentimentIcon = ({ sentiment }: { sentiment: string | undefined }) => {
 export default function FeedbackPage() {
   const [rating, setRating] = useState(0);
   const [message, setMessage] = useState('');
+  const [username, setUsername] = useState('');
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
   const { feedback, loading } = useFeedback();
@@ -68,6 +70,10 @@ export default function FeedbackPage() {
     if (!db) {
         toast({ variant: 'destructive', title: 'Error', description: 'Database not available. Please try again later.' });
         return;
+    }
+    if (username.trim().length < 2) {
+      toast({ variant: 'destructive', title: 'Error', description: 'Please enter a name (min. 2 characters).' });
+      return;
     }
     if (rating === 0) {
       toast({ variant: 'destructive', title: 'Error', description: 'Please select a star rating.' });
@@ -80,10 +86,11 @@ export default function FeedbackPage() {
 
     startTransition(async () => {
       try {
-        await addFeedback(db, { rating, message });
+        await addFeedback(db, { rating, message, username });
         toast({ title: 'Success!', description: 'Thank you for your feedback.' });
         setRating(0);
         setMessage('');
+        setUsername('');
       } catch (error: any) {
         toast({ variant: 'destructive', title: 'Error', description: error.message || 'Could not submit feedback.' });
       }
@@ -133,6 +140,16 @@ export default function FeedbackPage() {
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-2">
+                <label htmlFor="username" className="font-medium text-sm">Your Name</label>
+                <Input 
+                  id="username"
+                  placeholder="Enter your name"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  disabled={isPending}
+                />
+              </div>
+              <div className="space-y-2">
                 <label className="font-medium text-sm">Your Rating</label>
                 <StarRating rating={rating} setRating={setRating} disabled={isPending} />
               </div>
@@ -147,7 +164,7 @@ export default function FeedbackPage() {
                   disabled={isPending}
                 />
               </div>
-              <Button onClick={handleSubmit} disabled={isPending || message.trim().length < 10 || rating === 0} className="w-full">
+              <Button onClick={handleSubmit} disabled={isPending || message.trim().length < 10 || rating === 0 || username.trim().length < 2} className="w-full">
                 {isPending ? 'Submitting...' : 'Submit Feedback'}
               </Button>
             </CardContent>
@@ -203,12 +220,20 @@ export default function FeedbackPage() {
                           transition={{ type: 'spring', stiffness: 300, damping: 25 }}
                           className="p-4 border rounded-lg bg-muted/30"
                         >
-                          <div className="flex items-center justify-between mb-2">
-                            <div className="flex items-center space-x-1">
-                                {[...Array(5)].map((_, i) => (
-                                    <Star key={i} className={cn('w-4 h-4', i < item.rating ? 'text-yellow-400 fill-yellow-400' : 'text-muted-foreground/30')} />
-                                ))}
-                            </div>
+                          <div className="flex items-start justify-between mb-2">
+                             <div className="flex items-center gap-2">
+                                <div className="bg-primary/10 text-primary rounded-full p-1.5">
+                                    <User className="w-4 h-4"/>
+                                </div>
+                                <div>
+                                    <p className="font-semibold text-sm">{item.username}</p>
+                                    <div className="flex items-center space-x-1">
+                                        {[...Array(5)].map((_, i) => (
+                                            <Star key={i} className={cn('w-4 h-4', i < item.rating ? 'text-yellow-400 fill-yellow-400' : 'text-muted-foreground/30')} />
+                                        ))}
+                                    </div>
+                                </div>
+                             </div>
                             <div className="flex items-center gap-2 text-sm">
                                 <SentimentIcon sentiment={item.sentiment} />
                                 <span className={cn(
@@ -218,8 +243,8 @@ export default function FeedbackPage() {
                                 )}>{item.sentiment}</span>
                             </div>
                           </div>
-                          <p className="text-sm text-foreground/80">{item.message}</p>
-                          <p className="text-xs text-muted-foreground mt-2">
+                          <p className="text-sm text-foreground/80 pl-9">{item.message}</p>
+                          <p className="text-xs text-muted-foreground mt-2 text-right">
                             {item.createdAt?.seconds ? new Date(item.createdAt.seconds * 1000).toLocaleString() : 'Just now'}
                           </p>
                         </motion.div>

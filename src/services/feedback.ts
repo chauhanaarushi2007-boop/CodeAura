@@ -15,6 +15,7 @@ import { useMemo } from 'react';
 
 export interface Feedback {
   id?: string;
+  username: string;
   rating: number;
   message: string;
   sentiment?: 'Positive' | 'Neutral' | 'Negative';
@@ -25,7 +26,7 @@ export interface Feedback {
 }
 
 // Service to add feedback
-export async function addFeedback(db: Firestore, data: { rating: number; message: string }) {
+export async function addFeedback(db: Firestore, data: { rating: number; message: string, username: string; }) {
   if (!db) {
     throw new Error('Firestore is not initialized.');
   }
@@ -58,7 +59,7 @@ export function useFeedback() {
   const feedbackCollection = useMemo(() => (db ? collection(db, 'feedback') : null), [db]);
   const { data: snapshot, error, loading } = useCollection(feedbackCollection);
 
-  const feedbackData = useMemo(() => {
+  const feedback = useMemo(() => {
     if (!snapshot) return [];
     
     const data = snapshot.docs
@@ -70,5 +71,5 @@ export function useFeedback() {
     return data;
   }, [snapshot]);
 
-  return { feedback: feedbackData, error, loading };
+  return { feedback, error, loading };
 }

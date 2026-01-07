@@ -25,6 +25,10 @@
       "description": "Represents user feedback and rating.",
       "type": "object",
       "properties": {
+        "username": {
+          "type": "string",
+          "description": "The name of the user who submitted the feedback."
+        },
         "rating": {
           "type": "number",
           "description": "The star rating from 1 to 5."
@@ -49,6 +53,7 @@
         }
       },
       "required": [
+        "username",
         "rating",
         "message",
         "createdAt"
