@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Elite Feedback Portal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Coding Font -->
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'JetBrains Mono',monospace;}
+body{background:black;color:#00ffcc;overflow:hidden;}
+
+/* Hacker Animated Background */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at center, rgba(0,255,204,0.18), transparent 65%),
+    repeating-linear-gradient(0deg, rgba(0,255,204,0.06), rgba(0,255,204,0.06) 1px, transparent 1px, transparent 4px);
+  animation:matrix 25s linear infinite;
+  z-index:-2;
+}
+@keyframes matrix{
+  from{background-position:0 0;}
+  to{background-position:0 2000px;}
+}
+
+/* Door Entrance */
+#doorScreen{
+  position:fixed;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:10;
+}
+.door{
+  position:absolute;
+  width:50%;
+  height:100%;
+  background:linear-gradient(90deg,#000,#111,#000);
+  box-shadow:inset 0 0 70px #00ffcc;
+  transition:transform 2s ease;
+}
+.left{left:0;}
+.right{right:0;}
+.open-left{transform:translateX(-100%);}
+.open-right{transform:translateX(100%);}
+
+#enterBtn{
+  padding:18px 36px;
+  border:2px solid #00ffcc;
+  background:transparent;
+  color:#00ffcc;
+  font-size:18px;
+  cursor:pointer;
+  box-shadow:0 0 25px #00ffcc;
+}
+#enterBtn:hover{background:#00ffcc;color:black;}
+
+/* Feedback Console */
+#feedbackUI{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:90%;max-width:420px;
+  padding:30px;
+  background:rgba(0,0,0,.88);
+  border:1px solid #00ffcc;
+  box-shadow:0 0 40px #00ffcc;
+  display:none;
+  text-align:center;
+}
+h1{margin-bottom:20px;font-size:20px;}
+input,textarea{
+  width:100%;
+  padding:12px;
+  margin-bottom:15px;
+  background:black;
+  border:1px solid #00ffcc;
+  color:#00ffcc;
+}
+button.submit{
+  width:100%;
+  padding:12px;
+  background:#00ffcc;
+  border:none;
+  color:black;
+  font-weight:bold;
+  cursor:pointer;
+}
+#status{margin-top:12px;font-size:14px;}
+</style>
+</head>
+
+<body>
+
+<!-- Door Screen -->
+<div id="doorScreen">
+  <div class="door left"></div>
+  <div class="door right"></div>
+  <button id="enterBtn">ENTER CODING REALM</button>
+</div>
+
+<!-- Feedback UI -->
+<div id="feedbackUI">
+  <h1>⚡ Developer Feedback Console ⚡</h1>
+  <form id="feedbackForm">
+    <input id="name" placeholder="Your Codename" required>
+    <textarea id="message" placeholder="Transmit your feedback..." required></textarea>
+    <button class="submit" type="submit">SUBMIT</button>
+  </form>
+  <div id="status"></div>
+</div>
+
+<!-- Firebase Logic -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+
+/* 🔥 REPLACE WITH YOUR FIREBASE CONFIG 🔥 */
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "studio-2957799203-eaf43.firebaseapp.com",
+  projectId: "studio-2957799203-eaf43",
+  storageBucket: "studio-2957799203-eaf43.appspot.com",
+  messagingSenderId: "855399476506",
+  appId: "1:855399476506:web:325b3fd59319b6ec0410a3"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+/* Door Animation */
+const enterBtn=document.getElementById("enterBtn");
+const leftDoor=document.querySelector(".left");
+const rightDoor=document.querySelector(".right");
+const doorScreen=document.getElementById("doorScreen");
+const feedbackUI=document.getElementById("feedbackUI");
+
+enterBtn.onclick=()=>{
+  leftDoor.classList.add("open-left");
+  rightDoor.classList.add("open-right");
+  setTimeout(()=>{
+    doorScreen.style.display="none";
+    feedbackUI.style.display="block";
+  },2000);
+};
+
+/* Submit Feedback */
+const form=document.getElementById("feedbackForm");
+const status=document.getElementById("status");
+
+form.addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  try{
+    await addDoc(collection(db,"feedbacks"),{
+      name:name.value,
+      message:message.value,
+      createdAt:new Date()
+    });
+    status.textContent="✔ Feedback received. System updated.";
+    form.reset();
+  }catch(err){
+    status.textContent="✖ Transmission failed.";
+  }
+});
+</script>
+
+</body>
+</html>
