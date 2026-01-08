@@ -5,6 +5,9 @@ import { generalQuery } from "@/ai/flows/chatbot-programming-language-query";
 import { runCode as runCodeFlow } from "@/ai/flows/run-code";
 import { debugCode as debugCodeFlow } from "@/ai/flows/debug-code";
 import { findFreeCourses as findFreeCoursesFlow } from "@/ai/flows/find-free-courses";
+import { analyzeFeedback as analyzeFeedbackFlow } from "@/ai/flows/analyze-feedback";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { initializeFirebase } from "@/firebase";
 
 export async function askAurix(query: string) {
     if (!query || query.trim().length === 0) {
@@ -109,4 +112,36 @@ export async function findFreeCourses(topic: string) {
             error: e.message || "Sorry, I couldn't find courses right now. Please try again."
         };
     }
+}
+
+export async function addFeedback(formData: FormData) {
+  const name = formData.get('name') as string;
+  const message = formData.get('message') as string;
+  const rating = parseInt(formData.get('rating') as string, 10);
+
+  if (!name || !message || !rating) {
+    return { error: 'Name, message, and rating are required.' };
+  }
+
+  try {
+    const { firestore } = initializeFirebase();
+    const feedbackCollection = collection(firestore, 'feedback');
+
+    // 1. Get AI sentiment analysis
+    const sentimentResult = await analyzeFeedbackFlow({ feedback: message });
+
+    // 2. Add document to Firestore
+    await addDoc(feedbackCollection, {
+      name,
+      message,
+      rating,
+      sentiment: sentimentResult.sentiment,
+      createdAt: serverTimestamp(),
+    });
+    
+    return { error: null };
+  } catch (error) {
+    console.error('Error adding feedback:', error);
+    return { error: 'Failed to submit feedback.' };
+  }
 }

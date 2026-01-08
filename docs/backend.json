@@ -29,6 +29,41 @@
         "displayName",
         "email"
       ]
+    },
+    "Feedback": {
+      "title": "Feedback",
+      "description": "Represents a user's feedback submission.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the user providing feedback."
+        },
+        "message": {
+          "type": "string",
+          "description": "The feedback message."
+        },
+        "rating": {
+          "type": "number",
+          "description": "A star rating from 1 to 5."
+        },
+        "sentiment": {
+          "type": "string",
+          "description": "AI-analyzed sentiment (Positive, Negative, Neutral).",
+          "enum": ["Positive", "Negative", "Neutral"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The server timestamp when the feedback was created."
+        }
+      },
+      "required": [
+        "name",
+        "message",
+        "rating",
+        "createdAt"
+      ]
     }
   },
   "auth": {
@@ -40,6 +75,12 @@
             "$ref": "#/backend/entities/UserProfile"
         },
         "description": "Stores public profile information for users."
+    },
+    "/feedback/{feedbackId}": {
+        "schema": {
+            "$ref": "#/backend/entities/Feedback"
+        },
+        "description": "Stores user feedback submissions."
     }
   }
 }

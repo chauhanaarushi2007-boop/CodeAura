@@ -27,20 +27,20 @@ body {
   }
 
   .dark {
-    --background: 220 30% 12%;
+    --background: 220 30% 6%;
     --foreground: 210 10% 80%;
-    --card: 220 30% 16%;
+    --card: 220 30% 10%;
     --card-foreground: 210 10% 80%;
-    --popover: 220 30% 15%;
+    --popover: 220 30% 9%;
     --popover-foreground: 210 10% 80%;
-    --secondary: 210 10% 22%;
+    --secondary: 210 10% 18%;
     --secondary-foreground: 210 10% 90%;
-    --muted: 210 10% 22%;
+    --muted: 210 10% 18%;
     --muted-foreground: 210 10% 60%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 210 10% 28%;
-    --input: 210 10% 28%;
+    --border: 210 10% 22%;
+    --input: 210 10% 22%;
     --ring: 210 90% 55%;
   }
 
