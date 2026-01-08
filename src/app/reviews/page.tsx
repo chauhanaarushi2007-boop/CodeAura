@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Star } from 'lucide-react';
-import { useState, useMemo, useTransition } from 'react';
+import { useState, useMemo, useTransition, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { addReview } from '@/app/actions';
@@ -45,13 +45,13 @@ function ReviewForm() {
       action={formAction}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.8 }}
+      transition={{ duration: 0.5, delay: 0.2 }}
       className="w-full max-w-2xl mx-auto space-y-6"
     >
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 1.0 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
       >
         <label htmlFor="name" className="block text-sm font-medium mb-2 text-primary/80 font-code">
           /your-name
@@ -68,7 +68,7 @@ function ReviewForm() {
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 1.2 }}
+        transition={{ duration: 0.5, delay: 0.6 }}
       >
         <label htmlFor="message" className="block text-sm font-medium mb-2 text-primary/80 font-code">
           /your-review
@@ -86,7 +86,7 @@ function ReviewForm() {
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 1.4 }}
+        transition={{ duration: 0.5, delay: 0.8 }}
         className="space-y-2"
       >
         <label className="block text-sm font-medium text-primary/80 font-code">
@@ -114,7 +114,7 @@ function ReviewForm() {
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 1.6 }}
+        transition={{ duration: 0.5, delay: 1.0 }}
       >
         <Button
           type="submit"
@@ -191,66 +191,38 @@ function ReviewList() {
 }
 
 export default function ReviewsPage() {
-  const [introFinished, setIntroFinished] = useState(false);
-
   return (
     <div className="relative min-h-screen w-full bg-background overflow-hidden">
       {/* Background Animation */}
-      <div className="absolute inset-0 -z-20 bg-slate-950">
+      <div className="absolute inset-0 -z-10 bg-slate-950">
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-50"></div>
         <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
       </div>
-
-      {!introFinished && (
-        <motion.div
-          key="vault"
-          className="absolute inset-0 z-50 flex bg-slate-950"
-          onAnimationComplete={() => setIntroFinished(true)}
+      
+      <div className="container relative z-10 py-12 md:py-24 text-center">
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="font-headline text-5xl font-bold tracking-tighter sm:text-6xl animated-gradient-text bg-gradient-to-r from-primary via-accent to-primary"
         >
-          <motion.div
-            initial={{ x: '0%' }}
-            animate={{ x: '-100%' }}
-            transition={{ duration: 1, ease: "easeInOut", delay: 0.5 }}
-            className="w-1/2 h-full bg-slate-950 border-r-2 border-primary/50 shadow-[0_0_30px_hsl(var(--primary)/0.5)]"
-          />
-          <motion.div
-            initial={{ x: '0%' }}
-            animate={{ x: '100%' }}
-            transition={{ duration: 1, ease: "easeInOut", delay: 0.5 }}
-            className="w-1/2 h-full bg-slate-950 border-l-2 border-primary/50 shadow-[0_0_30px_hsl(var(--primary)/0.5)]"
-          />
-        </motion.div>
-      )}
+          System Reviews
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="max-w-xl mx-auto mt-4 text-muted-foreground md:text-xl font-code"
+        >
+          Your input is critical. See what others are saying and leave your own review.
+        </motion.p>
+      </div>
 
-      {/* Main Content */}
-      {introFinished && (
-        <>
-          <div className="container relative z-10 py-12 md:py-24 text-center">
-            <motion.h1
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="font-headline text-5xl font-bold tracking-tighter sm:text-6xl animated-gradient-text bg-gradient-to-r from-primary via-accent to-primary"
-            >
-              System Reviews
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="max-w-xl mx-auto mt-4 text-muted-foreground md:text-xl font-code"
-            >
-              Your input is critical. See what others are saying and leave your own review.
-            </motion.p>
-          </div>
-
-          <main className="relative z-10 px-4 pb-24">
-            <ReviewForm />
-            <div className="my-24 border-t border-primary/20 w-1/2 mx-auto"></div>
-            <ReviewList />
-          </main>
-        </>
-      )}
+      <main className="relative z-10 px-4 pb-24">
+        <ReviewForm />
+        <div className="my-24 border-t border-primary/20 w-1/2 mx-auto"></div>
+        <ReviewList />
+      </main>
     </div>
   );
 }
