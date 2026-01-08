@@ -5,7 +5,7 @@ import { generalQuery } from "@/ai/flows/chatbot-programming-language-query";
 import { runCode as runCodeFlow } from "@/ai/flows/run-code";
 import { debugCode as debugCodeFlow } from "@/ai/flows/debug-code";
 import { findFreeCourses as findFreeCoursesFlow } from "@/ai/flows/find-free-courses";
-import { analyzeFeedback } from "@/ai/flows/analyze-feedback";
+import { analyzeReview } from "@/ai/flows/analyze-review";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { initializeFirebase } from "@/firebase/init";
 
@@ -115,7 +115,7 @@ export async function findFreeCourses(topic: string) {
 }
 
 
-export async function addFeedback(formData: FormData) {
+export async function addReview(formData: FormData) {
     const name = formData.get('name') as string;
     const message = formData.get('message') as string;
     const rating = parseInt(formData.get('rating') as string, 10);
@@ -126,13 +126,13 @@ export async function addFeedback(formData: FormData) {
   
     try {
       // 1. Analyze sentiment with Genkit
-      const { sentiment } = await analyzeFeedback({ feedback: message });
+      const { sentiment } = await analyzeReview({ review: message });
   
       // 2. Add to Firestore
       const { firestore } = initializeFirebase();
-      const feedbackCollection = collection(firestore, 'feedback');
+      const reviewCollection = collection(firestore, 'reviews');
   
-      await addDoc(feedbackCollection, {
+      await addDoc(reviewCollection, {
         name: name || 'Anonymous',
         message,
         rating,
@@ -142,7 +142,7 @@ export async function addFeedback(formData: FormData) {
   
       return { error: null };
     } catch (e: any) {
-      console.error('Error adding feedback:', e);
+      console.error('Error adding review:', e);
       return { error: 'An unexpected error occurred. Please try again.' };
     }
   }

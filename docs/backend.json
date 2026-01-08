@@ -29,6 +29,36 @@
         "displayName",
         "email"
       ]
+    },
+    "Review": {
+        "title": "User Review",
+        "description": "A user-submitted review of the website.",
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string",
+                "description": "The name of the user leaving the review."
+            },
+            "message": {
+                "type": "string",
+                "description": "The content of the review."
+            },
+            "rating": {
+                "type": "number",
+                "description": "A star rating from 1 to 5."
+            },
+            "sentiment": {
+                "type": "string",
+                "enum": ["Positive", "Negative", "Neutral"],
+                "description": "The AI-analyzed sentiment of the review."
+            },
+            "createdAt": {
+                "type": "string",
+                "format": "date-time",
+                "description": "The timestamp when the review was created."
+            }
+        },
+        "required": ["name", "message", "rating", "createdAt"]
     }
   },
   "auth": {
@@ -40,6 +70,12 @@
             "$ref": "#/backend/entities/UserProfile"
         },
         "description": "Stores public profile information for users."
+    },
+    "/reviews/{reviewId}": {
+        "schema": {
+            "$ref": "#/backend/entities/Review"
+        },
+        "description": "Stores user-submitted reviews for the website."
     }
   }
 }

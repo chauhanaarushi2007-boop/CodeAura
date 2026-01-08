@@ -56,7 +56,7 @@ export type CertificatePlatform = {
   tags: string[];
 };
 
-export type Feedback = {
+export type Review = {
     id: string;
     name: string;
     message: string;
