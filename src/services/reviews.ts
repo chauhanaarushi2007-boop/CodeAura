@@ -6,6 +6,7 @@ import { useMemo } from 'react';
 import { collection, query, orderBy } from 'firebase/firestore';
 import { useFirestore } from '@/firebase';
 import type { Review } from '@/lib/types';
+import type { DocumentData, QuerySnapshot } from 'firebase/firestore';
 
 export function useReviews() {
     const db = useFirestore();
@@ -20,9 +21,9 @@ export function useReviews() {
     const data = useMemo(() => {
         if (!snapshot) return [];
         
-        const reviewList = snapshot.docs.map(doc => ({
+        const reviewList: Review[] = snapshot.docs.map(doc => ({
             id: doc.id,
-            ...doc.data(),
+            ...(doc.data() as Omit<Review, 'id'>),
         }));
 
         // Filter out items where createdAt is null, which can happen briefly on new additions
