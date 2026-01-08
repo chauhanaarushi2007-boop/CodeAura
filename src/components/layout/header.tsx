@@ -16,7 +16,7 @@ const navLinks = [
   { href: "/runner", label: "Code Runner" },
   { href: "/references", label: "References" },
   { href: "/certificates", label: "Certificates" },
-  { href: "/reviews", label: "Reviews" },
+  { href: "/feedback", label: "Feedback" },
 ];
 
 export function Header() {
