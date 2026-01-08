@@ -143,8 +143,8 @@ export default function CodeRunnerPage() {
                   </div>
               </CardHeader>
               <CardContent className="flex-grow flex flex-col">
-                <ResizablePanelGroup direction="vertical" className="flex-grow min-h-[600px]">
-                    <ResizablePanel defaultSize={60}>
+                <ResizablePanelGroup direction="horizontal" className="flex-grow min-h-[600px] flex-col md:flex-row">
+                    <ResizablePanel defaultSize={50}>
                          <Textarea
                             value={code}
                             onChange={(e) => setCode(e.target.value)}
@@ -153,7 +153,7 @@ export default function CodeRunnerPage() {
                             />
                     </ResizablePanel>
                     <ResizableHandle withHandle />
-                    <ResizablePanel defaultSize={40}>
+                    <ResizablePanel defaultSize={50}>
                        <Tabs defaultValue="output" className="h-full flex flex-col">
                             <div className="flex items-center">
                                 <TabsList className="grid w-full grid-cols-2">
@@ -233,3 +233,5 @@ export default function CodeRunnerPage() {
     </div>
   );
 }
+
+    
