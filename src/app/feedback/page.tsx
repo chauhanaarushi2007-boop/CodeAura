@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Star } from 'lucide-react';
 import { useState, useMemo, useTransition } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { addFeedback } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
@@ -35,6 +35,7 @@ function FeedbackForm() {
           description: 'Your feedback has been submitted.',
         });
         // Note: Resetting server-action forms requires more complex state management
+        // For now, the user can see their feedback appear in the list.
       }
     });
   };
@@ -195,7 +196,7 @@ export default function FeedbackPage() {
   return (
     <div className="relative min-h-screen w-full bg-background overflow-hidden">
       {/* Background Animation */}
-      <div className="absolute inset-0 -z-20 bg-midnight">
+      <div className="absolute inset-0 -z-20 bg-slate-950">
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-50"></div>
         <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
       </div>
@@ -253,3 +254,5 @@ export default function FeedbackPage() {
     </div>
   );
 }
+
+    
