@@ -19,7 +19,7 @@ function FeedbackForm() {
   const [hoverRating, setHoverRating] = useState(0);
   const [isPending, startTransition] = useTransition();
 
-  const formAction = async (formData: FormData) => {
+  const formAction = (formData: FormData) => {
     formData.set('rating', rating.toString());
     startTransition(async () => {
       const result = await addFeedback(formData);
@@ -205,20 +205,21 @@ export default function FeedbackPage() {
         {!introFinished && (
           <motion.div
             key="vault"
-            className="absolute inset-0 z-50 flex bg-slate-950"
+            initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, delay: 1.5 }}
+            className="absolute inset-0 z-50 flex bg-slate-950"
           >
             <motion.div
               initial={{ x: '0%' }}
               animate={{ x: '-100%' }}
-              transition={{ duration: 1, ease: 'easeInOut', delay: 0.5 }}
+              transition={{ duration: 1, ease: "easeInOut", delay: 0.5 }}
               className="w-1/2 h-full bg-slate-950 border-r-2 border-primary/50 shadow-[0_0_30px_hsl(var(--primary)/0.5)]"
             />
             <motion.div
               initial={{ x: '0%' }}
               animate={{ x: '100%' }}
-              transition={{ duration: 1, ease: 'easeInOut', delay: 0.5 }}
+              transition={{ duration: 1, ease: "easeInOut", delay: 0.5 }}
               className="w-1/2 h-full bg-slate-950 border-l-2 border-primary/50 shadow-[0_0_30px_hsl(var(--primary)/0.5)]"
             />
           </motion.div>
@@ -257,3 +258,5 @@ export default function FeedbackPage() {
     </div>
   );
 }
+
+    
