@@ -207,13 +207,13 @@ export default function FeedbackPage() {
           <motion.div
             initial={{ x: '0%' }}
             animate={{ x: '-100%' }}
-            transition={{ duration: 1, ease: 'power2.inOut', delay: 0.5 }}
+            transition={{ duration: 1, ease: "easeInOut", delay: 0.5 }}
             className="w-1/2 h-full bg-slate-950 border-r-2 border-primary/50 shadow-[0_0_30px_hsl(var(--primary)/0.5)]"
           />
           <motion.div
             initial={{ x: '0%' }}
             animate={{ x: '100%' }}
-            transition={{ duration: 1, ease: 'power2.inOut', delay: 0.5 }}
+            transition={{ duration: 1, ease: "easeInOut", delay: 0.5 }}
             className="w-1/2 h-full bg-slate-950 border-l-2 border-primary/50 shadow-[0_0_30px_hsl(var(--primary)/0.5)]"
           />
         </motion.div>
