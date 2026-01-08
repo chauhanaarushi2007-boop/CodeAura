@@ -54,17 +54,3 @@ export type CertificatePlatform = {
   description: string;
   tags: string[];
 };
-
-export type Feedback = {
-    id: string;
-    name: string;
-    message: string;
-    rating: number;
-    sentiment: 'Positive' | 'Negative' | 'Neutral';
-    createdAt: {
-      seconds: number;
-      nanoseconds: number;
-    } | null;
-  };
-
-    
