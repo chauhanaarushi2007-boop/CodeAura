@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Star } from 'lucide-react';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useTransition } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { addFeedback } from '@/app/actions';
@@ -17,33 +17,31 @@ function FeedbackForm() {
   const { toast } = useToast();
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
-  async function handleSubmit(formData: FormData) {
-    setIsSubmitting(true);
+  const formAction = async (formData: FormData) => {
     formData.set('rating', rating.toString());
-    const result = await addFeedback(formData);
-
-    if (result?.error) {
-      toast({
-        variant: 'destructive',
-        title: 'Error',
-        description: result.error,
-      });
-    } else {
-      toast({
-        title: 'Success!',
-        description: 'Your feedback has been submitted.',
-      });
-      // Note: In a real app, you might want to reset the form here.
-      // The form is part of a server component tree so we can't easily do that without a full page reload or more complex state management.
-    }
-    setIsSubmitting(false);
-  }
+    startTransition(async () => {
+      const result = await addFeedback(formData);
+      if (result?.error) {
+        toast({
+          variant: 'destructive',
+          title: 'Error',
+          description: result.error,
+        });
+      } else {
+        toast({
+          title: 'Success!',
+          description: 'Your feedback has been submitted.',
+        });
+        // Note: Resetting server-action forms requires more complex state management
+      }
+    });
+  };
 
   return (
     <motion.form
-      action={handleSubmit}
+      action={formAction}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.8 }}
@@ -119,10 +117,10 @@ function FeedbackForm() {
       >
         <Button
           type="submit"
-          disabled={isSubmitting || rating === 0}
+          disabled={isPending || rating === 0}
           className="w-full font-code text-lg py-6 bg-primary/80 hover:bg-primary shadow-[0_0_20px_hsl(var(--primary)/0.5)] hover:shadow-[0_0_30px_hsl(var(--primary)/0.7)] transition-all disabled:opacity-50"
         >
-          {isSubmitting ? 'Submitting...' : 'Submit >>'}
+          {isPending ? 'Submitting...' : 'Submit >>'}
         </Button>
       </motion.div>
     </motion.form>
@@ -203,17 +201,21 @@ export default function FeedbackPage() {
       </div>
 
       {/* Intro "Vault Door" Animation */}
-      <AnimatePresence>
+      <AnimatePresence
+        onExitComplete={() => {
+            // This ensures state change happens after exit animation
+            setIntroFinished(true);
+        }}
+      >
         {!introFinished && (
             <motion.div
+            key="vault"
             className="absolute inset-0 z-50 flex bg-slate-950"
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 0 }}
+            initial={false}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.5, delay: 1.5 }}
-            onAnimationComplete={() => {
-                setIntroFinished(true);
-            }}
-            style={{ pointerEvents: 'auto' }} // Explicitly keep pointer events during animation
+            style={{ pointerEvents: 'auto' }}
             >
             <motion.div
                 initial={{ x: '0%' }}
@@ -259,3 +261,5 @@ export default function FeedbackPage() {
     </div>
   );
 }
+
+    
