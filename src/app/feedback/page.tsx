@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Star } from 'lucide-react';
 import { useState, useMemo } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { addFeedback } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
@@ -17,8 +17,10 @@ function FeedbackForm() {
   const { toast } = useToast();
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function handleSubmit(formData: FormData) {
+    setIsSubmitting(true);
     formData.set('rating', rating.toString());
     const result = await addFeedback(formData);
 
@@ -36,6 +38,7 @@ function FeedbackForm() {
       // Note: In a real app, you might want to reset the form here.
       // The form is part of a server component tree so we can't easily do that without a full page reload or more complex state management.
     }
+    setIsSubmitting(false);
   }
 
   return (
@@ -116,9 +119,10 @@ function FeedbackForm() {
       >
         <Button
           type="submit"
-          className="w-full font-code text-lg py-6 bg-primary/80 hover:bg-primary shadow-[0_0_20px_hsl(var(--primary)/0.5)] hover:shadow-[0_0_30px_hsl(var(--primary)/0.7)] transition-all"
+          disabled={isSubmitting || rating === 0}
+          className="w-full font-code text-lg py-6 bg-primary/80 hover:bg-primary shadow-[0_0_20px_hsl(var(--primary)/0.5)] hover:shadow-[0_0_30px_hsl(var(--primary)/0.7)] transition-all disabled:opacity-50"
         >
-          Submit &gt;&gt;
+          {isSubmitting ? 'Submitting...' : 'Submit >>'}
         </Button>
       </motion.div>
     </motion.form>
@@ -199,25 +203,33 @@ export default function FeedbackPage() {
       </div>
 
       {/* Intro "Vault Door" Animation */}
-      {!introFinished && (
-        <motion.div
-          className="absolute inset-0 z-50 flex"
-          onAnimationComplete={() => setTimeout(() => setIntroFinished(true), 200)}
-        >
-          <motion.div
-            initial={{ x: '0%' }}
-            animate={{ x: '-100%' }}
-            transition={{ duration: 1, ease: "easeInOut", delay: 0.5 }}
-            className="w-1/2 h-full bg-slate-950 border-r-2 border-primary/50 shadow-[0_0_30px_hsl(var(--primary)/0.5)]"
-          />
-          <motion.div
-            initial={{ x: '0%' }}
-            animate={{ x: '100%' }}
-            transition={{ duration: 1, ease: "easeInOut", delay: 0.5 }}
-            className="w-1/2 h-full bg-slate-950 border-l-2 border-primary/50 shadow-[0_0_30px_hsl(var(--primary)/0.5)]"
-          />
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {!introFinished && (
+            <motion.div
+            className="absolute inset-0 z-50 flex bg-slate-950"
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 0 }}
+            transition={{ duration: 0.5, delay: 1.5 }}
+            onAnimationComplete={() => {
+                setIntroFinished(true);
+            }}
+            style={{ pointerEvents: 'auto' }} // Explicitly keep pointer events during animation
+            >
+            <motion.div
+                initial={{ x: '0%' }}
+                animate={{ x: '-100%' }}
+                transition={{ duration: 1, ease: "easeInOut", delay: 0.5 }}
+                className="w-1/2 h-full bg-slate-950 border-r-2 border-primary/50 shadow-[0_0_30px_hsl(var(--primary)/0.5)]"
+            />
+            <motion.div
+                initial={{ x: '0%' }}
+                animate={{ x: '100%' }}
+                transition={{ duration: 1, ease: "easeInOut", delay: 0.5 }}
+                className="w-1/2 h-full bg-slate-950 border-l-2 border-primary/50 shadow-[0_0_30px_hsl(var(--primary)/0.5)]"
+            />
+            </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Main Content */}
       <div className="container relative z-10 py-12 md:py-24 text-center">
