@@ -1,4 +1,5 @@
 
+
 export type Language = {
   id: 'html' | 'css' | 'javascript' | 'python' | 'java' | 'c' | 'cpp' | 'php' | 'xml' | 'go' | 'csharp' | 'rust' | 'ruby' | 'swift';
   name: string;
@@ -44,7 +45,7 @@ export type WebsiteReference = {
   name: string;
   url: string;
   description: string;
-  icon: 'BrainCircuit' | 'Network' | 'Code' | 'BookOpen' | 'School';
+  icon: 'Brain' | 'Network' | 'Code' | 'BookOpen' | 'School';
 };
 
 export type CertificatePlatform = {
@@ -54,3 +55,15 @@ export type CertificatePlatform = {
   description: string;
   tags: string[];
 };
+
+export type Feedback = {
+    id: string;
+    name: string;
+    message: string;
+    rating: number;
+    sentiment?: 'Positive' | 'Negative' | 'Neutral';
+    createdAt: {
+      seconds: number;
+      nanoseconds: number;
+    };
+  };

@@ -5,6 +5,9 @@ import { generalQuery } from "@/ai/flows/chatbot-programming-language-query";
 import { runCode as runCodeFlow } from "@/ai/flows/run-code";
 import { debugCode as debugCodeFlow } from "@/ai/flows/debug-code";
 import { findFreeCourses as findFreeCoursesFlow } from "@/ai/flows/find-free-courses";
+import { analyzeFeedback } from "@/ai/flows/analyze-feedback";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { initializeFirebase } from "@/firebase/init";
 
 export async function askAurix(query: string) {
     if (!query || query.trim().length === 0) {
@@ -110,3 +113,36 @@ export async function findFreeCourses(topic: string) {
         };
     }
 }
+
+
+export async function addFeedback(formData: FormData) {
+    const name = formData.get('name') as string;
+    const message = formData.get('message') as string;
+    const rating = parseInt(formData.get('rating') as string, 10);
+  
+    if (!message || !rating) {
+      return { error: 'Message and rating are required.' };
+    }
+  
+    try {
+      // 1. Analyze sentiment with Genkit
+      const { sentiment } = await analyzeFeedback({ feedback: message });
+  
+      // 2. Add to Firestore
+      const { firestore } = initializeFirebase();
+      const feedbackCollection = collection(firestore, 'feedback');
+  
+      await addDoc(feedbackCollection, {
+        name: name || 'Anonymous',
+        message,
+        rating,
+        sentiment,
+        createdAt: serverTimestamp(),
+      });
+  
+      return { error: null };
+    } catch (e: any) {
+      console.error('Error adding feedback:', e);
+      return { error: 'An unexpected error occurred. Please try again.' };
+    }
+  }
