@@ -5,9 +5,6 @@ import { generalQuery } from "@/ai/flows/chatbot-programming-language-query";
 import { runCode as runCodeFlow } from "@/ai/flows/run-code";
 import { debugCode as debugCodeFlow } from "@/ai/flows/debug-code";
 import { findFreeCourses as findFreeCoursesFlow } from "@/ai/flows/find-free-courses";
-import { collection, addDoc, serverTimestamp, getFirestore } from 'firebase/firestore';
-import { initializeFirebase } from "@/firebase/init";
-import { analyzeFeedback } from "@/ai/flows/analyze-feedback";
 
 export async function askAurix(query: string) {
     if (!query || query.trim().length === 0) {
@@ -112,32 +109,4 @@ export async function findFreeCourses(topic: string) {
             error: e.message || "Sorry, I couldn't find courses right now. Please try again."
         };
     }
-}
-
-export async function addFeedback(data: { rating: number; message: string; username: string; }) {
-  try {
-    // This is a server action, so we can initialize Firebase here
-    const { firestore } = initializeFirebase();
-    
-    // 1. Analyze sentiment before saving
-    const analysis = await analyzeFeedback({ message: data.message });
-
-    // 2. Block abusive messages
-    if (analysis.isAbusive) {
-        return { error: "Feedback contains inappropriate content and was not submitted." };
-    }
-
-    // 3. Add to Firestore
-    const feedbackCollection = collection(firestore, 'feedback');
-    await addDoc(feedbackCollection, {
-      ...data,
-      sentiment: analysis.sentiment,
-      createdAt: serverTimestamp(),
-    });
-
-    return { error: null };
-  } catch (e: any) {
-    console.error("Error in addFeedback action:", e);
-    return { error: e.message || 'Could not submit feedback due to a server error.' };
-  }
 }

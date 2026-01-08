@@ -1,3 +1,4 @@
+
 {
   "entities": {
     "UserProfile": {
@@ -28,79 +29,12 @@
         "displayName",
         "email"
       ]
-    },
-    "Feedback": {
-      "title": "Feedback",
-      "description": "Represents user feedback and rating.",
-      "type": "object",
-      "properties": {
-        "username": {
-          "type": "string",
-          "description": "The name of the user who submitted the feedback."
-        },
-        "rating": {
-          "type": "number",
-          "description": "The star rating from 1 to 5."
-        },
-        "message": {
-          "type": "string",
-          "description": "The feedback message from the user."
-        },
-        "sentiment": {
-          "type": "string",
-          "enum": [
-            "Positive",
-            "Neutral",
-            "Negative"
-          ],
-          "description": "The AI-analyzed sentiment of the message."
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time",
-          "description": "The server timestamp when the feedback was created."
-        }
-      },
-      "required": [
-        "username",
-        "rating",
-        "message",
-        "createdAt"
-      ]
-    },
-    "Review": {
-        "title": "Review",
-        "description": "A user-submitted review for a product or service.",
-        "type": "object",
-        "properties": {
-            "userId": { "type": "string", "description": "The UID of the user who wrote the review." },
-            "userName": { "type": "string", "description": "The display name of the user." },
-            "userPhotoURL": { "type": "string", "format": "uri", "description": "URL of the user's profile photo." },
-            "rating": { "type": "number", "description": "Star rating from 1 to 5." },
-            "text": { "type": "string", "description": "The main content of the review." },
-            "createdAt": { "type": "string", "format": "date-time", "description": "Server timestamp of when the review was created." },
-            "updatedAt": { "type": "string", "format": "date-time", "description": "Server timestamp of the last update." },
-            "status": { "type": "string", "enum": ["pending", "approved", "rejected"], "description": "The moderation status of the review." }
-        },
-        "required": ["userId", "userName", "rating", "text", "createdAt", "status"]
     }
   },
   "auth": {
     "providers": ["Google", "EmailPassword"]
   },
   "firestore": {
-    "/feedback/{feedbackId}": {
-      "schema": {
-        "$ref": "#/backend/entities/Feedback"
-      },
-      "description": "Stores individual feedback entries submitted by users."
-    },
-    "/reviews/{reviewId}": {
-        "schema": {
-            "$ref": "#/backend/entities/Review"
-        },
-        "description": "Stores user-submitted reviews. Each user can only have one review per product, identified by their UID as the document ID."
-    },
     "/users/{userId}": {
         "schema": {
             "$ref": "#/backend/entities/UserProfile"
