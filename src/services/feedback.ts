@@ -23,8 +23,8 @@ export interface Feedback {
 // Hook to get feedback
 export function useFeedback() {
   const db = useFirestore();
-  const feedbackCollection = useMemo(() => (db ? collection(db, 'feedback') : null), [db]);
-  const { data: snapshot, error, loading } = useCollection(feedbackCollection);
+  const feedbackQuery = useMemo(() => (db ? query(collection(db, 'feedback')) : null), [db]);
+  const { data: snapshot, error, loading } = useCollection(feedbackQuery);
 
   const feedback = useMemo(() => {
     if (!snapshot) return [];
