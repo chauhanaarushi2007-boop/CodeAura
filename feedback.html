@@ -91,8 +91,14 @@ button.submit{
   color:black;
   font-weight:bold;
   cursor:pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
-#status{margin-top:12px;font-size:14px;}
+button.submit:disabled {
+    background: #555;
+    color: #999;
+    cursor: not-allowed;
+}
+#status{margin-top:12px;font-size:14px;min-height: 20px;}
 </style>
 </head>
 
@@ -116,23 +122,7 @@ button.submit{
   <div id="status"></div>
 </div>
 
-<!-- Firebase Logic -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBSNDzuFqqDdthUNgON8farotZSEg7ux5Q", // This is public and safe to use.
-  authDomain: "studio-2957799203-eaf43.firebaseapp.com",
-  projectId: "studio-2957799203-eaf43",
-  storageBucket: "studio-2957799203-eaf43.appspot.com",
-  messagingSenderId: "855399476506",
-  appId: "1:855399476506:web:325b3fd59319b6ec0410a3"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
+<script>
 /* Door Animation */
 const enterBtn=document.getElementById("enterBtn");
 const leftDoor=document.querySelector(".left");
@@ -149,28 +139,57 @@ enterBtn.onclick=()=>{
   },2000);
 };
 
-/* Submit Feedback */
-const form=document.getElementById("feedbackForm");
-const status=document.getElementById("status");
+/* Submit Feedback via Secure Flow */
+const form = document.getElementById("feedbackForm");
+const statusDiv = document.getElementById("status");
+const submitButton = form.querySelector('button.submit');
 
 form.addEventListener("submit", async (e)=>{
   e.preventDefault();
   const nameInput = document.getElementById("name");
   const messageInput = document.getElementById("message");
 
-  try{
-    await addDoc(collection(db,"reviews"),{
-      name: nameInput.value || 'Anonymous',
-      message: messageInput.value,
-      rating: 5, // Defaulting rating to 5 as there's no input for it here
-      sentiment: 'Neutral', // Defaulting sentiment
-      createdAt: serverTimestamp()
+  const data = {
+    name: nameInput.value || 'Anonymous',
+    message: messageInput.value,
+  };
+
+  submitButton.disabled = true;
+  statusDiv.textContent = "Transmitting...";
+  statusDiv.style.color = "#00ffcc";
+
+  try {
+    // The '/api/flow/submitPublicReview' endpoint is automatically created by Genkit
+    const response = await fetch('/api/flow/submitPublicReview', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ data }), // Genkit expects the input under a 'data' key
     });
-    status.textContent="✔ Review received. System updated.";
-    form.reset();
-  }catch(err){
+
+    const result = await response.json();
+    
+    if (!response.ok || result.error) {
+        throw new Error(result.error?.message || 'Transmission failed. Server responded with an error.');
+    }
+    
+    const flowOutput = result.output;
+
+    if (flowOutput.success) {
+        statusDiv.textContent = "✔ Review received. System updated.";
+        statusDiv.style.color = "#00ffcc";
+        form.reset();
+    } else {
+        throw new Error(flowOutput.message || "An unknown error occurred.");
+    }
+
+  } catch (err) {
     console.error(err);
-    status.textContent="✖ Transmission failed.";
+    statusDiv.textContent = `✖ Transmission failed: ${err.message}`;
+    statusDiv.style.color = "#ff4d4d";
+  } finally {
+    submitButton.disabled = false;
   }
 });
 </script>

@@ -8,3 +8,4 @@ import '@/ai/flows/run-code.ts';
 import '@/ai/flows/debug-code.ts';
 import '@/ai/flows/find-free-courses.ts';
 import '@/ai/flows/analyze-review.ts';
+import '@/ai/flows/submit-public-review.ts';
