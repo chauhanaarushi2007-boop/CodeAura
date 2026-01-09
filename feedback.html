@@ -165,7 +165,8 @@ form.addEventListener("submit", async (e)=>{
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ data }), // Genkit expects the input under a 'data' key
+      // The Genkit Next.js plugin expects the flow input directly in the body
+      body: JSON.stringify(data), 
     });
 
     const result = await response.json();
@@ -174,6 +175,7 @@ form.addEventListener("submit", async (e)=>{
         throw new Error(result.error?.message || 'Transmission failed. Server responded with an error.');
     }
     
+    // The actual output of the flow is nested under the 'output' key
     const flowOutput = result.output;
 
     if (flowOutput.success) {
