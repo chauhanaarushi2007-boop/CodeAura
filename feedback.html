@@ -166,24 +166,25 @@ form.addEventListener("submit", async (e)=>{
         'Content-Type': 'application/json',
       },
       // The Genkit Next.js plugin expects the flow input directly in the body
-      body: JSON.stringify(data), 
+      body: JSON.stringify(data),
     });
 
-    const result = await response.json();
-    
-    if (!response.ok || result.error) {
-        throw new Error(result.error?.message || 'Transmission failed. Server responded with an error.');
+    if (!response.ok) {
+        const errorResult = await response.json().catch(() => ({ error: { message: response.statusText } }));
+        throw new Error(errorResult.error?.message || 'Transmission failed. Server responded with an error.');
     }
     
+    const result = await response.json();
+
     // The actual output of the flow is nested under the 'output' key
     const flowOutput = result.output;
 
-    if (flowOutput.success) {
+    if (flowOutput && flowOutput.success) {
         statusDiv.textContent = "✔ Review received. System updated.";
         statusDiv.style.color = "#00ffcc";
         form.reset();
     } else {
-        throw new Error(flowOutput.message || "An unknown error occurred.");
+        throw new Error(flowOutput?.message || "An unknown error occurred.");
     }
 
   } catch (err) {

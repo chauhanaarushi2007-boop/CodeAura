@@ -28,41 +28,47 @@ const SubmitPublicReviewOutputSchema = z.object({
 export type SubmitPublicReviewOutput = z.infer<typeof SubmitPublicReviewOutputSchema>;
 
 // This is the main function that will be called from our public feedback.html page.
-// Genkit automatically creates an API endpoint for this flow.
-export const submitPublicReview = ai.defineFlow(
+export async function submitPublicReview(input: SubmitPublicReviewInput): Promise<SubmitPublicReviewOutput> {
+  const { name, message } = input;
+
+  if (!message) {
+      return { success: false, message: 'Message is required.' };
+  }
+
+  try {
+    // 1. Analyze sentiment with our existing Genkit flow
+    const { sentiment } = await analyzeReview({ review: message });
+
+    // 2. Add to Firestore. This runs on the server with admin privileges.
+    const { firestore } = initializeFirebase();
+    const reviewCollection = collection(firestore, 'reviews');
+
+    await addDoc(reviewCollection, {
+      name: name || 'Anonymous',
+      message,
+      rating: 5, // Defaulting rating to 5 as per the old form
+      sentiment,
+      createdAt: serverTimestamp(),
+    });
+
+    return { success: true, message: 'Review submitted successfully.' };
+
+  } catch (e: any) {
+    console.error('Error submitting public review:', e);
+    return { success: false, message: 'An unexpected error occurred.' };
+  }
+}
+
+// Genkit automatically creates an API endpoint for this flow at /api/flow/submitPublicReviewFlow
+// The authPolicy allows it to be called from the public internet without authentication.
+export const submitPublicReviewFlow = ai.defineFlow(
   {
     name: 'submitPublicReview',
     inputSchema: SubmitPublicReviewInputSchema,
     outputSchema: SubmitPublicReviewOutputSchema,
+    authPolicy: (auth, input) => {
+        // Allow all public, unauthenticated requests
+    }
   },
-  async (input) => {
-    const { name, message } = input;
-
-    if (!message) {
-        return { success: false, message: 'Message is required.' };
-    }
-
-    try {
-      // 1. Analyze sentiment with our existing Genkit flow
-      const { sentiment } = await analyzeReview({ review: message });
-  
-      // 2. Add to Firestore. This runs on the server with admin privileges.
-      const { firestore } = initializeFirebase();
-      const reviewCollection = collection(firestore, 'reviews');
-  
-      await addDoc(reviewCollection, {
-        name: name || 'Anonymous',
-        message,
-        rating: 5, // Defaulting rating to 5 as per the old form
-        sentiment,
-        createdAt: serverTimestamp(),
-      });
-  
-      return { success: true, message: 'Review submitted successfully.' };
-
-    } catch (e: any) {
-      console.error('Error submitting public review:', e);
-      return { success: false, message: 'An unexpected error occurred.' };
-    }
-  }
+  submitPublicReview
 );
