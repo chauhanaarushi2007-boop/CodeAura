@@ -5,7 +5,6 @@ import { generalQuery } from "@/ai/flows/chatbot-programming-language-query";
 import { runCode as runCodeFlow } from "@/ai/flows/run-code";
 import { debugCode as debugCodeFlow } from "@/ai/flows/debug-code";
 import { findFreeCourses as findFreeCoursesFlow } from "@/ai/flows/find-free-courses";
-import { analyzeReview } from "@/ai/flows/analyze-review";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { initializeFirebase } from "@/firebase/init";
 
@@ -113,36 +112,3 @@ export async function findFreeCourses(topic: string) {
         };
     }
 }
-
-
-export async function addReview(formData: FormData) {
-    const name = formData.get('name') as string;
-    const message = formData.get('message') as string;
-    const rating = parseInt(formData.get('rating') as string, 10);
-  
-    if (!message || !rating) {
-      return { error: 'Message and rating are required.' };
-    }
-  
-    try {
-      // 1. Analyze sentiment with Genkit
-      const { sentiment } = await analyzeReview({ review: message });
-  
-      // 2. Add to Firestore
-      const { firestore } = initializeFirebase();
-      const reviewCollection = collection(firestore, 'reviews');
-  
-      await addDoc(reviewCollection, {
-        name: name || 'Anonymous',
-        message,
-        rating,
-        sentiment,
-        createdAt: serverTimestamp(),
-      });
-  
-      return { error: null };
-    } catch (e: any) {
-      console.error('Error adding review:', e);
-      return { error: 'An unexpected error occurred. Please try again.' };
-    }
-  }
