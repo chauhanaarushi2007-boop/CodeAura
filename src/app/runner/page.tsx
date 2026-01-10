@@ -143,7 +143,7 @@ export default function CodeRunnerPage() {
                   </div>
               </CardHeader>
               <CardContent className="flex-grow flex flex-col">
-                <ResizablePanelGroup direction="horizontal" className="flex-grow min-h-[600px] flex-row">
+                <ResizablePanelGroup direction="vertical" className="flex-grow min-h-[600px]">
                     <ResizablePanel defaultSize={50}>
                          <Textarea
                             value={code}
@@ -233,5 +233,3 @@ export default function CodeRunnerPage() {
     </div>
   );
 }
-
-    
