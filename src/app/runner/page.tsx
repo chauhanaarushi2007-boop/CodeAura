@@ -208,7 +208,7 @@ export default function CodeRunnerPage() {
                                         />
                                     </motion.div>
                                 ) : (
-                                    <motion.pre key="text" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className={`font-code text-sm whitespace-pre-wrap p-4 h-full overflow-auto bg-muted/40 rounded-b-md ${runResult.isError ? 'text-destructive' : 'text-foreground'}`}>
+                                    <motion.pre key="text" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className={`font-code text-sm whitespace-pre-wrap p-4 h-full overflow-auto bg-muted/40 rounded-b-md ${runResult.isError ? 'text-destructive' : 'text-primary-foreground'}`}>
                                         {runResult.output}
                                     </motion.pre>
                                 )}
