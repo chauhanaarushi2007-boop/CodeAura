@@ -1,3 +1,4 @@
+import Script from "next/script";
 import type {Metadata} from 'next';
 import './globals.css';
 import { cn } from '@/lib/utils';
@@ -41,6 +42,19 @@ export default function RootLayout({
             <FirebaseErrorListener />
           </FirebaseProvider>
         </Providers>
+                <Script
+          src="https://www.googletagmanager.com/gtag/js?id=YOUR-ID"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-B3SHTQF2SN');
+          `}
+        </Script>
+        <Analytics />
         <Analytics />
       </body>
     </html>
