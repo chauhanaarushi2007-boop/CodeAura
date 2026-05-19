@@ -55,7 +55,6 @@ export default function RootLayout({
           `}
         </Script>
         <Analytics />
-        <Analytics />
       </body>
     </html>
   );
