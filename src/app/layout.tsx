@@ -8,6 +8,7 @@ import Chatbot from '@/components/chatbot';
 import { Providers } from './providers';
 import { FirebaseProvider } from '@/firebase';
 import FirebaseErrorListener from '@/components/FirebaseErrorListener';
+import { Analytics } from '@vercel/analytics/next';
 
 
 export const metadata: Metadata = {
@@ -40,6 +41,7 @@ export default function RootLayout({
             <FirebaseErrorListener />
           </FirebaseProvider>
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
