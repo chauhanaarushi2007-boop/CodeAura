@@ -43,7 +43,7 @@ export default function RootLayout({
           </FirebaseProvider>
         </Providers>
                 <Script
-          src="https://www.googletagmanager.com/gtag/js?id=YOUR-ID"
+          src="https://www.googletagmanager.com/gtag/js?id=G-B3SHTQF2SN"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
