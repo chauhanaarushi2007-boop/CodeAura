@@ -12,9 +12,13 @@ import FirebaseErrorListener from '@/components/FirebaseErrorListener';
 import { Analytics } from '@vercel/analytics/next';
 
 
-export const metadata: Metadata = {
-  title: 'CodeAura - The Aura of Programmers Begins Here.',
-  description: 'Your personal AI-powered guide to the world of code. A skill that sparks a career.',
+export const metadata = {
+  metadataBase: new URL("https://codeaurix.com"),
+  title: "CodeAura - The Aura of Programmers Begins Here.",
+  description: "Your personal AI-powered guide to the world of code.",
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({
