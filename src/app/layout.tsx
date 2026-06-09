@@ -12,7 +12,9 @@ import FirebaseErrorListener from '@/components/FirebaseErrorListener';
 import { Analytics } from '@vercel/analytics/next';
 
 
-export const metadata = {
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
   metadataBase: new URL("https://codeaurix.com"),
   title: "CodeAura - The Aura of Programmers Begins Here.",
   description: "Your personal AI-powered guide to the world of code.",
