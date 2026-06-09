@@ -15,7 +15,7 @@ import { Analytics } from '@vercel/analytics/next';
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://codeaurix.com"),
+  metadataBase: new URL("https://codeaurix.vercel.app"),
   title: "CodeAura - The Aura of Programmers Begins Here.",
   description: "Your personal AI-powered guide to the world of code.",
   alternates: {
