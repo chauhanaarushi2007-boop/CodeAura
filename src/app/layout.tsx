@@ -16,10 +16,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://codeaurix.vercel.app"),
-  title: "CodeAura - The Aura of Programmers Begins Here.",
-  description: "Your personal AI-powered guide to the world of code.",
   alternates: {
-    canonical: "/",
+    canonical: "https://codeaurix.vercel.app",
   },
 };
 
