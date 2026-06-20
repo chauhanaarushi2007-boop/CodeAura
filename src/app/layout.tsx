@@ -1,5 +1,4 @@
 import Script from "next/script";
-import type {Metadata} from 'next';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { Header } from '@/components/layout/header';
