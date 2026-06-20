@@ -279,4 +279,51 @@ int main() {
       ],
     },
   },
+  rust: {
+  overview: 'Rust is a systems programming language focused on performance, memory safety, and concurrency.',
+  keyConcepts: [
+    {
+      title: 'Ownership',
+      description: 'Ownership is Rust’s unique way of managing memory without a garbage collector.'
+    },
+    {
+      title: 'Borrowing',
+      description: 'References allow access to data without taking ownership.'
+    },
+    {
+      title: 'Lifetimes',
+      description: 'Lifetimes ensure references remain valid and prevent memory errors.'
+    },
+    {
+      title: 'Concurrency',
+      description: 'Rust provides fearless concurrency with compile-time safety guarantees.'
+    }
+  ],
+  example: {
+    code: `fn main() {
+    println!("Hello, CodeAurix!");
+}`,
+    explanation: 'Basic Rust program printing a message to the console.'
+  },
+  resources: {
+    officialDocs: 'https://www.rust-lang.org/learn',
+    links: [
+      {
+        title: 'The Rust Programming Language',
+        url: 'https://doc.rust-lang.org/book/',
+        type: 'article'
+      },
+      {
+        title: 'Rust Full Course',
+        url: 'https://www.youtube.com/watch?v=BpPEoZW5IiY',
+        type: 'video'
+      },
+      {
+        title: 'Rust By Example',
+        url: 'https://doc.rust-lang.org/rust-by-example/',
+        type: 'interactive'
+      }
+    ]
+  }
+},
 };
